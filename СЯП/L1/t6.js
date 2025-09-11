@@ -1,5 +1,5 @@
 const math = 4;
-const rus = 5;
+const rus = 2;
 const eng = 4;
 
 if (math > 3 && rus > 3 && eng > 3) {

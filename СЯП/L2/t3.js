@@ -6,4 +6,4 @@ function sr_arifm(array) {
 	return sum / array.length;
 }
 
-console.log(sr_arifm([1, 2, 3, 4, 5]));
+console.log(sr_arifm([1, 2, 8, 5]));

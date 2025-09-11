@@ -1,3 +1,5 @@
+//TODO !
+
 function reverse(str) {
 	return str
 		.split("")
