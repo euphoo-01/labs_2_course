@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <iostream>
-#include <stdlib.h>
 
 #define BUFSIZE 1024
 #define PORT 1280

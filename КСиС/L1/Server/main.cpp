@@ -1,6 +1,5 @@
 #include <csignal>
 #include <cstring>
-#include <filesystem>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
@@ -15,18 +14,18 @@ using namespace std;
 
 void normalize_spaces(char *s) {
     int i = 0, j = 0;
-    int in_space = 0;
+    bool space_found = false;
     while (s[i] && isspace(s[i])) i++;
 
     for (; s[i]; i++) {
         if (isspace(s[i])) {
-            in_space = 1;
+            space_found = true;
         } else {
-            if (in_space && j > 0) {
+            if (space_found && j > 0) {
                 s[j++] = ' ';
             }
             s[j++] = s[i];
-            in_space = 0;
+            space_found = false;
         }
     }
 
@@ -38,6 +37,7 @@ int main() {
     int peer_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (peer_socket == -1) {
         cerr << "Ошибка создания сокета." << endl;
+        close(peer_socket);
     }
 
     sockaddr_in address;
@@ -49,7 +49,7 @@ int main() {
     if (bind(peer_socket, (sockaddr *) &address, address_len) == -1) {
         cerr << "Не удалось забиндить домен." << endl;
     };
-    listen(peer_socket, PORT);
+    listen(peer_socket, 5);
     int communication_socket = accept(peer_socket, nullptr, nullptr);
     if (communication_socket != -1) {
         cout << "Установлено подключение" << endl;
@@ -62,7 +62,11 @@ int main() {
         buffer[recieve] = '\0';
         cout << "Получено от клиента: " << buffer << endl;
         normalize_spaces(buffer);
-        send(communication_socket, buffer, strlen(buffer), 0);
+        if (send(communication_socket, buffer, strlen(buffer), 0) > 0) {
+            cout << "Сообщение отправлено и было получено клиентом" << endl;
+        } else {
+            cerr << "Сообщение было отрпавлено, но не дошло до получателя." << endl;
+        }
     }
 
     close(communication_socket);

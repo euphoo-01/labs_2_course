@@ -5,8 +5,8 @@ namespace FST {
         char symbol; // символ перехода
         short nnode; // номер смежной вершины
         RELATION(
-            char c = 0x00, // символ перехода
-            short n = NULL // новое состояние
+            char c,
+            short n
         );
     };
 
@@ -17,8 +17,8 @@ namespace FST {
         NODE();
 
         NODE(
-            short n, // количество инцидентных ребер
-            RELATION rel, ... // список ребер
+            short,
+            RELATION, ...
         );
     };
 
@@ -30,9 +30,9 @@ namespace FST {
         NODE *nodes; // граф переходов: [0] - начальное состояние, [nstate-1] - конечное
         short *rstates; // возможные состояния графа на данном этапе
         FST(
-            char *s, // цепочка
-            short ns, // количество состояний автомата
-            NODE n, ... // список состояний (граф переходов)
+            char*,
+            short,
+            NODE, ...
         );
     };
 

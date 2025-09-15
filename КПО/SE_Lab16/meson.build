@@ -1,7 +1,13 @@
 project('SE_Lab16', 'cpp',
-        version : '1.0.0',
-        default_options : ['warning_level=3', 'cpp_std=c++20'])
+        version : '1.0',
+        default_options : ['cpp_std=c++17'])
 
-SE_Lab16 = executable('SE_Lab16', 'main.cpp', install : true)
+inc = include_directories('Headers')
 
-test('test', SE_Lab16)
+sources = [
+        'main.cpp',
+        'Sources/FST.cpp',
+]
+
+executable('SE_Lab16', sources,
+           include_directories : inc)
