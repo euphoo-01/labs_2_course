@@ -1,0 +1,14 @@
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\bin\Debug\net8.0\Arrays.exe
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\bin\Debug\net8.0\Arrays.deps.json
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\bin\Debug\net8.0\Arrays.runtimeconfig.json
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\bin\Debug\net8.0\Arrays.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\bin\Debug\net8.0\Arrays.pdb
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\obj\Debug\net8.0\Arrays.GeneratedMSBuildEditorConfig.editorconfig
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\obj\Debug\net8.0\Arrays.AssemblyInfoInputs.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\obj\Debug\net8.0\Arrays.AssemblyInfo.cs
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\obj\Debug\net8.0\Arrays.csproj.CoreCompileInputs.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\obj\Debug\net8.0\Arrays.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\obj\Debug\net8.0\refint\Arrays.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\obj\Debug\net8.0\Arrays.pdb
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\obj\Debug\net8.0\Arrays.genruntimeconfig.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\Arrays\obj\Debug\net8.0\ref\Arrays.dll
