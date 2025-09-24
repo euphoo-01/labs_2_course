@@ -6,7 +6,7 @@
 #include <iostream>
 
 #define BUFSIZE 1024
-#define PORT 1280
+#define PORT 1288
 #define ADDR "127.0.0.1"
 
 using namespace std;
@@ -25,6 +25,7 @@ int main() {
     socklen_t address_len = sizeof(address);
 
     connect(client_socket, (sockaddr*) &address, address_len);
+
     char buffer[BUFSIZE];
     cout << "Введите сообщение: ";
     cin.get(buffer, BUFSIZE);

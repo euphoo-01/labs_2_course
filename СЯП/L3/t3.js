@@ -11,8 +11,8 @@ function older17(students) {
 }
 
 const students = [
-	{ name: "Аня", age: 18, groupId: 1 },
-	{ name: "Петя Пупкин", age: 16, groupId: 1 },
+	{ name: "Аня", age: 13, groupId: 1 },
+	{ name: "Петя Пупкин", age: 25, groupId: 1 },
 	{ name: "Оля", age: 19, groupId: 2 },
 	{ name: "Иван Золо", age: 17, groupId: 2 },
 	{ name: "Саша", age: 20, groupId: 1 },
