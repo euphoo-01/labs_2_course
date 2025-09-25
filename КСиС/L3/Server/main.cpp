@@ -11,7 +11,18 @@
 const int BUFSIZE = 1024;
 const int PORT = 1288;
 const char *ADDR = "127.0.0.1";
+
+#define FILTER_REQ "FILTER:"
+#define VIEW_REQ "VIEW:"
+#define NEWREC_REQ "NEW:"
+#define DELREC_REQ "DEL:"
+#define UPDREC_REQ "UPD:"
+
+#define CMD_REQ_DELIM ":"
+#define SETTS_REQ_DELIM ","
+
 int running = 1;
+
 void *client_worker(void *args);
 
 enum PRODUCTS_INFO {
@@ -21,7 +32,9 @@ enum PRODUCTS_INFO {
     COUNT = 3,
 };
 
-std::list<std::tuple<char*,char*,char*,int>> products;
+std::list<std::tuple<char *, char *, char *, int> > products;
+
+std::tuple<char *, std::tuple *> split_command(char *req);
 
 void signal_handler(int sig) {
     running = 0;
@@ -30,12 +43,12 @@ void signal_handler(int sig) {
 int main() {
     signal(SIGINT, signal_handler);
 
-    const std::tuple<char*,char*,char*,int> el1 = {"Belarus", "Белагропром","Молоко", 100};
-    const std::tuple<char*,char*,char*,int> el2 = {"Germany", "Mercedes-Benz Motors","Турбина", 5};
-    const std::tuple<char*,char*,char*,int> el3 = {"Germany", "Karcher Inc.","Пылесос", 23};
-    const std::tuple<char*,char*,char*,int> el4 = {"Belarus", "Белагропром","Картошка", 2500};
-    const std::tuple<char*,char*,char*,int> el5 = {"Germany", "Karcher Inc.","Танк", 100};
-    const std::tuple<char*,char*,char*,int> el6 = {"Belarus", "Шиман Дмитрий Васильевич","Волосы", 2};
+    const std::tuple<char *, char *, char *, int> el1 = {"Belarus", "Белагропром", "Молоко", 100};
+    const std::tuple<char *, char *, char *, int> el2 = {"Germany", "Mercedes-Benz Motors", "Турбина", 5};
+    const std::tuple<char *, char *, char *, int> el3 = {"Germany", "Karcher Inc.", "Пылесос", 23};
+    const std::tuple<char *, char *, char *, int> el4 = {"Belarus", "Белагропром", "Картошка", 2500};
+    const std::tuple<char *, char *, char *, int> el5 = {"Germany", "Karcher Inc.", "Танк", 100};
+    const std::tuple<char *, char *, char *, int> el6 = {"Belarus", "Шиман Дмитрий Васильевич", "Волосы", 2};
 
     products.push_back(el1);
     products.push_back(el2);
@@ -70,7 +83,6 @@ int main() {
     };
 
 
-
     while (running) {
         int client_socket = accept(lead_socket, NULL, NULL);
         if (client_socket != -1) {
@@ -86,7 +98,6 @@ int main() {
             continue;
         }
         pthread_join(newThread, NULL);
-
     }
     return 0;
 }
@@ -103,18 +114,18 @@ void *client_worker(void *args) {
         buffer[data_l] = '\0';
         std::cout << "Клиент " << client_socket << ": " << buffer << std::endl;
 
-        char* response = new char[BUFSIZE];
-        response[0] = '\0';  // обнуляем строку
+        char *response = new char[BUFSIZE];
+        response[0] = '\0';
 
         bool found = false;
 
-        for (auto product : products) {
-            char* country      = std::get<COUNTRY>(product);
-            char* manufacturer = std::get<MANUFACTURER>(product);
-            char* product_name = std::get<PRODUCT_NAME>(product);
-            int count          = std::get<COUNT>(product);
+        for (auto product: products) {
+            char *country = std::get<COUNTRY>(product);
+            char *manufacturer = std::get<MANUFACTURER>(product);
+            char *product_name = std::get<PRODUCT_NAME>(product);
+            int count = std::get<COUNT>(product);
 
-            if (strcmp(buffer, country) == 0) {   // ✅ фильтрация по стране
+            if (strcmp(buffer, country) == 0) {
                 char productInfo[BUFSIZE];
                 snprintf(productInfo, BUFSIZE,
                          "СТРАНА: %s. ИМЯ: %s. ПРОИЗВЕЛ: %s. КОЛ-ВО: %d\n",
@@ -143,3 +154,35 @@ void *client_worker(void *args) {
     return nullptr;
 }
 
+std::tuple<char *, std::tuple *> split_command(char *req) {
+    char temp;
+    int deleted_chars = 0;
+
+    char *token_buff = new char[BUFSIZE];
+    char *command = new char[BUFSIZE/4];
+
+    command = strtok_r(req, CMD_REQ_DELIM, &token_buff);
+
+
+    while (req[0] != ':' ) {
+        temp = req[strlen(req) - 1];
+        req[strlen(req) - 1] = req[0];
+        req[0] = temp;
+        deleted_chars++;
+    }
+    req(strlen(req) - deleted_chars - 1) = '\0';
+
+    switch (command) {
+        case NEWREC_REQ: {
+            char* country = strtok_r(req, SETTS_REQ_DELIM, &token_buff);
+            char* manufacturer = strtok_r(req, SETTS_REQ_DELIM, &token_buff);
+            char* product_name = strtok_r(req, SETTS_REQ_DELIM, &token_buff);
+            char* count = strtok_r(req, SETTS_REQ_DELIM, &token_buff);
+
+            std::tuple<char*, char*, char*, int> product_info = {country, manufacturer, product_name, std::stoi(count)};
+            return {command, product_info};
+            break;
+        }
+    }
+
+}
