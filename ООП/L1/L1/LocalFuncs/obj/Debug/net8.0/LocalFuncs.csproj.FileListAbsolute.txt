@@ -1,0 +1,14 @@
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\bin\Debug\net8.0\LocalFuncs.exe
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\bin\Debug\net8.0\LocalFuncs.deps.json
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\bin\Debug\net8.0\LocalFuncs.runtimeconfig.json
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\bin\Debug\net8.0\LocalFuncs.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\bin\Debug\net8.0\LocalFuncs.pdb
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\obj\Debug\net8.0\LocalFuncs.GeneratedMSBuildEditorConfig.editorconfig
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\obj\Debug\net8.0\LocalFuncs.AssemblyInfoInputs.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\obj\Debug\net8.0\LocalFuncs.AssemblyInfo.cs
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\obj\Debug\net8.0\LocalFuncs.csproj.CoreCompileInputs.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\obj\Debug\net8.0\LocalFuncs.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\obj\Debug\net8.0\refint\LocalFuncs.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\obj\Debug\net8.0\LocalFuncs.pdb
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\obj\Debug\net8.0\LocalFuncs.genruntimeconfig.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\LocalFuncs\obj\Debug\net8.0\ref\LocalFuncs.dll

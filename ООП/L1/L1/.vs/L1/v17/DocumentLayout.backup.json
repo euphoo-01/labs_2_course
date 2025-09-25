@@ -1,0 +1,104 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\DEV\\\u041B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u041E\u041E\u041F\\L1\\L1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{37470922-494F-4A6A-8B02-EF2C83A722D8}|LocalFuncs\\LocalFuncs.csproj|c:\\dev\\\u043B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u043E\u043E\u043F\\l1\\l1\\localfuncs\\localfuncs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37470922-494F-4A6A-8B02-EF2C83A722D8}|LocalFuncs\\LocalFuncs.csproj|solutionrelative:localfuncs\\localfuncs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{57A31E9A-4B96-48C5-B147-52154D62F8D2}|Tuples\\Tuples.csproj|c:\\dev\\\u043B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u043E\u043E\u043F\\l1\\l1\\tuples\\tuples.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{57A31E9A-4B96-48C5-B147-52154D62F8D2}|Tuples\\Tuples.csproj|solutionrelative:tuples\\tuples.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB4561B1-7102-4FFE-AC25-11EE43819C64}|Arrays\\Arrays.csproj|c:\\dev\\\u043B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u043E\u043E\u043F\\l1\\l1\\arrays\\arrays.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB4561B1-7102-4FFE-AC25-11EE43819C64}|Arrays\\Arrays.csproj|solutionrelative:arrays\\arrays.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{22618799-116C-4CAC-8728-D090FAD60FB8}|L1\\Types.csproj|c:\\dev\\\u043B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u043E\u043E\u043F\\l1\\l1\\l1\\types.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{22618799-116C-4CAC-8728-D090FAD60FB8}|L1\\Types.csproj|solutionrelative:l1\\types.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA63B78A-2626-4BCD-A9A7-02507919DE7B}|Strings\\Strings.csproj|c:\\dev\\\u043B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u043E\u043E\u043F\\l1\\l1\\strings\\strings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA63B78A-2626-4BCD-A9A7-02507919DE7B}|Strings\\Strings.csproj|solutionrelative:strings\\strings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LocalFuncs.cs",
+              "DocumentMoniker": "C:\\DEV\\\u041B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u041E\u041E\u041F\\L1\\L1\\LocalFuncs\\LocalFuncs.cs",
+              "RelativeDocumentMoniker": "LocalFuncs\\LocalFuncs.cs",
+              "ToolTip": "C:\\DEV\\\u041B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u041E\u041E\u041F\\L1\\L1\\LocalFuncs\\LocalFuncs.cs*",
+              "RelativeToolTip": "LocalFuncs\\LocalFuncs.cs*",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA4wBQAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T09:34:44.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Tuples.cs",
+              "DocumentMoniker": "C:\\DEV\\\u041B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u041E\u041E\u041F\\L1\\L1\\Tuples\\Tuples.cs",
+              "RelativeDocumentMoniker": "Tuples\\Tuples.cs",
+              "ToolTip": "C:\\DEV\\\u041B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u041E\u041E\u041F\\L1\\L1\\Tuples\\Tuples.cs",
+              "RelativeToolTip": "Tuples\\Tuples.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T08:54:51.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Types.cs",
+              "DocumentMoniker": "C:\\DEV\\\u041B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u041E\u041E\u041F\\L1\\L1\\L1\\Types.cs",
+              "RelativeDocumentMoniker": "L1\\Types.cs",
+              "ToolTip": "C:\\DEV\\\u041B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u041E\u041E\u041F\\L1\\L1\\L1\\Types.cs",
+              "RelativeToolTip": "L1\\Types.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T04:28:33.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Arrays.cs",
+              "DocumentMoniker": "C:\\DEV\\\u041B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u041E\u041E\u041F\\L1\\L1\\Arrays\\Arrays.cs",
+              "RelativeDocumentMoniker": "Arrays\\Arrays.cs",
+              "ToolTip": "C:\\DEV\\\u041B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u041E\u041E\u041F\\L1\\L1\\Arrays\\Arrays.cs",
+              "RelativeToolTip": "Arrays\\Arrays.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAjwEAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T14:32:07.3Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Strings.cs",
+              "DocumentMoniker": "C:\\DEV\\\u041B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u041E\u041E\u041F\\L1\\L1\\Strings\\Strings.cs",
+              "RelativeDocumentMoniker": "Strings\\Strings.cs",
+              "ToolTip": "C:\\DEV\\\u041B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0435 \u0440\u0430\u0431\u043E\u0442\u044B\\\u041E\u041E\u041F\\L1\\L1\\Strings\\Strings.cs",
+              "RelativeToolTip": "Strings\\Strings.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAACQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T10:45:44.472Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

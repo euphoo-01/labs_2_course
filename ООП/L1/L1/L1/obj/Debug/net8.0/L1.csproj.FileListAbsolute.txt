@@ -1,0 +1,14 @@
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\L1.GeneratedMSBuildEditorConfig.editorconfig
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\L1.AssemblyInfoInputs.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\L1.AssemblyInfo.cs
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\L1.csproj.CoreCompileInputs.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\bin\Debug\net8.0\L1.exe
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\bin\Debug\net8.0\L1.deps.json
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\bin\Debug\net8.0\L1.runtimeconfig.json
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\bin\Debug\net8.0\L1.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\bin\Debug\net8.0\L1.pdb
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\L1.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\refint\L1.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\L1.pdb
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\L1.genruntimeconfig.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\ref\L1.dll

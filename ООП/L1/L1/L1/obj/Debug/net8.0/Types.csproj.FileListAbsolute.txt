@@ -1,0 +1,14 @@
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\bin\Debug\net8.0\Types.exe
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\bin\Debug\net8.0\Types.deps.json
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\bin\Debug\net8.0\Types.runtimeconfig.json
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\bin\Debug\net8.0\Types.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\bin\Debug\net8.0\Types.pdb
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\Types.GeneratedMSBuildEditorConfig.editorconfig
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\Types.AssemblyInfoInputs.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\Types.AssemblyInfo.cs
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\Types.csproj.CoreCompileInputs.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\Types.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\refint\Types.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\Types.pdb
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\Types.genruntimeconfig.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\L1\obj\Debug\net8.0\ref\Types.dll

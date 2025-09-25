@@ -1,0 +1,14 @@
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\bin\Debug\net8.0\Tuples.exe
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\bin\Debug\net8.0\Tuples.deps.json
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\bin\Debug\net8.0\Tuples.runtimeconfig.json
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\bin\Debug\net8.0\Tuples.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\bin\Debug\net8.0\Tuples.pdb
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\obj\Debug\net8.0\Tuples.GeneratedMSBuildEditorConfig.editorconfig
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\obj\Debug\net8.0\Tuples.AssemblyInfoInputs.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\obj\Debug\net8.0\Tuples.AssemblyInfo.cs
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\obj\Debug\net8.0\Tuples.csproj.CoreCompileInputs.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\obj\Debug\net8.0\Tuples.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\obj\Debug\net8.0\refint\Tuples.dll
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\obj\Debug\net8.0\Tuples.pdb
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\obj\Debug\net8.0\Tuples.genruntimeconfig.cache
+C:\DEV\Лабораторные работы\ООП\L1\L1\Tuples\obj\Debug\net8.0\ref\Tuples.dll
