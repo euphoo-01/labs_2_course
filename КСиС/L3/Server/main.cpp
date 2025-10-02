@@ -7,8 +7,9 @@
 #include <vector>
 #include <list>
 #include <tuple>
+#include <pthread.h>
 
-const int BUFSIZE = 1024;
+const int BUFSIZE = 4096;
 const int PORT = 1288;
 const char *ADDR = "127.0.0.1";
 
@@ -18,12 +19,7 @@ const char *ADDR = "127.0.0.1";
 #define DELREC_REQ "DEL:"
 #define UPDREC_REQ "UPD:"
 
-#define CMD_REQ_DELIM ":"
-#define SETTS_REQ_DELIM ","
-
 int running = 1;
-
-void *client_worker(void *args);
 
 enum PRODUCTS_INFO {
     COUNTRY = 0,
@@ -32,43 +28,142 @@ enum PRODUCTS_INFO {
     COUNT = 3,
 };
 
-std::list<std::tuple<char *, char *, char *, int> > products;
-
-std::tuple<char *, std::tuple *> split_command(char *req);
+std::list<std::tuple<std::string, std::string, std::string, int>> products;
+pthread_mutex_t products_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void signal_handler(int sig) {
     running = 0;
 }
 
+void *handle_client(void *arg) {
+    int client_socket = *(int*)arg;
+    free(arg);
+    char buffer[BUFSIZE];
+    while (true) {
+        ssize_t data_l = recv(client_socket, buffer, BUFSIZE, 0);
+        if (data_l <= 0) {
+            std::cout << "Клиент отключился" << std::endl;
+            break;
+        }
+
+        buffer[data_l] = '\0';
+        std::string request(buffer);
+        std::cout << "Получено: " << request << std::endl;
+
+        std::string response;
+
+        pthread_mutex_lock(&products_mutex);
+        if (request.rfind(FILTER_REQ, 0) == 0) {
+            std::string country = request.substr(strlen(FILTER_REQ));
+            for (auto &p : products) {
+                if (std::get<COUNTRY>(p) == country) {
+                    response += "СТРАНА: " + std::get<COUNTRY>(p) +
+                                ". ПРОДУКТ: " + std::get<PRODUCT_NAME>(p) +
+                                ". ПРОИЗВОДИТЕЛЬ: " + std::get<MANUFACTURER>(p) +
+                                ". КОЛ-ВО: " + std::to_string(std::get<COUNT>(p)) + "\n";
+                }
+            }
+            if (response.empty()) {
+                response = "Нет записей для страны: " + country;
+            }
+        }
+        else if (request.rfind(VIEW_REQ, 0) == 0) {
+            for (auto &p : products) {
+                response += "СТРАНА: " + std::get<COUNTRY>(p) +
+                            ". ПРОДУКТ: " + std::get<PRODUCT_NAME>(p) +
+                            ". ПРОИЗВОДИТЕЛЬ: " + std::get<MANUFACTURER>(p) +
+                            ". КОЛ-ВО: " + std::to_string(std::get<COUNT>(p)) + "\n";
+            }
+            if (response.empty()) response = "База пуста";
+        }
+        else if (request.rfind(NEWREC_REQ, 0) == 0) {
+            std::string args = request.substr(strlen(NEWREC_REQ));
+            size_t p1 = args.find(',');
+            size_t p2 = args.find(',', p1+1);
+            size_t p3 = args.find(',', p2+1);
+
+            if (p1!=std::string::npos && p2!=std::string::npos && p3!=std::string::npos) {
+                std::string country = args.substr(0, p1);
+                std::string manufacturer = args.substr(p1+1, p2-p1-1);
+                std::string product = args.substr(p2+1, p3-p2-1);
+                int count = std::stoi(args.substr(p3+1));
+                products.push_back({country, manufacturer, product, count});
+                response = "Новая запись добавлена";
+            } else {
+                response = "Ошибка: неверный формат NEW";
+            }
+        }
+        else if (request.rfind(DELREC_REQ, 0) == 0) {
+            std::string product = request.substr(strlen(DELREC_REQ));
+            bool removed = false;
+            for (auto it = products.begin(); it != products.end(); ) {
+                if (std::get<PRODUCT_NAME>(*it) == product) {
+                    it = products.erase(it);
+                    removed = true;
+                } else {
+                    ++it;
+                }
+            }
+            response = removed ? "Запись удалена" : "Не найден продукт: " + product;
+        }
+        else if (request.rfind(UPDREC_REQ, 0) == 0) {
+            std::string args = request.substr(strlen(UPDREC_REQ));
+            size_t p1 = args.find(',');
+            size_t p2 = args.find(',', p1+1);
+            size_t p3 = args.find(',', p2+1);
+            size_t p4 = args.find(',', p3+1);
+
+            if (p1!=std::string::npos && p2!=std::string::npos &&
+                p3!=std::string::npos && p4!=std::string::npos) {
+                std::string old_product = args.substr(0, p1);
+                std::string country = args.substr(p1+1, p2-p1-1);
+                std::string manufacturer = args.substr(p2+1, p3-p2-1);
+                std::string new_product = args.substr(p3+1, p4-p3-1);
+                int count = std::stoi(args.substr(p4+1));
+
+                bool updated = false;
+                for (auto &p : products) {
+                    if (std::get<PRODUCT_NAME>(p) == old_product) {
+                        p = {country, manufacturer, new_product, count};
+                        updated = true;
+                        break;
+                    }
+                }
+                response = updated ? "Запись обновлена" : "Не найден продукт: " + old_product;
+            } else {
+                response = "Ошибка: неверный формат UPD";
+            }
+        }
+        else {
+            response = "Неизвестная команда";
+        }
+        pthread_mutex_unlock(&products_mutex);
+
+        send(client_socket, response.c_str(), response.size(), 0);
+    }
+
+    close(client_socket);
+    return nullptr;
+}
+
 int main() {
     signal(SIGINT, signal_handler);
 
-    const std::tuple<char *, char *, char *, int> el1 = {"Belarus", "Белагропром", "Молоко", 100};
-    const std::tuple<char *, char *, char *, int> el2 = {"Germany", "Mercedes-Benz Motors", "Турбина", 5};
-    const std::tuple<char *, char *, char *, int> el3 = {"Germany", "Karcher Inc.", "Пылесос", 23};
-    const std::tuple<char *, char *, char *, int> el4 = {"Belarus", "Белагропром", "Картошка", 2500};
-    const std::tuple<char *, char *, char *, int> el5 = {"Germany", "Karcher Inc.", "Танк", 100};
-    const std::tuple<char *, char *, char *, int> el6 = {"Belarus", "Шиман Дмитрий Васильевич", "Волосы", 2};
+    products.push_back({"Belarus", "Белагропром", "Молоко", 100});
+    products.push_back({"Germany", "Mercedes-Benz Motors", "Турбина", 5});
+    products.push_back({"Germany", "Karcher Inc.", "Пылесос", 23});
+    products.push_back({"Belarus", "Белагропром", "Картошка", 2500});
+    products.push_back({"Germany", "Karcher Inc.", "Танк", 100});
+    products.push_back({"Belarus", "Шиман Дмитрий Васильевич", "Волосы", 2});
 
-    products.push_back(el1);
-    products.push_back(el2);
-    products.push_back(el3);
-    products.push_back(el4);
-    products.push_back(el5);
-    products.push_back(el6);
     int lead_socket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (lead_socket == -1) {
         std::cerr << "Ошибка создания сокета!" << std::endl;
-        close(lead_socket);
         return 1;
     }
 
     int option_value = 1;
-    if (setsockopt(lead_socket, SOL_SOCKET, SO_REUSEADDR, &option_value, sizeof(option_value)) == -1) {
-        std::cerr << "Ошибка повторного использования адреса сервера!" << std::endl;
-        close(lead_socket);
-        return 1;
-    }
+    setsockopt(lead_socket, SOL_SOCKET, SO_REUSEADDR, &option_value, sizeof(option_value));
 
     sockaddr_in address;
     address.sin_family = AF_INET;
@@ -76,113 +171,45 @@ int main() {
     inet_pton(AF_INET, ADDR, &address.sin_addr);
 
     if (bind(lead_socket, (struct sockaddr *) &address, sizeof(address)) == -1) {
-        std::cerr << "Ошибка назначения домена!" << std::endl;
+        std::cerr << "Ошибка bind!" << std::endl;
+        close(lead_socket);
+        return 1;
     }
-    if (listen(lead_socket, 5) == 0) {
-        std::cout << "Прослушиваем " << ADDR << ":" << PORT << std::endl;
-    };
 
+    if (listen(lead_socket, 5) == -1) {
+        std::cerr << "Ошибка listen!" << std::endl;
+        close(lead_socket);
+        return 1;
+    }
+
+    std::cout << "Сервер слушает " << ADDR << ":" << PORT << std::endl;
 
     while (running) {
-        int client_socket = accept(lead_socket, NULL, NULL);
-        if (client_socket != -1) {
-            std::cout << "Установлено соединение" << std::endl;
-        }
-        int *cl_socket_ptr = new int(client_socket);
-
-        pthread_t newThread;
-        if (pthread_create(&newThread, NULL, client_worker, cl_socket_ptr) != 0) {
-            std::cerr << "Ошибка создания потока для сокета " << client_socket << std::endl;
-            close(client_socket);
-            delete cl_socket_ptr;
+        int client_socket = accept(lead_socket, nullptr, nullptr);
+        if (client_socket == -1) {
+            if (running) {
+                std::cerr << "Ошибка accept!" << std::endl;
+            }
             continue;
         }
-        pthread_join(newThread, NULL);
+
+        std::cout << "Клиент подключился" << std::endl;
+
+        int *client_sock_ptr = new int(client_socket);
+
+        pthread_t thread_id;
+        if (pthread_create(&thread_id, nullptr, handle_client, client_sock_ptr) != 0) {
+            std::cerr << "Ошибка создания потока!" << std::endl;
+            delete client_sock_ptr;
+            close(client_socket);
+            continue;
+        }
+
+        pthread_detach(thread_id);
     }
+
+    // Закрытие серверного сокета
+    close(lead_socket);
+    pthread_mutex_destroy(&products_mutex);
     return 0;
-}
-
-void *client_worker(void *args) {
-    int client_socket = *(int *) args;
-    delete (int *) args;
-
-    char buffer[BUFSIZE];
-    ssize_t data_l = recv(client_socket, buffer, BUFSIZE, 0);
-    if (data_l == -1) {
-        std::cerr << "Не удалось получить сообщение от сокета " << client_socket << "!" << std::endl;
-    } else {
-        buffer[data_l] = '\0';
-        std::cout << "Клиент " << client_socket << ": " << buffer << std::endl;
-
-        char *response = new char[BUFSIZE];
-        response[0] = '\0';
-
-        bool found = false;
-
-        for (auto product: products) {
-            char *country = std::get<COUNTRY>(product);
-            char *manufacturer = std::get<MANUFACTURER>(product);
-            char *product_name = std::get<PRODUCT_NAME>(product);
-            int count = std::get<COUNT>(product);
-
-            if (strcmp(buffer, country) == 0) {
-                char productInfo[BUFSIZE];
-                snprintf(productInfo, BUFSIZE,
-                         "СТРАНА: %s. ИМЯ: %s. ПРОИЗВЕЛ: %s. КОЛ-ВО: %d\n",
-                         country, product_name, manufacturer, count);
-
-                if (strlen(response) + strlen(productInfo) < BUFSIZE - 1) {
-                    strcat(response, productInfo);
-                }
-                found = true;
-            }
-        }
-
-        if (!found) {
-            snprintf(response, BUFSIZE, "Нет данных по стране: %s\n", buffer);
-        }
-
-        if (send(client_socket, response, strlen(response), 0) != -1) {
-            std::cout << "Ответ сокету " << client_socket << " отправлен успешно." << std::endl;
-        } else {
-            std::cerr << "Ошибка отправки сообщения сокету " << client_socket << "!" << std::endl;
-        }
-
-        delete[] response;
-    }
-    close(client_socket);
-    return nullptr;
-}
-
-std::tuple<char *, std::tuple *> split_command(char *req) {
-    char temp;
-    int deleted_chars = 0;
-
-    char *token_buff = new char[BUFSIZE];
-    char *command = new char[BUFSIZE/4];
-
-    command = strtok_r(req, CMD_REQ_DELIM, &token_buff);
-
-
-    while (req[0] != ':' ) {
-        temp = req[strlen(req) - 1];
-        req[strlen(req) - 1] = req[0];
-        req[0] = temp;
-        deleted_chars++;
-    }
-    req(strlen(req) - deleted_chars - 1) = '\0';
-
-    switch (command) {
-        case NEWREC_REQ: {
-            char* country = strtok_r(req, SETTS_REQ_DELIM, &token_buff);
-            char* manufacturer = strtok_r(req, SETTS_REQ_DELIM, &token_buff);
-            char* product_name = strtok_r(req, SETTS_REQ_DELIM, &token_buff);
-            char* count = strtok_r(req, SETTS_REQ_DELIM, &token_buff);
-
-            std::tuple<char*, char*, char*, int> product_info = {country, manufacturer, product_name, std::stoi(count)};
-            return {command, product_info};
-            break;
-        }
-    }
-
 }

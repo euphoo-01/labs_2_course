@@ -3,7 +3,7 @@ let cache = new WeakMap();
 const calc = (obj) => {
 	if (!cache.has(obj)) {
 		const result = Math.pow(obj.a * obj.b * obj.c, 1);
-
+		console.log("Cache");
 		cache.set(obj, result);
 	}
 

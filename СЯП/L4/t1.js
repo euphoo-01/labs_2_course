@@ -13,6 +13,9 @@ const del = (set, ...args) => {
 const find = (set, prod) => {
 	return set.has(prod);
 };
+const count = () => {
+	return [...products.entries()].length;
+};
 
 add(products, "телефон", "часы", "айпад", "банан");
 console.log(find(products, "телефон"));
@@ -20,3 +23,4 @@ console.log(products);
 del(products, "телефон", "айпад");
 console.log(products);
 console.log(find(products, "телефон"));
+console.log(count());
