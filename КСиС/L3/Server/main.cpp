@@ -192,7 +192,6 @@ int main() {
             }
             continue;
         }
-y
         std::cout << "Клиент подключился" << std::endl;
 
         int *client_sock_ptr = new int(client_socket);

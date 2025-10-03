@@ -8,7 +8,10 @@ namespace Error {
     {
         ERROR_ENTRY(0, "Недопустимый код ошибки"),
         ERROR_ENTRY(1, "Системный сбой"),
-        ERROR_ENTRY_NODEF(2), ERROR_ENTRY_NODEF(3), ERROR_ENTRY_NODEF(4), ERROR_ENTRY_NODEF(5),
+        ERROR_ENTRY(2, "Превышена длина таблицы лексем"),
+        ERROR_ENTRY(3, "Неверный идентификатор в таблице лексем"),
+        ERROR_ENTRY(4, "Превышен размер таблицы идентификаторов"),
+        ERROR_ENTRY(5, "Неверный идентификатор таблицы идентификаторов"),
         ERROR_ENTRY_NODEF(6), ERROR_ENTRY_NODEF(7), ERROR_ENTRY_NODEF(8), ERROR_ENTRY_NODEF(9),
         ERROR_ENTRY_NODEF10(10), ERROR_ENTRY_NODEF10(20), ERROR_ENTRY_NODEF10(30),
         ERROR_ENTRY_NODEF10(40), ERROR_ENTRY_NODEF10(50), ERROR_ENTRY_NODEF10(60),
