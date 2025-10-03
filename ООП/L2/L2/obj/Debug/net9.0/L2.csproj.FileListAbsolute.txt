@@ -3,3 +3,13 @@
 /home/euphoo/02. University/2 КУРС/ООП/L2/L2/obj/Debug/net9.0/L2.AssemblyInfo.cs
 /home/euphoo/02. University/2 КУРС/ООП/L2/L2/obj/Debug/net9.0/L2.csproj.CoreCompileInputs.cache
 /home/euphoo/02. University/2 КУРС/ООП/L2/L2/obj/Debug/net9.0/L2.sourcelink.json
+/home/euphoo/02. University/2 КУРС/ООП/L2/L2/bin/Debug/net9.0/L2
+/home/euphoo/02. University/2 КУРС/ООП/L2/L2/bin/Debug/net9.0/L2.deps.json
+/home/euphoo/02. University/2 КУРС/ООП/L2/L2/bin/Debug/net9.0/L2.runtimeconfig.json
+/home/euphoo/02. University/2 КУРС/ООП/L2/L2/bin/Debug/net9.0/L2.dll
+/home/euphoo/02. University/2 КУРС/ООП/L2/L2/bin/Debug/net9.0/L2.pdb
+/home/euphoo/02. University/2 КУРС/ООП/L2/L2/obj/Debug/net9.0/L2.dll
+/home/euphoo/02. University/2 КУРС/ООП/L2/L2/obj/Debug/net9.0/refint/L2.dll
+/home/euphoo/02. University/2 КУРС/ООП/L2/L2/obj/Debug/net9.0/L2.pdb
+/home/euphoo/02. University/2 КУРС/ООП/L2/L2/obj/Debug/net9.0/L2.genruntimeconfig.cache
+/home/euphoo/02. University/2 КУРС/ООП/L2/L2/obj/Debug/net9.0/ref/L2.dll

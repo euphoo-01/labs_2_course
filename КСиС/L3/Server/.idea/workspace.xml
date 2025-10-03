@@ -29,19 +29,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0966ba5d-94c0-4aea-9153-582f0e811b67" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Server.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.~бораторная работа №3.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meson.build" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Курсовой проект/Документация/Задание на курсовой проект_ЛАВШУК.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Курсовой проект/Документация/Задание на курсовой проект_ЛАВШУК.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Курсовой проект/Документация/Титульный лист_Лавшук.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Курсовой проект/Документация/Титульный лист_Лавшук.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../СЯП/L4/t1.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../СЯП/L4/t1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../СЯП/L4/t4.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../СЯП/L4/t4.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +98,8 @@
       <updated>1759269493402</updated>
       <workItem from="1759269495316" duration="1347000" />
       <workItem from="1759339390876" duration="670000" />
-      <workItem from="1759405281162" duration="338000" />
+      <workItem from="1759405281162" duration="2472000" />
+      <workItem from="1759408145258" duration="32000" />
     </task>
     <servers />
   </component>

@@ -192,7 +192,7 @@ int main() {
             }
             continue;
         }
-
+y
         std::cout << "Клиент подключился" << std::endl;
 
         int *client_sock_ptr = new int(client_socket);
@@ -208,7 +208,6 @@ int main() {
         pthread_detach(thread_id);
     }
 
-    // Закрытие серверного сокета
     close(lead_socket);
     pthread_mutex_destroy(&products_mutex);
     return 0;
