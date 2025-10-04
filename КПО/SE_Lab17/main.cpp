@@ -8,6 +8,7 @@
 #include "Modules/Headers/Log.h"
 #include "Modules/Headers/Parm.h"
 #include "Modules/Headers/Out.h"
+#include "Modules/Headers/Lexer.h"
 
 int main(int argc, char* argv[]) {
     wchar_t* wargv[argc];
@@ -19,6 +20,8 @@ int main(int argc, char* argv[]) {
 
     Log::LOG log = Log::INITLOG;
     Out::OUT out = Out::INITOUT;
+    LT::LexTable lextable = LT::Create(LT_MAXSIZE);
+    IT::IdTable idtable = IT::Create(TI_MAXSIZE);
     try {
         Parm::PARM parameters = Parm::getparm(argc, wargv);
         log = Log::getlog(parameters.log);
@@ -27,7 +30,15 @@ int main(int argc, char* argv[]) {
         Log::WriteParm(log, parameters);
         In::IN input = In::getin(parameters.in);
         Log::WriteIn(log, input);
+
+        Lexer::Analyze(input, lextable, idtable);
+
+        Log::WriteLT(log, lextable);
+        Log::WriteIT(log, idtable);
+
+
         Out::Write(out, input.text);
+
         std::cout << "Файл обработан успешно!\n";
     }
     catch (Error::ERROR e) {

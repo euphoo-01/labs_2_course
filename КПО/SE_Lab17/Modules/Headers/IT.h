@@ -1,5 +1,5 @@
 #pragma once
-#define ID_MAXSIZE 5
+#define ID_MAXSIZE 8
 #define TI_MAXSIZE 4096
 #define TI_INT_DEFAULT 0x00000000
 #define TI_STR_DEFAULT 0x00

@@ -3,6 +3,8 @@
 #include "In.h"
 #include "Error.h"
 #include "Parm.h"
+#include "LT.h"
+#include "IT.h"
 
 namespace Log {
     struct LOG {
@@ -18,5 +20,7 @@ namespace Log {
     void WriteParm(LOG log, Parm::PARM parm);
     void WriteIn(LOG log, In::IN in);
     void WriteError(LOG log, Error::ERROR error);
+    void WriteLT(LOG log, LT::LexTable lextable);
+    void WriteIT(LOG log, IT::IdTable idtable);
     void Close(LOG log);
 }

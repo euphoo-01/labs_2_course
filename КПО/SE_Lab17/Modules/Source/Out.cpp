@@ -28,7 +28,6 @@ namespace Out {
                 (*out.stream) << text[idx];
                 idx++;
             }
-            (*out.stream) << std::endl;
         } else {
             throw ERROR_THROW(1);
         }

@@ -1,5 +1,6 @@
 #include "../Headers/Log.h"
 #include <cstring>
+#include <iomanip>
 
 namespace Log {
     LOG getlog(wchar_t logfile[]) {
@@ -97,6 +98,113 @@ namespace Log {
         }
     }
 
+   void WriteLT(LOG log, LT::LexTable lextable) {
+        if (!(log.stream->good() || log.stream->is_open())) {
+            throw ERROR_THROW(113);
+        }
+
+        (*log.stream) << "---- Таблица лексем ----" << std::endl;
+        (*log.stream) << std::left
+                      << std::setw(6)  << "Idx"
+                      << std::setw(8)  << "Lex"
+                      << std::setw(10) << "IdxTI"
+                      << std::setw(8)  << "Line"
+                      << std::endl;
+        (*log.stream) << std::string(34, '-') << std::endl;
+
+        for (int i = 0; i < lextable.size; ++i) {
+            LT::Entry &entry = lextable.table[i];
+
+            char lexch = entry.lexema[0];
+
+            (*log.stream) << std::left
+                          << std::setw(6)  << i
+                          << std::setw(8);
+
+            if (lexch >= 32 && lexch <= 126) {
+                // печатный ASCII
+                (*log.stream) << lexch;
+            } else {
+                // непечатный — выводим числовой код
+                (*log.stream) << ("\\x" + std::to_string(static_cast<unsigned char>(lexch)));
+            }
+
+            (*log.stream) << std::setw(10);
+            if (entry.idxTI == LT_TI_NULLIDX) {
+                (*log.stream) << "-";
+            } else {
+                (*log.stream) << entry.idxTI;
+            }
+
+            (*log.stream) << std::setw(8) << entry.sn << std::endl;
+        }
+
+        (*log.stream) << std::endl;
+    }
+
+    void WriteIT(LOG log, IT::IdTable idtable) {
+        if (!(log.stream->good() || log.stream->is_open())) {
+            throw ERROR_THROW(113);
+        }
+
+        (*log.stream) << "---- Таблица идентификаторов ----" << std::endl;
+        (*log.stream) << std::left
+                      << std::setw(6)  << "Idx"
+                      << std::setw(8)  << "Name"
+                      << std::setw(10) << "FirstLE"
+                      << std::setw(10) << "DType"
+                      << std::setw(12) << "IType"
+                      << std::setw(18) << "Value"
+                      << std::endl;
+        (*log.stream) << std::string(64, '-') << std::endl;
+
+        for (int i = 0; i < idtable.size; ++i) {
+            IT::Entry &entry = idtable.table[i];
+
+            int idlen = 0;
+            for (; idlen < ID_MAXSIZE && entry.id[idlen] != '\0'; ++idlen);
+            std::string idstr(entry.id, idlen);
+
+            const char* dtype = "unknown";
+            if (entry.iddatatype == IT::INT) dtype = "integer";
+            else if (entry.iddatatype == IT::STR) dtype = "string";
+
+            const char* itype = "unknown";
+            switch (entry.idtype) {
+                case IT::V: itype = "var"; break;
+                case IT::F: itype = "func"; break;
+                case IT::P: itype = "param"; break;
+                default: itype = "other"; break;
+            }
+
+            std::string valstr;
+            if (entry.iddatatype == IT::INT) {
+                valstr = std::to_string(entry.value.vint);
+            } else if (entry.iddatatype == IT::STR) {
+                unsigned char slen = static_cast<unsigned char>(entry.value.vstr[0].len);
+                if (slen > 0 && slen < TI_STR_MAXSIZE) {
+                    valstr.assign(entry.value.vstr[0].str, slen);
+                } else {
+                    int sllen = 0;
+                    while (sllen < (TI_STR_MAXSIZE - 1) && entry.value.vstr[0].str[sllen] != '\0') ++sllen;
+                    valstr.assign(entry.value.vstr[0].str, sllen);
+                }
+            } else {
+                valstr = "-";
+            }
+
+            (*log.stream) << std::left
+                          << std::setw(6)  << i
+                          << std::setw(8)  << idstr
+                          << std::setw(10) << entry.idxfirstLE
+                          << std::setw(10) << dtype
+                          << std::setw(12) << itype
+                          << std::setw(18) << valstr
+                          << std::endl;
+        }
+
+        (*log.stream) << std::endl;
+    }
     void Close(LOG log) {
         if (log.stream->is_open() && log.stream->good()) {
             log.stream->close();

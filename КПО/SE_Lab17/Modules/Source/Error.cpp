@@ -12,7 +12,7 @@ namespace Error {
         ERROR_ENTRY(3, "Неверный идентификатор в таблице лексем"),
         ERROR_ENTRY(4, "Превышен размер таблицы идентификаторов"),
         ERROR_ENTRY(5, "Неверный идентификатор таблицы идентификаторов"),
-        ERROR_ENTRY_NODEF(6), ERROR_ENTRY_NODEF(7), ERROR_ENTRY_NODEF(8), ERROR_ENTRY_NODEF(9),
+        ERROR_ENTRY(6, "Недопустимая лексема"), ERROR_ENTRY_NODEF(7), ERROR_ENTRY_NODEF(8), ERROR_ENTRY_NODEF(9),
         ERROR_ENTRY_NODEF10(10), ERROR_ENTRY_NODEF10(20), ERROR_ENTRY_NODEF10(30),
         ERROR_ENTRY_NODEF10(40), ERROR_ENTRY_NODEF10(50), ERROR_ENTRY_NODEF10(60),
         ERROR_ENTRY_NODEF10(70), ERROR_ENTRY_NODEF10(80), ERROR_ENTRY_NODEF10(90),

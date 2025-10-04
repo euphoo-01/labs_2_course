@@ -6,11 +6,5 @@
 
 namespace Lexer
 {
-    struct Tables
-    {
-        LT::LexTable lexTable;
-        IT::IdTable idTable;
-    };
-
-    Tables Analyze(In::IN& in);
+    void Analyze(In::IN &in, LT::LexTable &lextable, IT::IdTable &idtable);
 }

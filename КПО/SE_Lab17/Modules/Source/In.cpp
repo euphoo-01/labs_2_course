@@ -54,44 +54,55 @@ namespace In {
         if (!file.is_open()) {
             throw ERROR_THROW(110);
         }
+        bool inString = false; // флаг, находимся ли внутри строки
+
         while (true) {
             const int ch = file.get();
-
-            if (ch == EOF) {
-                break;
-            }
+            if (ch == EOF) break;
 
             cur_pos++;
-
             if (cur_pos > IN_MAX_LEN_TEXT) {
                 throw ERROR_THROW(115);
             }
 
+            if (inString) {
+                result.text[result_pos++] = static_cast<char>(ch);
+                if (ch == '\'') {
+                    inString = false; // конец строки
+                }
+                continue;
+            }
+
+            if (ch == '\'') {
+                inString = true;
+                result.text[result_pos++] = static_cast<char>(ch);
+                continue;
+            }
+
             switch (result.code[ch]) {
-                case IN::T: {
+                case IN::T:
                     result.text[result_pos++] = static_cast<char>(ch);
                     cur_col++;
+                    if (ch == IN_CODE_ENDL) {
+                        cur_line++;
+                        cur_col = 0;
+                    }
                     break;
-                }
-                case IN::I: {
+                case IN::I:
                     ignored++;
+                    if (ch == IN_CODE_ENDL) {
+                        cur_line++;
+                        cur_col = 0;
+                    }
                     break;
-                }
-                case IN::F: {
+                case IN::F:
                     throw ERROR_THROW_IN(111, cur_line, cur_col);
-                }
-                case IN_CODE_ENDL: {
-                    result.text[result_pos++] = '\n';
-                    cur_line++;
-                    cur_col = 0;
-                    break;
-                }
-                default: {
+                default:
                     result.text[result_pos++] = result.code[ch];
                     break;
-                }
             }
         }
+
         unsigned char *utf8text = convertWindows1251ToUTF8(result.text);
         result.text = utf8text;
 

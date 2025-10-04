@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/buildDir/hello.in" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/buildDir/hello.in.log" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/buildDir/hello.out" charset="UTF-8" />
   </component>
 </project>

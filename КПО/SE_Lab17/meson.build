@@ -8,7 +8,11 @@ sources = files(
     'Modules/Source/Log.cpp',
     'Modules/Source/Parm.cpp',
     'Modules/Source/In.cpp',
-    'Modules/Source/Out.cpp'
+    'Modules/Source/Out.cpp',
+    'Modules/Source/LT.cpp',
+    'Modules/Source/IT.cpp',
+    'Modules/Source/Lexer.cpp',
+    'Modules/Source/FST.cpp'
 )
 
 iconv_dep = dependency('iconv', required : true)
