@@ -30,7 +30,9 @@ namespace GRB {
 
         Rule() {
             nn = 0x00;
+            iderror = 600; // Дефолтная ошибка
             size = 0;
+            chains = nullptr;
         }
 
         Rule(

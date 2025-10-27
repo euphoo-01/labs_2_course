@@ -385,8 +385,19 @@ namespace GRB {
         startN = pstartN;
         stbottomT = pstbottom;
         rules = new Rule[size = psize];
-        Rule *p = &r;
-        for (int i = 0; i < size; i++) rules[i] = p[i];
+
+        // Первый переданный named-аргумент
+        if (size > 0) rules[0] = r;
+
+        if (size > 1) {
+            va_list args;
+            va_start(args, r);
+            for (int i = 1; i < size; ++i) {
+                Rule next = va_arg(args, Rule);
+                rules[i] = next;
+            }
+            va_end(args);
+        }
     };
 
     Greibach getGreibach() {
@@ -1545,11 +1556,214 @@ namespace MFST {
     };
 }
 
+#pragma once
+#include "GRB.h"
+#include <deque>
+#include "Lexer.h"
+#include <fstream>
+#define MFST_DIAGN_NUMBER 3
+
+// Отладка
+#define MFST_TRACE_START(wr) wr << std::setw(4)<<std::left<<"Шаг"<<":"\
+<< std::setw(20)<<std::left<<" Правило"\
+<< std::setw(30)<<std::left<<" Входная лента"\
+<< std::setw(20)<<std::left<<" Стек"\
+<< std::endl;
+
+#define MFST_TRACE1(wr)		 wr << std::setw(4)<<std::left<<++FST_TRACE_n<<": "\
+<< std::setw(20)<<std::left<<rule.getCRule(rbuf,nrulechain)\
+<< std::setw(30)<<std::left<<getCLenta(lbuf,lenta_position)\
+<< std::setw(20)<<std::left<<getCSt(sbuf)\
+<< std::endl;
+
+#define MFST_TRACE2(wr)		 wr << std::setw(4)<<std::left<<FST_TRACE_n<<": "\
+<< std::setw(20)<<std::left<<" "\
+<< std::setw(30)<<std::left<<getCLenta(lbuf,lenta_position)\
+<< std::setw(20)<<std::left<<getCSt(sbuf)\
+<< std::endl;
+
+#define MFST_TRACE3(wr)		 wr << std::setw(4)<<std::left<<++FST_TRACE_n<<": "\
+<< std::setw(20)<<std::left<<" "\
+<< std::setw(30)<<std::left<<getCLenta(lbuf,lenta_position)\
+<< std::setw(20)<<std::left<<getCSt(sbuf)\
+<< std::endl;
+
+#define MFST_TRACE4(c, wr)		wr <<std::setw(4)<<std::left << ++FST_TRACE_n << ": "<<std::setw(20)<< std::left <<c<<std::endl;
+#define MFST_TRACE5(c, wr)		wr <<std::setw(4)<<std::left << FST_TRACE_n << ": "<<std::setw(20)<< std::left <<c<<std::endl;
+#define MFST_TRACE6(c,k, wr)	wr <<std::setw(4)<<std::left << FST_TRACE_n << ": "<<std::setw(20)<< std::left << c << k <<std::endl;
+#define MFST_TRACE7(wr)			wr<<std::setw(4)<<std::left << state.lenta_position << ": "\
+<<std::setw(20)<< std::left << rule.getCRule(rbuf,state.nrulechain)\
+<<std::endl;
+
+// Кастомная реализация стека с доступом к элементам
+class MFSTSTSTACK {
+private:
+    std::deque<short> container;
+
+public:
+    void push(short value) { container.push_back(value); }
+
+    void pop() {
+        if (!container.empty()) container.pop_back();
+    }
+
+    short top() const {
+        if (!container.empty()) return container.back();
+        return 0;
+    }
+
+    bool empty() const { return container.empty(); }
+    size_t size() const { return container.size(); }
+
+    short &operator[](size_t index) { return container[index]; }
+    const short &operator[](size_t index) const { return container[index]; }
+
+    std::deque<short> &getContainer() { return container; }
+    const std::deque<short> &getContainer() const { return container; }
+};
+
+namespace MFST {
+    struct MfstState {
+        short lenta_position;
+        short nrule;
+        short nrulechain;
+        MFSTSTSTACK st;
+
+        MfstState();
+
+        MfstState(
+            short pposition,
+            MFSTSTSTACK pst,
+            short pnrulechain);
+
+        MfstState(
+            short pposition,
+            MFSTSTSTACK pst,
+            short pnrule,
+            short pnrulechain);
+    };
+
+    // Кастомная реализация стека состояний
+    class MFSTSTATE {
+    private:
+        std::deque<MfstState> container;
+
+    public:
+        void push(const MfstState &value) { container.push_back(value); }
+
+        void pop() {
+            if (!container.empty()) container.pop_back();
+        }
+
+        MfstState &top() {
+            return container.back();
+        }
+
+        const MfstState &top() const {
+            return container.back();
+        }
+
+        bool empty() const { return container.empty(); }
+        size_t size() const { return container.size(); }
+
+        // Доступ к элементам как к массиву
+        MfstState &operator[](size_t index) { return container[index]; }
+        const MfstState &operator[](size_t index) const { return container[index]; }
+
+        // Доступ к внутреннему контейнеру
+        std::deque<MfstState> &getContainer() { return container; }
+        const std::deque<MfstState> &getContainer() const { return container; }
+    };
+
+    struct Mfst // магазинный автомат
+    {
+        enum RC_STEP {
+            // код возврата функции step
+            NS_OK, // найдено правило и цепочка, цепочка записана в стек
+            NS_NORULE, // не найдено правило грамматики (ошибка в грамматике)
+            NS_NORULECHAIN, // не найдена подходящая цепочка правила (ошибка в исходном коде)
+            NS_ERROR, // неизвестный нетерминальный символ грамматики
+            TS_OK, // тек. символ ленты == вершине стека, продвинулась лента, pop стека
+            TS_NOK, // тек. символ ленты != вершине стека, восстановлено состояние
+            LENTA_END, // текущая позиция ленты >= lenta_size
+            SURPRISE // неожиданный код возврата (ошибка в step)
+        };
+
+        struct MfstDiagnosis // диагностика
+        {
+            short lenta_position; // позиция на ленте
+            RC_STEP rc_step; // код завершения шага
+            short nrule; // номер правила
+            short nrule_chain; // номер цепочки правила
+            MfstDiagnosis();
+
+            MfstDiagnosis( // диагностика
+                short plenta_position, // позиция на ленте
+                RC_STEP prc_step, // код завершения шага
+                short pnrule, // номер правила
+                short pnrule_chain // номер цепочки правила
+            );
+        } diagnosis[MFST_DIAGN_NUMBER]; // последние самые глубокие сообщения
+        GRBALPHABET *lenta; // перекодированная (TS/NS) лента (из Lexer)
+        short lenta_position; // текущая позиция на ленте
+        short nrule; // номер текущего правила
+        short nrulechain; // номер текущей цепочки, текущего правила
+        short lenta_size; // размер ленты
+        GRB::Greibach greibach; // грамматика Грейбах
+        Lexer::LEX lex; // результат работы лексического анализатора
+        MFSTSTSTACK st; // стек автомата
+        MFSTSTATE storestate; // стек для сохранения состояний
+        Mfst();
+
+        Mfst(
+            Lexer::LEX plex, // результат работы лексического анализатора
+            GRB::Greibach pgreibach // грамматика Грейбах
+        );
+
+        char *getCSt(char *buf);
+
+        char *getCLenta(char *buf, short pos, short n = 25);
+
+        char *getDiagnosis(short n, char *buf);
+
+        bool savestate(std::ofstream &wr);
+
+        bool reststate(std::ofstream &wr);
+
+        bool push_chain(GRB::Rule::Chain chain);
+
+        RC_STEP step(std::ofstream &wr);
+
+        bool start(std::ofstream &wr);
+
+        bool savediagnosis(
+            RC_STEP pprc_step // код завершения шага
+        );
+
+        void printrules(std::ofstream &wr);
+
+        struct Deducation {
+            short size;
+            short *nrules;
+            short *nrulechains;
+
+            Deducation() {
+                size = 0;
+                nrules = 0;
+                nrulechains = 0;
+            };
+        } deducation;
+
+        bool savededucation();
+    };
+}
 
 // Mfst.cpp
 #include <stack>
 #include <iomanip>
 #include <iostream>
+#include <fstream>
+#include <vector>
 #include "../Headers/Error.h"
 #include "../Headers/Mfst.h"
 #include "../Headers/GRB.h"
@@ -1573,7 +1787,7 @@ namespace MFST {
     MfstState::MfstState(short pposition, MFSTSTSTACK pst, short pnrulechain) {
         lenta_position = pposition;
         st = pst;
-        nrule = pnrulechain;
+        nrulechain = pnrulechain;
     };
 
     MfstState::MfstState(short pposition, MFSTSTSTACK pst, short pnrule, short pnrulechain) {
@@ -1590,8 +1804,8 @@ namespace MFST {
         nrule_chain = -1;
     };
 
-    Mfst::MfstDiagnosis::MfstDiagnosis(short plenta_positionm, RC_STEP prc_step, short pnrule, short pnrule_chain) {
-        lenta_position = plenta_positionm;
+    Mfst::MfstDiagnosis::MfstDiagnosis(short plenta_position, RC_STEP prc_step, short pnrule, short pnrule_chain) {
+        lenta_position = plenta_position;
         rc_step = prc_step;
         nrule = pnrule;
         nrule_chain = pnrule_chain;
@@ -1600,107 +1814,69 @@ namespace MFST {
     Mfst::Mfst() {
         lenta = 0;
         lenta_size = lenta_position = 0;
+
     };
 
     Mfst::Mfst(Lexer::LEX plex, GRB::Greibach pgreibach) {
+        nrule = -1;
+
         greibach = pgreibach;
         lex = plex;
-        lenta = new short[lenta_size = lex.lextable.size];
-        for (int k = 0; k < lenta_size; k++) {
-            lenta[k] = TS(lex.lextable.table[k].lexema);
-        }
+        lenta = new GRBALPHABET[lenta_size = lex.lextable.size];
+        for (int k = 0; k < lenta_size; k++)
+            lenta[k] = GRB::Rule::Chain::T(lex.lextable.table[k].lexema);
         lenta_position = 0;
         st.push(greibach.stbottomT);
         st.push(greibach.startN);
         nrulechain = -1;
-    };
+    }
 
-    Mfst::RC_STEP Mfst::step() {
+    Mfst::RC_STEP Mfst::step(std::ofstream& wr) {
         RC_STEP rc = SURPRISE;
         if (lenta_position < lenta_size) {
-            if (ISNS(st.top())) {
+            if (GRB::Rule::Chain::isN(st.top())) {
                 GRB::Rule rule;
                 if ((nrule = greibach.getRule(st.top(), rule)) >= 0) {
                     GRB::Rule::Chain chain;
                     if ((nrulechain = rule.getNextChain(lenta[lenta_position], chain, nrulechain + 1)) >= 0) {
-                        MFST_TRACE1
-                        savestate();
-                        st.pop();
-                        push_chain(chain);
-                        rc = NS_OK;
-                        MFST_TRACE2
-                    } else {
-                        MFST_TRACE4("TNS_NORULECHAIN/NS_NORULE")
-                        savediagnosis(NS_NORULECHAIN);
-                        if (!reststate()) {
-                            // Неудачный откат -> фатальная ошибка NS_NORULE
-                            // 1. Получаем индекс лексемы, на которой произошла ошибка
-                            short lpos = diagnosis[0].lenta_position;
-                            if (lpos < 0) lpos = 0;
-                            int line = lex.lextable.table[lpos].sn;
-
-                            // 2. Получаем код ошибки из грамматики Грейбах (Rule.iderror)
-                            int errid = greibach.getRule(diagnosis[0].nrule).iderror;
-                            if (errid <= 0) errid = 1; // Failsafe: 601 "Ошибочный оператор"
-
-                            throw ERROR_THROW_IN(GRB_ERROR_SERIES + errid, line, 0); // 👈 Выбрасываем исключение
-                        }
-                        rc = NS_NORULECHAIN; // Если откат прошел, продолжаем цикл
+                        MFST_TRACE1(wr);
+                        savestate(wr); st.pop(); push_chain(chain); rc = NS_OK;
+                        MFST_TRACE2(wr);
+                    }
+                    else {
+                        MFST_TRACE4("TNS_NORULECHAIN/NS_NORULE", wr)
+                        savediagnosis(NS_NORULECHAIN); rc = reststate(wr) ? NS_NORULECHAIN : NS_NORULE;
                     };
-                } else {
-                    rc = NS_ERROR;
-                    savediagnosis(rc);
-                    int line = lex.lextable.table[lenta_position].sn;
-
-                    GRB::Rule rule;
-                    greibach.getRule(st.top(), rule);
-                    int errid = rule.iderror;
-
-                    if (errid <= 0) errid = 1;
-                };
-            } else if ((st.top() == lenta[lenta_position])) {
+                }
+                else rc = NS_ERROR;
+            }
+            else if ((st.top() == lenta[lenta_position])) {
                 lenta_position++;
                 st.pop();
                 nrulechain = -1;
                 rc = TS_OK;
-                MFST_TRACE3
-            } else {
-                MFST_TRACE4("TS_NOK/NS_NORULECHAIN")
-                if (!reststate()) {
-                    // Неудачный откат -> фатальная ошибка NS_NORULE
-                    short lpos = diagnosis[0].lenta_position;
-                    if (lpos < 0) lpos = 0;
-                    int line = lex.lextable.table[lpos].sn;
-
-                    // Получаем код ошибки из грамматики
-                    int errid = greibach.getRule(diagnosis[0].nrule).iderror;
-                    if (errid <= 0) errid = 1; // Failsafe: 601
-
-                    throw ERROR_THROW_IN( GRB_ERROR_SERIES + errid, line, 0); // 👈 Выбрасываем исключение
-                }
-                rc = TS_NOK; // Если откат прошел, продолжаем
+                MFST_TRACE3(wr);
+            }
+            else {
+                MFST_TRACE4("TS_NOK/NS_NORULECHAIN", wr) rc = reststate(wr) ? TS_NOK : NS_NORULECHAIN;
             };
-        } else {
-            rc = LENTA_END;
-            MFST_TRACE4("LENTA_END")
-        };
+        }
+        else { rc = LENTA_END; MFST_TRACE4(LENTA_END, wr) };
         return rc;
-    }
+    };
 
     bool Mfst::push_chain(GRB::Rule::Chain chain) {
-        for (int k = chain.size - 1; k >= 0; k--) {
-            st.push(chain.nt[k]);
-        }
+        for (int k = chain.size - 1; k >= 0; k--) st.push(chain.nt[k]);
         return true;
-    }
+    };
 
-    bool Mfst::savestate() {
+    bool Mfst::savestate(std::ofstream& wr) {
         storestate.push(MfstState(lenta_position, st, nrule, nrulechain));
-        MFST_TRACE6("SAVESTATE:", storestate.size());
+        MFST_TRACE6("SAVESTATE:", storestate.size(), wr);
         return true;
-    }
+    };
 
-    bool Mfst::reststate() {
+    bool Mfst::reststate(std::ofstream& wr) {
         bool rc = false;
         MfstState state;
         if (rc = (storestate.size() > 0)) {
@@ -1710,12 +1886,11 @@ namespace MFST {
             nrule = state.nrule;
             nrulechain = state.nrulechain;
             storestate.pop();
-            MFST_TRACE5("RESTSTATE")
-            MFST_TRACE2
+            MFST_TRACE5("RESSTATE", wr);
+            MFST_TRACE2(wr);
         };
-
         return rc;
-    }
+    };
 
     bool Mfst::savediagnosis(RC_STEP prc_step) {
         bool rc = false;
@@ -1723,155 +1898,129 @@ namespace MFST {
         while (k < MFST_DIAGN_NUMBER && lenta_position <= diagnosis[k].lenta_position) k++;
         if (rc = (k < MFST_DIAGN_NUMBER)) {
             diagnosis[k] = MfstDiagnosis(lenta_position, prc_step, nrule, nrulechain);
-            for (short j = k + 1; j < MFST_DIAGN_NUMBER; j++) diagnosis[j].lenta_position = -1;
+            for (int j = k + 1; j < MFST_DIAGN_NUMBER; j++) diagnosis[j].lenta_position = -1;
         };
         return rc;
     };
 
-    bool Mfst::start() {
-        bool rc = false; // Изначально считаем, что разбор НЕУСПЕШЕН
+    bool Mfst::start(std::ofstream& wr) {
+        bool rc = false;
         RC_STEP rc_step = SURPRISE;
-        char buf[MFST_DIAGN_MAXSIZE];
-        rc_step = step();
-        while (rc_step == NS_OK || rc_step == NS_NORULECHAIN || rc_step == TS_OK || rc_step == TS_NOK) {
-            rc_step = step();
+        char buf[MFST_DIAGN_MAXSIZE]{};
+        rc_step = step(wr);
+        while (rc_step == NS_OK || rc_step == NS_NORULECHAIN || rc_step == TS_OK || rc_step == TS_NOK)
+        {
+            rc_step = step(wr);
         }
 
         switch (rc_step) {
-            case LENTA_END: {
-                // Лента кончилась. Проверяем стек.
-                MFST_TRACE4("------>LENTA_END")
-                std::cout << "--------------------------------------------------------------------- ----" << std::endl;
-
-                // 📍 ИСПРАВЛЕНИЕ: Проверяем, пуст ли стек (осталось только дно '$')
-                if (st.size() == 1 && st.top() == greibach.stbottomT) {
-                    std::sprintf(buf, "%d: всего строк %d, синтаксический анализ выполнен без ошибок", 0, lenta_size);
-                    std::cout << std::setw(4) << std::left << 0 << ": всего строк " << lenta_size <<
-                            ", синтаксический анализ выполнен без ошибок" << std::endl;
-                    rc = true; // <-- Только ЭТО - настоящий успех
-                } else {
-                    // Лента кончилась, но стек не пуст. Это ОШИБКА.
-                    MFST_TRACE4("------>ОШИБКА: Лента закончилась, но стек не пуст")
-                    std::cout << "Ошибка: Неожиданный конец файла. Стек: " << getCSt(sbuf) << std::endl;
-
-                    // 💣 ДОПОЛНЕНИЕ: ВЫБРОС ИСКЛЮЧЕНИЯ (Ошибка 600: Неверная структура программы)
-                    int line = (lenta_size > 0) ? lex.lextable.table[lenta_size - 1].sn : 1;
-                    throw ERROR_THROW_IN(GRB_ERROR_SERIES + 0, line, 0);
-                }
-                break;
-            }
-
-            case NS_NORULE: {
-                // Полный откат, правила не найдены
-                MFST_TRACE4("------>NS_NORULE")
-                std::cout << "--------------------------------------------------------------------- ----" << std::endl;
-                std::cout << getDiagnosis(0, buf) << std::endl;
-                std::cout << getDiagnosis(1, buf) << std::endl;
-                std::cout << getDiagnosis(2, buf) << std::endl;
-
-                // 💣 ДОПОЛНЕНИЕ: ВЫБРОС ИСКЛЮЧЕНИЯ (Используем iderror из диагностики)
-                if (diagnosis[0].lenta_position >= 0) {
-                    short lpos = diagnosis[0].lenta_position;
-                    int line = lex.lextable.table[lpos].sn;
-                    GRB::Rule rule;
-                    greibach.getRule(diagnosis[0].nrule, rule);
-                    int errid = rule.iderror;
-                    if (errid <= 0) errid = 1; // 601 - Ошибочный оператор
-                    throw ERROR_THROW_IN(GRB_ERROR_SERIES + errid, line, 0);
-                } else {
-                    // Fallback, если диагностика пуста
-                    throw ERROR_THROW_IN(GRB_ERROR_SERIES + 1, 1, 0);
-                }
-            }
-
-            case NS_ERROR: {
-                // Нет правила для нетерминала
-                MFST_TRACE4("------>NS_ERROR")
-                // Добавляем минимальную трассировку для NS_ERROR, как в NS_NORULE
-                std::cout << "--------------------------------------------------------------------- ----" << std::endl;
-                std::cout << getDiagnosis(0, buf) << std::endl;
-
-                // 💣 ДОПОЛНЕНИЕ: ВЫБРОС ИСКЛЮЧЕНИЯ (Используем iderror нетерминала на вершине стека)
-                int line = (lenta_position < lenta_size)
-                               ? lex.lextable.table[lenta_position].sn
-                               : lex.lextable.table[lenta_size - 1].sn;
-                GRB::Rule rule;
-                greibach.getRule(st.top(), rule); // Нетерминал на вершине стека
-                int errid = rule.iderror;
-                if (errid <= 0) errid =  1; // 601 - Ошибочный оператор
-                throw ERROR_THROW_IN(GRB_ERROR_SERIES + errid, line, 0);
-            }
-
-            case NS_NORULECHAIN: // Откат, не удалось найти правило для текущей цепочки
-                MFST_TRACE4("------>NS_NORULENORULECHAIN")
-                std::cout << "--------------------------------------------------------------------- ----" << std::endl;
-                std::cout << getDiagnosis(0, buf) << std::endl; // Показываем последнюю ошибку
-                break;
-
-            case SURPRISE: {
-                // Непредвиденное состояние (системный сбой)
-                MFST_TRACE4("------>SURPRISE")
-                // 💣 ДОПОЛНЕНИЕ: ВЫБРОС ИСКЛЮЧЕНИЯ (Системный сбой)
-                throw ERROR_THROW(1);
-            }
-        };
-
-        return rc; // Возвращаем 'true' только при настоящем успехе
-    }
-
-    char *Mfst::getCSt(char *buf) {
-        for (int k = (signed) st.size() - 1; k >= 0; --k) {
-            short p = st[k]; // Используем operator[] вместо st.c[k]
-            buf[st.size() - 1 - k] = GRB::Rule::Chain::alphabet_to_char(p);
+        case LENTA_END: {
+            MFST_TRACE4("------>LENTA_END", wr)
+            wr << "------------------------------------------------------------------------------------------   ------\n";
+            std::sprintf(buf, "%d: всего строк %d, синтаксический анализ выполнен без ошибок", 0, lex.lextable.table[lex.lextable.size - 1].sn);
+            wr << std::setw(4) << std::left << 0 << ": всего строк " << lex.lextable.table[lex.lextable.size - 1].sn << " , синтаксический анализ выполнен без ошибок\n";
+            rc = true;
+            break;
         }
-        buf[st.size()] = 0x00;
-        return buf;
-    }
+        case NS_NORULE: {
+            MFST_TRACE4("------>NS_NORULE", wr)
+            wr << "------------------------------------------------------------------------------------------   ------\n";
+            wr << getDiagnosis(0, buf) << '\n';
+            wr << getDiagnosis(1, buf) << '\n';
+            wr << getDiagnosis(2, buf) << '\n';
+            break;
+        }
+        case NS_NORULECHAIN: MFST_TRACE4("------>NS_NORULECHAIN", wr) break;
+        case NS_ERROR: MFST_TRACE4("------>NS_ERROR", wr) break;
+        case SURPRISE: MFST_TRACE4("------>SURPRISE", wr) break;
+        };
+        return rc;
+    };
 
-    char *Mfst::getCLenta(char *buf, short pos, short n) {
+    char* Mfst::getCSt(char* buf) {
+        // Создаем временную копию стека для обхода
+        MFSTSTSTACK temp_st = st;
+        int i = 0;
+
+        while (!temp_st.empty()) {
+            short p = temp_st.top();
+            temp_st.pop();
+            buf[i++] = GRB::Rule::Chain::alphabet_to_char(p);
+        }
+        buf[i] = '\0';
+
+        // Переворачиваем строку, так как стек выводится в обратном порядке
+        for (int j = 0; j < i / 2; j++) {
+            char temp = buf[j];
+            buf[j] = buf[i - j - 1];
+            buf[i - j - 1] = temp;
+        }
+
+        return buf;
+    };
+
+    char* Mfst::getCLenta(char* buf, short pos, short n) {
         short i, k = (pos + n < lenta_size) ? pos + n : lenta_size;
         for (i = pos; i < k; i++) buf[i - pos] = GRB::Rule::Chain::alphabet_to_char(lenta[i]);
         buf[i - pos] = 0x00;
         return buf;
-    }
+    };
 
-    char *Mfst::getDiagnosis(short n, char *buf) {
-        char *rc = "";
+    char* Mfst::getDiagnosis(short n, char* buf) {
+        char* rc = new char[500] {};
         int errid = 0;
         int lpos = -1;
         if (n < MFST_DIAGN_NUMBER && (lpos = diagnosis[n].lenta_position) >= 0) {
             errid = greibach.getRule(diagnosis[n].nrule).iderror;
             Error::ERROR err = Error::geterror(errid);
-            std::sprintf(buf, "%d: строка %d, %s", err.id, lex.lextable.table[lpos].sn, err.message);
+            std::sprintf(buf, "%d: строка %d,%s", err.id, lex.lextable.table[lpos].sn, err.message);
+            throw ERROR_THROW_IN(errid, lex.lextable.table[lpos].sn, 0);
             rc = buf;
         };
         return rc;
-    }
+    };
 
-    void Mfst::printrules() {
-        MfstState state;
-        GRB::Rule rule;
-        for (unsigned short k = 0; k < storestate.size(); k++) {
-            state = storestate[k]; // Используем operator[] вместо storestate.c[k]
-            rule = greibach.getRule(state.nrule);
-            MFST_TRACE7
+    void Mfst::printrules(std::ofstream& wr) {
+        // Создаем временную копию для обхода
+        MFSTSTATE temp_store = storestate;
+        std::vector<MfstState> states;
+
+        // Переносим все состояния в вектор
+        while (!temp_store.empty()) {
+            states.push_back(temp_store.top());
+            temp_store.pop();
+        }
+
+        // Обрабатываем в правильном порядке
+        for (int k = states.size() - 1; k >= 0; k--) {
+            MfstState state = states[k];
+            GRB::Rule rule = greibach.getRule(state.nrule);
+            MFST_TRACE7(wr);
         }
     }
 
     bool Mfst::savededucation() {
-        MfstState state;
-        GRB::Rule rule;
-        deducation.nrules = new short[deducation.size = storestate.size()];
+        // Создаем временную копию для обхода
+        MFSTSTATE temp_store = storestate;
+        std::vector<MfstState> states;
+
+        // Переносим все состояния в вектор
+        while (!temp_store.empty()) {
+            states.push_back(temp_store.top());
+            temp_store.pop();
+        }
+
+        deducation.size = states.size();
+        deducation.nrules = new short[deducation.size];
         deducation.nrulechains = new short[deducation.size];
-        for (unsigned short k = 0; k < storestate.size(); k++) {
-            state = storestate[k]; // Используем operator[] вместо storestate.c[k]
-            deducation.nrules[k] = state.nrule;
-            deducation.nrulechains[k] = state.nrulechain;
+
+        for (unsigned short k = 0; k < states.size(); k++) {
+            deducation.nrules[k] = states[states.size() - 1 - k].nrule;
+            deducation.nrulechains[k] = states[states.size() - 1 - k].nrulechain;
         }
         return true;
-    }
+    };
 }
-
 
 // Out.h
 #pragma once;

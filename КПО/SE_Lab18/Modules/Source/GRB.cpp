@@ -58,8 +58,19 @@ namespace GRB {
         startN = pstartN;
         stbottomT = pstbottom;
         rules = new Rule[size = psize];
-        Rule *p = &r;
-        for (int i = 0; i < size; i++) rules[i] = p[i];
+
+        // Первый переданный named-аргумент
+        if (size > 0) rules[0] = r;
+
+        if (size > 1) {
+            va_list args;
+            va_start(args, r);
+            for (int i = 1; i < size; ++i) {
+                Rule next = va_arg(args, Rule);
+                rules[i] = next;
+            }
+            va_end(args);
+        }
     };
 
     Greibach getGreibach() {

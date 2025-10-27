@@ -53,9 +53,12 @@ namespace MFST {
     Mfst::Mfst() {
         lenta = 0;
         lenta_size = lenta_position = 0;
+
     };
 
     Mfst::Mfst(Lexer::LEX plex, GRB::Greibach pgreibach) {
+        nrule = -1;
+
         greibach = pgreibach;
         lex = plex;
         lenta = new GRBALPHABET[lenta_size = lex.lextable.size];
@@ -132,7 +135,10 @@ namespace MFST {
         bool rc = false;
         short k = 0;
         while (k < MFST_DIAGN_NUMBER && lenta_position <= diagnosis[k].lenta_position) k++;
-        if (rc = (k < MFST_DIAGN_NUMBER)) {
+        if (k < MFST_DIAGN_NUMBER) {
+            rc = true;
+        }
+        if (rc) {
             diagnosis[k] = MfstDiagnosis(lenta_position, prc_step, nrule, nrulechain);
             for (int j = k + 1; j < MFST_DIAGN_NUMBER; j++) diagnosis[j].lenta_position = -1;
         };
@@ -204,15 +210,15 @@ namespace MFST {
 
     char* Mfst::getDiagnosis(short n, char* buf) {
         char* rc = new char[500] {};
-        int errid = 0;
+        int errid = 600; // Дефолт: "Неверная структура программы"
         int lpos = -1;
-        if (n < MFST_DIAGN_NUMBER && (lpos = diagnosis[n].lenta_position) >= 0) {
+        if (n < MFST_DIAGN_NUMBER && (lpos = diagnosis[n].lenta_position) >= 0 && diagnosis[n].nrule >= 0) {
             errid = greibach.getRule(diagnosis[n].nrule).iderror;
             Error::ERROR err = Error::geterror(errid);
-            std::sprintf(buf, "%d: строка %d,%s", err.id, lex.lextable.table[lpos].sn, err.message);
+            std::sprintf(buf, "%d: строка %d. %s", errid, lex.lextable.table[lpos].sn, err.message);
             throw ERROR_THROW_IN(errid, lex.lextable.table[lpos].sn, 0);
-            rc = buf;
-        };
+        }
+        rc = buf;
         return rc;
     };
 
