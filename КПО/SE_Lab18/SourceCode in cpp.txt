@@ -1,0 +1,2154 @@
+// Error.h
+#pragma once
+#define ERROR_THROW(id) Error::geterror(id);
+#define ERROR_THROW_IN(id, l, c) Error::geterrorin(id, l, c);
+#define ERROR_ENTRY(id, m) {id, m, {-1, -1}}
+#define ERROR_MAXSIZE_MESSAGE 200
+#define ERROR_ENTRY_NODEF(id)    ERROR_ENTRY(-id, "Неопределенная ошибка")
+#define ERROR_ENTRY_NODEF10(id)  ERROR_ENTRY_NODEF(id+0), ERROR_ENTRY_NODEF(id+1), ERROR_ENTRY_NODEF(id+2), \
+                                 ERROR_ENTRY_NODEF(id+3), ERROR_ENTRY_NODEF(id+4), ERROR_ENTRY_NODEF(id+5), \
+                                 ERROR_ENTRY_NODEF(id+6), ERROR_ENTRY_NODEF(id+7), ERROR_ENTRY_NODEF(id+8), \
+                                 ERROR_ENTRY_NODEF(id+9)
+#define ERROR_ENTRY_NODEF100(id) ERROR_ENTRY_NODEF(id+0), ERROR_ENTRY_NODEF(id+10), ERROR_ENTRY_NODEF(id+20), \
+                                 ERROR_ENTRY_NODEF(id+30), ERROR_ENTRY_NODEF(id+40), ERROR_ENTRY_NODEF(id+50), \
+                                 ERROR_ENTRY_NODEF(id+60), ERROR_ENTRY_NODEF(id+70), ERROR_ENTRY_NODEF(id+80), \
+                                 ERROR_ENTRY_NODEF(id+90)
+#define ERROR_MAX_ENTRY 1000
+
+namespace Error {
+    struct ERROR {
+        int id;
+        char message[ERROR_MAXSIZE_MESSAGE];
+
+        struct IN {
+            short line;
+            short col;
+        } inext;
+    };
+
+    ERROR geterror(int id);
+
+    ERROR geterrorin(int id, int line, int col);
+}
+
+// Error.cpp
+#include "Modules/Headers/Error.h"
+
+//TODO: Исключения для: Размер литерала, длина идентификатора,
+
+namespace Error {
+    // 0-99 - Системные ошибки
+    // 100-109 - Ошибки параметров
+    // 110-150 - Ошибки работы с файлами
+    // 600-700 - Ошибки синтаксического анализатора
+    ERROR errors[ERROR_MAX_ENTRY] =
+    {
+        ERROR_ENTRY(0, "Недопустимый код ошибки"),
+        ERROR_ENTRY(1, "Системный сбой"),
+        ERROR_ENTRY(2, "Превышена длина таблицы лексем"),
+        ERROR_ENTRY(3, "Неверный идентификатор в таблице лексем"),
+        ERROR_ENTRY(4, "Превышен размер таблицы идентификаторов"),
+        ERROR_ENTRY(5, "Неверный идентификатор таблицы идентификаторов"),
+        ERROR_ENTRY(6, "Недопустимая лексема"), ERROR_ENTRY_NODEF(7), ERROR_ENTRY_NODEF(8), ERROR_ENTRY_NODEF(9),
+        ERROR_ENTRY_NODEF10(10), ERROR_ENTRY_NODEF10(20), ERROR_ENTRY_NODEF10(30),
+        ERROR_ENTRY_NODEF10(40), ERROR_ENTRY_NODEF10(50), ERROR_ENTRY_NODEF10(60),
+        ERROR_ENTRY_NODEF10(70), ERROR_ENTRY_NODEF10(80), ERROR_ENTRY_NODEF10(90),
+        ERROR_ENTRY(100, "Параметр -in должен быть задан"),
+        ERROR_ENTRY(101, "Недопустимый входной параметр"),
+        ERROR_ENTRY(102, "Пустой входной параметр"),
+        ERROR_ENTRY_NODEF(103),
+        ERROR_ENTRY(104, "Превышена длина входного параметра"),
+        ERROR_ENTRY_NODEF(105), ERROR_ENTRY_NODEF(106), ERROR_ENTRY_NODEF(107),
+        ERROR_ENTRY_NODEF(108), ERROR_ENTRY_NODEF(109),
+        ERROR_ENTRY(110, "Ошибка при открытии файла с исходным кодом (-in)"),
+        ERROR_ENTRY(111, "Недопустимый символ в исходном коде"),
+        ERROR_ENTRY(112, "Ошибка создания потока логирования"),
+        ERROR_ENTRY(113, "Ошибка обработки протокола"),
+        ERROR_ENTRY(114, "Ошибка создания потока вывода"),
+        ERROR_ENTRY(115, "Превышена длина входного файла"),
+        ERROR_ENTRY_NODEF(116),ERROR_ENTRY_NODEF(117),ERROR_ENTRY_NODEF(118),
+        ERROR_ENTRY_NODEF(119), ERROR_ENTRY_NODEF(120),
+        ERROR_ENTRY_NODEF10(120),ERROR_ENTRY_NODEF10(130), ERROR_ENTRY_NODEF10(140),
+        ERROR_ENTRY_NODEF10(150), ERROR_ENTRY_NODEF10(160), ERROR_ENTRY_NODEF10(170),
+        ERROR_ENTRY_NODEF10(180), ERROR_ENTRY_NODEF10(190),
+        ERROR_ENTRY_NODEF100(200), ERROR_ENTRY_NODEF100(300), ERROR_ENTRY_NODEF100(400),
+        ERROR_ENTRY_NODEF100(500),
+        ERROR_ENTRY(600, "Неверная структура программы"),
+        ERROR_ENTRY(601, "Ошибочный оператор"),
+        ERROR_ENTRY(602, "Ошибка в выражении"),
+        ERROR_ENTRY(603, "Ошибка в параметрах функции"),
+        ERROR_ENTRY(604, "Ошибка в параметрах вызываемой функции"),
+        ERROR_ENTRY_NODEF(605), ERROR_ENTRY_NODEF(606), ERROR_ENTRY_NODEF(607),
+        ERROR_ENTRY_NODEF(608), ERROR_ENTRY_NODEF(609),
+        ERROR_ENTRY_NODEF10(610), ERROR_ENTRY_NODEF10(620), ERROR_ENTRY_NODEF10(630),
+        ERROR_ENTRY_NODEF10(640), ERROR_ENTRY_NODEF10(650), ERROR_ENTRY_NODEF10(660),
+        ERROR_ENTRY_NODEF10(670), ERROR_ENTRY_NODEF10(680), ERROR_ENTRY_NODEF10(690),
+        ERROR_ENTRY_NODEF100(700), ERROR_ENTRY_NODEF100(800), ERROR_ENTRY_NODEF100(900)
+    };
+
+    ERROR geterror(int id) {
+        if (id < 0) {
+            throw ERROR_THROW(0);
+        }
+        return errors[id];
+    }
+
+    ERROR geterrorin(int id, int line = -1, int col = -1) {
+        if (id < 0) {
+            throw ERROR_THROW(0);
+        }
+        ERROR temp = errors[id];
+        temp.inext.col = col;
+        temp.inext.line = line;
+        return temp;
+    }
+}
+
+// FST.h
+#pragma once
+
+namespace FST {
+    struct RELATION {
+        char symbol; // символ перехода
+        short nnode; // номер смежной вершины
+        RELATION(
+            char c,
+            short n
+        );
+    };
+
+    struct NODE // вершина графа
+    {
+        short n_relation; // количество инцидентных ребер
+        RELATION *relations; // инцидентные ребра
+        NODE();
+
+        NODE(
+            short,
+            RELATION, ...
+        );
+    };
+
+    struct FST {
+        // недетерменированный конечный автомат
+        char *string; // цепочка, строка, завершаящаяся 0x00
+        short position; // текущая позиция в цепочке
+        short nstates; // количество состояний в автомате
+        NODE *nodes; // граф переходов: [0] - начальное состояние, [nstate-1] - конечное
+        short *rstates; // возможные состояния графа на данном этапе
+        FST(
+            char*,
+            short,
+            NODE, ...
+        );
+    };
+
+    bool execute(
+        FST &fst);
+}
+
+
+// FST.cpp
+#include "../Headers/FST.h"
+
+#include <cstring>
+#include <cstdarg>
+
+namespace FST {
+    RELATION::RELATION(
+        char c = 0x00, // символ перехода
+        short n = NULL // новое состояние
+    ) {
+        this->symbol = c;
+        this->nnode = n;
+    };
+
+    NODE::NODE() {
+        this->n_relation = 0;
+        this->relations = nullptr;
+    }
+
+
+    NODE::NODE(
+        short n, // количество инцидентных ребер
+        RELATION rel, ... // список ребер
+    ) {
+        this->n_relation = n;
+        this->relations = new RELATION[n];
+        va_list args;
+        this->relations[0] = rel;
+        va_start(args, n);
+        for (int i = 1; i < n; i++) {
+            this->relations[i] = va_arg(args, RELATION);
+        }
+        va_end(args);
+    }
+
+    FST::FST(
+        char *s, // цепочка
+        short ns, // количество состояний автомата
+        NODE n, ... // список состояний (граф переходов)
+    ) {
+        this->string = s;
+        this->position = 0;
+        this->nstates = ns;
+        this->nodes = new NODE[ns];
+        this->nodes[0] = n;
+        va_list args;
+        va_start(args, ns);
+        for (int i = 1; i < ns; i++) {
+            this->nodes[i] = va_arg(args, NODE);
+        }
+        va_end(args);
+        this->rstates = new short[ns];
+        for (int i = 0; i < ns; i++) {
+            this->rstates[i] = -1;
+        }
+    };
+
+    bool execute(FST &fst) {
+        for (int i = 0; i < fst.nstates; i++)
+            fst.rstates[i] = -1;
+
+        fst.rstates[0] = 0;
+
+        for (int pos = 0; fst.string[pos] != '\0'; pos++) {
+            short *temp = new short[fst.nstates];
+            for (int i = 0; i < fst.nstates; i++)
+                temp[i] = -1;
+
+            for (int state = 0; state < fst.nstates; state++) {
+                if (fst.rstates[state] != -1) {
+                    NODE node = fst.nodes[state];
+                    for (int j = 0; j < node.n_relation; j++) {
+                        RELATION rel = node.relations[j];
+                        if (rel.symbol == fst.string[pos]) {
+                            temp[rel.nnode] = pos + 1;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < fst.nstates; i++) {
+                fst.rstates[i] = temp[i];
+            }
+            delete[] temp;
+        }
+
+        return fst.rstates[fst.nstates - 1] == (short) strlen(fst.string);
+    }
+}
+
+
+// GRB.h
+#pragma once
+#include "Error.h"
+#define GRB_ERROR_SERIES 600
+typedef short GRBALPHABET; // символы алфавита грамматики. терминалы > 0, нетерминалы < 0
+namespace GRB {
+    struct Rule {
+        GRBALPHABET nn; // нетерминал (левый символ правила) < 0
+        int iderror; // идентификатор диагностического сообщения
+        short size; // количество цепочек - правых частей правила
+        struct Chain {
+            short size; // длина цепочки
+            GRBALPHABET *nt; // цепочка терминалов (>0) и нетерминалов (<0)
+            Chain() {
+                size = 0;
+                nt = 0;
+            };
+
+            Chain(
+                short psize, // количество символов в цепочке
+                GRBALPHABET s, ... // символы
+            );
+
+            char *getCChain(char *b); // получить правую строку правила
+            static GRBALPHABET T(char t) { return GRBALPHABET(t); }; // терминал
+            static GRBALPHABET N(char n) { return -GRBALPHABET(n); }; // нетерминал
+            static bool isT(GRBALPHABET s) { return s > 0; }; // терминал?
+            static bool isN(GRBALPHABET s) { return !isT(s); }; // нетерминал?
+            static char alphabet_to_char(GRBALPHABET s) { return isT(s) ? char(s) : char(-s); }; // GRBALPHABET -> char
+        } *chains;
+
+        Rule() {
+            nn = 0x00;
+            size = 0;
+        }
+
+        Rule(
+            GRBALPHABET pnn, // нетерминал ( < 0)
+            int iderror, // идентификатор диагностического события (Error)
+            short psize, // количество цепочек - правых чстей правила
+            Chain c, ... // множество цепочек - правых частей правила
+        );
+
+        char *getCRule( // получить правило в виде N->цепочка (для распечатки)
+            char *b, // буфер
+            short nchain // номер цепочки (правой части) в правиле
+        );
+
+        short getNextChain( // получить следующую за j подходящую цепочку, вернуть ее номер или -1
+            GRBALPHABET t, // первый символ цепочки
+            Rule::Chain &pchain, // возвращаемая цепочка
+            short j // номер цепочки
+        );
+    };
+
+    struct Greibach {
+        // грамматика Грейбах
+        short size; // количество правил
+        GRBALPHABET startN; // стартовый символ
+        GRBALPHABET stbottomT; // дно стека
+        Rule *rules; // множество правил
+        Greibach() {
+            short size = 0;
+            startN = 0;
+            stbottomT = 0;
+            rules = 0;
+        };
+        Greibach(
+            GRBALPHABET pstartN, // стартовый символ
+            GRBALPHABET pstbottomT, // дно стека
+            short psize, // количество правил
+            Rule r, ... // правила
+        );
+        short getRule ( // получить правило, возвращается номер правила или -1
+            GRBALPHABET pnn, // левый символ правила
+            Rule& prule // возвращаемое правило грамматики
+        );
+        Rule getRule(short n); // получить правило по номеру
+    };
+
+    Greibach getGreibach(); // получить грамматику
+};
+
+
+// GRB.cpp
+#include "GRB.h"
+#include "cstring"
+#include "Rule.h"
+#include <cstdarg>
+#include <iostream>
+
+
+namespace GRB {
+    Rule::Chain::Chain(short psize, GRBALPHABET s, ...) {
+        nt = new GRBALPHABET[size = psize];
+        if (nt && psize > 0) {
+            va_list args;
+            va_start(args, s);
+
+            nt[0] = s;
+
+            for (short i = 1; i < psize; i++) {
+                nt[i] = (GRBALPHABET) va_arg(args, int); // Используем int!
+            }
+
+            va_end(args);
+        }
+    }
+
+    Rule::Rule(GRBALPHABET pnn, int piderror, short psize, Chain c, ...) {
+        nn = pnn;
+        iderror = piderror;
+        size = psize;
+
+        if (psize > 0) {
+            chains = new Chain[psize];
+
+            if (chains) {
+                // Первая цепочка уже передана как параметр c
+                chains[0] = c;
+
+                // Обрабатываем остальные цепочки через va_arg
+                if (psize > 1) {
+                    va_list args;
+                    va_start(args, c);
+
+                    // Пропускаем первый аргумент (c), так как мы его уже обработали
+                    for (int i = 1; i < psize; i++) {
+                        // Получаем следующий аргумент как Chain
+                        Chain next_chain = va_arg(args, Chain);
+                        chains[i] = next_chain;
+                    }
+
+                    va_end(args);
+                }
+            }
+        } else {
+            chains = nullptr;
+        }
+    }
+
+    Greibach::Greibach(GRBALPHABET pstartN, GRBALPHABET pstbottom, short psize, Rule r, ...) {
+        startN = pstartN;
+        stbottomT = pstbottom;
+        rules = new Rule[size = psize];
+        Rule *p = &r;
+        for (int i = 0; i < size; i++) rules[i] = p[i];
+    };
+
+    Greibach getGreibach() {
+        return greibach;
+    };
+
+    short Greibach::getRule(GRBALPHABET pnn, Rule &prule) {
+        short rc = -1;
+        short k = 0;
+        while (k < size && rules[k].nn != pnn) k++;
+        if (k < size) prule = rules[rc = k];
+        return rc;
+    };
+
+    Rule Greibach::getRule(short n) {
+        Rule rc;
+        if (n < size) rc = rules[n];
+        return rc;
+    };
+
+    char *Rule::getCRule(char *b, short nchain) {
+        char bchain[200];
+        b[0] = Chain::alphabet_to_char(nn);
+        b[1] = '-';
+        b[2] = '>';
+        b[3] = 0x00;
+        chains[nchain].getCChain(bchain);
+        std::strcat(b, bchain);
+        return b;
+    };
+
+    short Rule::getNextChain(GRBALPHABET t, Rule::Chain &pchain, short j) {
+        short rc = -1;
+        while (j < size && chains[j].nt[0] != t) ++j;
+        rc = (j < size ? j : -1);
+        if (rc >= 0) pchain = chains[rc];
+        return rc;
+    };
+
+    char *Rule::Chain::getCChain(char *b) {
+        for (int i = 0; i < size; i++) b[i] = Chain::alphabet_to_char(nt[i]);
+        b[size] = 0x00;
+        return b;
+    };
+}
+
+
+// In.h
+#pragma once
+#define IN_MAX_LEN_TEXT 1024*1024 // 1Mb
+#define IN_CODE_ENDL '\n'
+
+#define IN_CODE_TABLE {\
+    IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::T, IN::T, IN::F, IN::F, IN::I, IN::F, IN::F, \
+    IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, \
+    IN::T, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::F, \
+    IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::F, IN::T, IN::F, IN::T, IN::F, IN::T, \
+    IN::F, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, \
+    IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::F, IN::T, IN::F, IN::F, IN::F, \
+    IN::F, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, \
+    IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::F, IN::T, IN::F, IN::F, \
+    IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, \
+    IN::T, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, \
+    IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, \
+    IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, IN::F, \
+    IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, \
+    IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, \
+    IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, \
+    IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, IN::T, \
+}
+
+namespace In {
+    struct IN {
+        enum { T = 1024, F = 2048, I = 4096 }; // T - допустимо, F - недопустимо, I - игнорировать
+        int size;
+        int lines;
+        int ignor;
+        unsigned char *text;
+        int code[256];
+    };
+
+    IN getin(wchar_t infile[]);
+}
+
+
+// In.cpp
+#include "../Headers/In.h"
+#include "../Headers/Error.h"
+#include <cstring>
+#include <fstream>
+#include <cwchar>
+#include <iconv.h>
+
+unsigned char *convertWindows1251ToUTF8(const unsigned char *input) {
+    if (!input) {
+        throw ERROR_THROW(1);
+    }
+    size_t inbytes = strlen(reinterpret_cast<const char *>(input));
+
+    iconv_t cd = iconv_open("UTF-8", "CP1251");
+    if (cd == (iconv_t) -1) {
+        throw ERROR_THROW(1);
+    }
+
+    size_t outbytes = inbytes * 4; // Запас для UTF-8
+    unsigned char *outbuf = new unsigned char[outbytes + 1]; // +1 для нулевого байта
+    unsigned char *outptr = outbuf;
+    const char *inbuf = reinterpret_cast<const char *>(input);
+
+    size_t result = iconv(cd, const_cast<char **>(&inbuf), &inbytes, reinterpret_cast<char **>(&outptr), &outbytes);
+    if (result == static_cast<size_t>(-1)) {
+        delete[] outbuf;
+        iconv_close(cd);
+        throw ERROR_THROW(1);
+    }
+    *outptr = '\0';
+
+    size_t converted_len = outptr - outbuf;
+    unsigned char *result_buf = new unsigned char[converted_len + 1];
+    memcpy(result_buf, outbuf, converted_len + 1); // Плюс нуль байт
+
+    delete[] outbuf;
+    iconv_close(cd);
+
+    return result_buf;
+}
+
+namespace In {
+    IN getin(wchar_t infile[]) {
+        IN result = {0, 0, 0, {}, IN_CODE_TABLE};
+        int filename_length = wcslen(infile) + 1;
+        char filename[filename_length];
+        wcstombs(filename, infile, filename_length);
+
+        int cur_line = 1, cur_col = 0, cur_pos = 0,
+            result_pos = 0, ignored = 0;
+
+        result.text = new unsigned char[IN_MAX_LEN_TEXT];
+        std::ifstream file(filename, std::ios::binary);
+        if (!file.is_open()) {
+            throw ERROR_THROW(110);
+        }
+        bool inString = false; // флаг, находимся ли внутри строки
+        bool wasSpace = false; // флаг, был ли предыдущий символ пробелом
+
+        while (true) {
+            const int ch = file.get();
+            if (ch == EOF) break;
+
+            cur_pos++;
+            if (cur_pos > IN_MAX_LEN_TEXT) {
+                throw ERROR_THROW(115);
+            }
+
+            if (inString) {
+                result.text[result_pos++] = static_cast<char>(ch);
+                if (ch == '\'') {
+                    inString = false;
+                }
+                wasSpace = (ch == ' '); // обновляем флаг пробела
+                continue;
+            }
+
+            if (ch == '\'') {
+                inString = true;
+                result.text[result_pos++] = static_cast<char>(ch);
+                wasSpace = false; // строка сбрасывает флаг пробела
+                continue;
+            }
+
+            if (ch == ' ') {
+                if (wasSpace && !inString) {
+                    ignored++;
+                    continue;
+                }
+                wasSpace = true;
+            } else {
+                wasSpace = false;
+            }
+
+            switch (result.code[ch]) {
+                case IN::T:
+                    result.text[result_pos++] = static_cast<char>(ch);
+                    cur_col++;
+                    if (ch == IN_CODE_ENDL) {
+                        cur_line++;
+                        cur_col = 0;
+                        wasSpace = false;
+                    }
+                    break;
+                case IN::I:
+                    ignored++;
+                    if (ch == IN_CODE_ENDL) {
+                        cur_line++;
+                        cur_col = 0;
+                        wasSpace = false;
+                    }
+                    break;
+                case IN::F:
+                    throw ERROR_THROW_IN(111, cur_line, cur_col);
+                default:
+                    result.text[result_pos++] = result.code[ch];
+                    break;
+            }
+        }
+
+        unsigned char *utf8text = convertWindows1251ToUTF8(result.text);
+        result.text = utf8text;
+
+        result.size = result_pos;
+        result.lines = cur_line;
+        result.ignor = ignored;
+        return result;
+    }
+}
+
+// IT.h
+#pragma once
+#define ID_MAXSIZE 11
+#define TI_MAXSIZE 4096
+#define TI_INT_DEFAULT 0x00000000
+#define TI_STR_DEFAULT 0x00
+#define TI_NULLIDX 0xffffffff
+#define TI_STR_MAXSIZE 255
+
+namespace IT {
+    enum IDDATATYPE { INT = 1, STR = 2 };
+
+    enum IDTYPE { V = 1, F = 2, P = 3, L = 3 }; // идентификаторы: переменная, функция, параметр, литерал
+
+    struct Entry {
+        int idxfirstLE;
+        char id[ID_MAXSIZE];
+        IDDATATYPE iddatatype;
+        IDTYPE idtype;
+
+        union {
+            int vint;
+
+            struct {
+                char len;
+                char str[TI_STR_MAXSIZE - 1];
+            } vstr[TI_STR_MAXSIZE];
+        } value;
+    };
+
+    struct IdTable {
+        int maxsize;
+        int size;
+        Entry *table;
+    };
+
+    IdTable Create(
+        int size
+    );
+
+    void Add(
+        IdTable &idtable,
+        Entry entry
+    );
+
+    Entry GetEntry(
+        IdTable &idtable,
+        int n
+    );
+
+    int IsId(
+        IdTable &idtable,
+        char id[ID_MAXSIZE]
+    );
+
+    void Delete(IdTable &idtable);
+}
+
+
+// IT.cpp
+#include "../Headers/IT.h"
+#include "../Headers/Error.h"
+#include <cstring>
+
+namespace IT {
+    IdTable Create(int size) {
+        if (size <= 0 || size > TI_MAXSIZE)
+            throw ERROR_THROW(4);
+
+        IdTable idt;
+        idt.maxsize = size;
+        idt.size = 0;
+        idt.table = new Entry[size];
+        return idt;
+    }
+
+    void Add(IdTable &idtable, Entry entry) {
+        if (idtable.size >= idtable.maxsize)
+            throw ERROR_THROW(4);
+
+        idtable.table[idtable.size++] = entry;
+    }
+
+    Entry GetEntry(IdTable &idtable, int n) {
+        if (n < 0 || n >= idtable.size)
+            throw ERROR_THROW(5);
+        return idtable.table[n];
+    }
+
+    int IsId(IdTable &idtable, char id[ID_MAXSIZE]) {
+        for (int i = 0; i < idtable.size; i++) {
+            if (std::strcmp(idtable.table[i].id, id) == 0) {
+                return i;
+            }
+        }
+        return TI_NULLIDX;
+    }
+
+    void Delete(IdTable &idtable) {
+        if (idtable.table != nullptr) {
+            delete[] idtable.table;
+            idtable.table = nullptr;
+        }
+        idtable.size = 0;
+        idtable.maxsize = 0;
+    }
+}
+
+
+// Lexer.h
+#pragma once
+#include "In.h"
+#include "LT.h"
+#include "IT.h"
+#include "FST.h"
+
+namespace Lexer
+{
+    struct LEX {
+        LT::LexTable lextable;
+        IT::IdTable idtable;
+    };
+    void Analyze(In::IN &in, LT::LexTable &lextable, IT::IdTable &idtable);
+}
+
+
+// Lexer.cpp
+#include "../Headers/Lexer.h"
+#include "../Headers/Error.h"
+#include "../Headers/LT.h"
+#include "../Headers/IT.h"
+#include "../Headers/FST.h"
+#include <cstring>
+#include <cctype>
+#include <cstdio>
+#include <string>
+
+using namespace std;
+
+//TODO: Формировать таблицу по ограничителю длины идентификатора
+//TODO: Переделать определение идентификатора через конечный автомат
+//TODO: Добавить исключение если слишком большая длина лексемы
+
+namespace Lexer {
+    static bool nextTokenIsFunctionName = false;
+    static IT::IDDATATYPE nextIdDatatype = IT::INT;
+
+    bool isInteger(const char *str) {
+        FST::FST fst((char *) str, 8,
+                     FST::NODE(1, FST::RELATION('i', 1)),
+                     FST::NODE(1, FST::RELATION('n', 2)),
+                     FST::NODE(1, FST::RELATION('t', 3)),
+                     FST::NODE(1, FST::RELATION('e', 4)),
+                     FST::NODE(1, FST::RELATION('g', 5)),
+                     FST::NODE(1, FST::RELATION('e', 6)),
+                     FST::NODE(1, FST::RELATION('r', 7)),
+                     FST::NODE()
+        );
+        return FST::execute(fst);
+    }
+
+    bool isString(const char *str) {
+        FST::FST fst((char *) str, 7,
+                     FST::NODE(1, FST::RELATION('s', 1)),
+                     FST::NODE(1, FST::RELATION('t', 2)),
+                     FST::NODE(1, FST::RELATION('r', 3)),
+                     FST::NODE(1, FST::RELATION('i', 4)),
+                     FST::NODE(1, FST::RELATION('n', 5)),
+                     FST::NODE(1, FST::RELATION('g', 6)),
+                     FST::NODE()
+        );
+        return FST::execute(fst);
+    }
+
+    bool isFunction(const char *str) {
+        FST::FST fst((char *) str, 9,
+                     FST::NODE(1, FST::RELATION('f', 1)),
+                     FST::NODE(1, FST::RELATION('u', 2)),
+                     FST::NODE(1, FST::RELATION('n', 3)),
+                     FST::NODE(1, FST::RELATION('c', 4)),
+                     FST::NODE(1, FST::RELATION('t', 5)),
+                     FST::NODE(1, FST::RELATION('i', 6)),
+                     FST::NODE(1, FST::RELATION('o', 7)),
+                     FST::NODE(1, FST::RELATION('n', 8)),
+                     FST::NODE()
+        );
+        return FST::execute(fst);
+    }
+
+    bool isDeclare(const char *str) {
+        FST::FST fst((char *) str, 8,
+                     FST::NODE(1, FST::RELATION('d', 1)),
+                     FST::NODE(1, FST::RELATION('e', 2)),
+                     FST::NODE(1, FST::RELATION('c', 3)),
+                     FST::NODE(1, FST::RELATION('l', 4)),
+                     FST::NODE(1, FST::RELATION('a', 5)),
+                     FST::NODE(1, FST::RELATION('r', 6)),
+                     FST::NODE(1, FST::RELATION('e', 7)),
+                     FST::NODE()
+        );
+        return FST::execute(fst);
+    }
+
+
+    bool isReturn(const char *str) {
+        FST::FST fst((char *) str, 7,
+                     FST::NODE(1, FST::RELATION('r', 1)),
+                     FST::NODE(1, FST::RELATION('e', 2)),
+                     FST::NODE(1, FST::RELATION('t', 3)),
+                     FST::NODE(1, FST::RELATION('u', 4)),
+                     FST::NODE(1, FST::RELATION('r', 5)),
+                     FST::NODE(1, FST::RELATION('n', 6)),
+                     FST::NODE()
+        );
+        return FST::execute(fst);
+    }
+
+
+    bool isPrint(const char *str) {
+        FST::FST fst((char *) str, 6,
+                     FST::NODE(1, FST::RELATION('p', 1)),
+                     FST::NODE(1, FST::RELATION('r', 2)),
+                     FST::NODE(1, FST::RELATION('i', 3)),
+                     FST::NODE(1, FST::RELATION('n', 4)),
+                     FST::NODE(1, FST::RELATION('t', 5)),
+                     FST::NODE()
+        );
+        return FST::execute(fst);
+    }
+
+
+    bool isMain(const char *str) {
+        FST::FST fst((char *) str, 5,
+                     FST::NODE(1, FST::RELATION('m', 1)),
+                     FST::NODE(1, FST::RELATION('a', 2)),
+                     FST::NODE(1, FST::RELATION('i', 3)),
+                     FST::NODE(1, FST::RELATION('n', 4)),
+                     FST::NODE()
+        );
+        return FST::execute(fst);
+    }
+
+    bool isValidId(const char *str) {
+        if (strlen(str) == 0) {
+            return false;
+        }
+
+        FST::FST fst((char *) str, 2,
+                     FST::NODE(52, FST::RELATION('a', 1), FST::RELATION('b', 1), FST::RELATION('c', 1),
+                               FST::RELATION('d', 1),
+                               FST::RELATION('e', 1), FST::RELATION('f', 1), FST::RELATION('g', 1),
+                               FST::RELATION('h', 1),
+                               FST::RELATION('i', 1), FST::RELATION('j', 1), FST::RELATION('k', 1),
+                               FST::RELATION('l', 1),
+                               FST::RELATION('m', 1), FST::RELATION('1', 1), FST::RELATION('o', 1),
+                               FST::RELATION('p', 1),
+                               FST::RELATION('q', 1), FST::RELATION('r', 1), FST::RELATION('s', 1),
+                               FST::RELATION('t', 1),
+                               FST::RELATION('u', 1), FST::RELATION('v', 1), FST::RELATION('w', 1),
+                               FST::RELATION('x', 1),
+                               FST::RELATION('y', 1), FST::RELATION('z', 1), FST::RELATION('A', 1),
+                               FST::RELATION('B', 1), FST::RELATION('C', 1), FST::RELATION('D', 1),
+                               FST::RELATION('E', 1), FST::RELATION('F', 1), FST::RELATION('G', 1),
+                               FST::RELATION('H', 1),
+                               FST::RELATION('I', 1), FST::RELATION('J', 1), FST::RELATION('K', 1),
+                               FST::RELATION('L', 1),
+                               FST::RELATION('M', 1), FST::RELATION('N', 1), FST::RELATION('O', 1),
+                               FST::RELATION('P', 1),
+                               FST::RELATION('Q', 1), FST::RELATION('R', 1), FST::RELATION('S', 1),
+                               FST::RELATION('T', 1),
+                               FST::RELATION('U', 1), FST::RELATION('V', 1), FST::RELATION('W', 1),
+                               FST::RELATION('X', 1),
+                               FST::RELATION('Y', 1), FST::RELATION('Z', 1)),
+                     FST::NODE(62, FST::RELATION('0', 1), FST::RELATION('1', 1), FST::RELATION('2', 1),
+                               FST::RELATION('3', 1),
+                               FST::RELATION('4', 1), FST::RELATION('5', 1), FST::RELATION('6', 1),
+                               FST::RELATION('7', 1),
+                               FST::RELATION('8', 1), FST::RELATION('9', 1), FST::RELATION('a', 1),
+                               FST::RELATION('b', 1), FST::RELATION('c', 1),
+                               FST::RELATION('d', 1),
+                               FST::RELATION('e', 1), FST::RELATION('f', 1), FST::RELATION('g', 1),
+                               FST::RELATION('h', 1),
+                               FST::RELATION('i', 1), FST::RELATION('j', 1), FST::RELATION('k', 1),
+                               FST::RELATION('l', 1),
+                               FST::RELATION('m', 1), FST::RELATION('1', 1), FST::RELATION('o', 1),
+                               FST::RELATION('p', 1),
+                               FST::RELATION('q', 1), FST::RELATION('r', 1), FST::RELATION('s', 1),
+                               FST::RELATION('t', 1),
+                               FST::RELATION('u', 1), FST::RELATION('v', 1), FST::RELATION('w', 1),
+                               FST::RELATION('x', 1),
+                               FST::RELATION('y', 1), FST::RELATION('z', 1), FST::RELATION('A', 1),
+                               FST::RELATION('B', 1), FST::RELATION('C', 1), FST::RELATION('D', 1),
+                               FST::RELATION('E', 1), FST::RELATION('F', 1), FST::RELATION('G', 1),
+                               FST::RELATION('H', 1),
+                               FST::RELATION('I', 1), FST::RELATION('J', 1), FST::RELATION('K', 1),
+                               FST::RELATION('L', 1),
+                               FST::RELATION('M', 1), FST::RELATION('N', 1), FST::RELATION('O', 1),
+                               FST::RELATION('P', 1),
+                               FST::RELATION('Q', 1), FST::RELATION('R', 1), FST::RELATION('S', 1),
+                               FST::RELATION('T', 1),
+                               FST::RELATION('U', 1), FST::RELATION('V', 1), FST::RELATION('W', 1),
+                               FST::RELATION('X', 1),
+                               FST::RELATION('Y', 1), FST::RELATION('Z', 1)));
+        return FST::execute(fst);
+    }
+
+
+    void Analyze(In::IN &in, LT::LexTable &lextable, IT::IdTable &idtable) {
+        int line = 1;
+        int col = 0;
+        int i = 0; // Текущий индекс в тексте in.text
+
+        // Буфер для считывания токенов.
+        char token[ID_MAXSIZE];
+
+        while (i < in.size) {
+            int shift = 0; // Сдвиг (длина токена)
+            token[0] = '\0';
+
+
+            if (in.text[i] == '\n') {
+                line++;
+                col = 0;
+                i++;
+                continue;
+            }
+
+            if (isspace(in.text[i]) || in.text[i] == '\r') {
+                i++;
+                col++;
+                continue;
+            }
+
+            if (strchr(";,{}()+-*/=", in.text[i])) {
+                char lexema = in.text[i];
+                LT::Entry entry = {{lexema}, line, LT_TI_NULLIDX};
+
+
+                switch (lexema) {
+                    case ';': entry.lexema = LEX_SEMICOLON;
+                        break;
+                    case ',': entry.lexema = LEX_COMMA;
+                        break;
+                    case '{': entry.lexema = LEX_LEFTBRACE;
+                        break;
+                    case '}': entry.lexema = LEX_BRACELET;
+                        break;
+                    case '(': entry.lexema = LEX_LEFTHESIS;
+                        break;
+                    case ')': entry.lexema = LEX_RIGHTHESIS;
+                        break;
+                    case '+': entry.lexema = LEX_PLUS;
+                        break;
+                    case '-': entry.lexema = LEX_MINUS;
+                        break;
+                    case '*': entry.lexema = LEX_STAR;
+                        break;
+                    case '/': entry.lexema = LEX_DIRSLASH;
+                        break;
+                    case '=': entry.lexema = '=';
+                        break;
+                }
+                LT::Add(lextable, entry);
+                i++;
+                col++;
+                continue;
+            }
+
+            if (in.text[i] == '\'') {
+                int start_i = i;
+                int start_col = col;
+                i++; // Пропускаем открывающую кавычку
+                col++;
+
+                while (i < in.size && in.text[i] != '\'' && in.text[i] != '\n') {
+                    i++;
+                    col++;
+                }
+
+                if (i >= in.size || in.text[i] == '\n') {
+                    throw ERROR_THROW_IN(6, line, start_col);
+                }
+
+                // i указывает на закрывающую кавычку
+                int len = i - start_i - 1;
+
+                char str_literal[TI_STR_MAXSIZE];
+                if (len >= TI_STR_MAXSIZE) {
+                    throw ERROR_THROW_IN(6, line, start_col);
+                }
+
+                memcpy(str_literal, in.text + start_i + 1, len);
+                str_literal[len] = '\0';
+
+                IT::Entry entry;
+                snprintf(entry.id, ID_MAXSIZE, "L%d", idtable.size);
+
+                entry.iddatatype = IT::STR;
+                entry.idtype = IT::L;
+                entry.idxfirstLE = lextable.size;
+                entry.value.vstr[0].len = (char) len;
+
+                memcpy(entry.value.vstr[0].str, str_literal, len);
+                entry.value.vstr[0].str[len] = '\0';
+
+                IT::Add(idtable, entry);
+                int idx = idtable.size - 1;
+
+                LT::Add(lextable, {LEX_LITERAL, line, idx});
+
+                i++; // Пропускаем закрывающую кавычку
+                col++;
+                continue;
+            }
+
+            if (isdigit(in.text[i])) {
+                int start_i = i;
+                int val = 0;
+                int num_len = 0;
+
+                while (i < in.size && isdigit(in.text[i])) {
+                    //TODO: Проверка на переполнение INT
+                    val = val * 10 + (in.text[i] - '0');
+                    i++;
+                    num_len++;
+                    col++;
+                }
+
+                IT::Entry entry;
+                snprintf(entry.id, ID_MAXSIZE, "I%d", idtable.size); // Генерируем ID для литерала
+                entry.iddatatype = IT::INT;
+                entry.idtype = IT::L;
+                entry.idxfirstLE = lextable.size;
+                entry.value.vint = val;
+
+                IT::Add(idtable, entry);
+                int idx = idtable.size - 1;
+
+                LT::Add(lextable, {LEX_LITERAL, line, idx});
+                continue;
+            }
+
+            if (isalpha(in.text[i])) {
+                int token_len = 0;
+
+                while (i < in.size && isalnum(in.text[i]) && token_len < ID_MAXSIZE - 1) {
+                    token[token_len++] = in.text[i];
+                    i++;
+                    col++;
+                }
+                token[token_len] = '\0';
+                shift = token_len;
+
+                if (token_len == ID_MAXSIZE - 1 && isalnum(in.text[i])) {
+                    throw ERROR_THROW_IN(6, line, col - token_len);
+                }
+
+                if (isInteger(token)) {
+                    LT::Add(lextable, {LEX_INTEGER, line, LT_TI_NULLIDX});
+                    nextIdDatatype = IT::INT;
+                } else if (isString(token)) {
+                    LT::Add(lextable, {LEX_STRING, line, LT_TI_NULLIDX});
+                    nextIdDatatype = IT::STR;
+                } else if (isFunction(token)) {
+                    LT::Add(lextable, {LEX_FUNCTION, line, LT_TI_NULLIDX});
+                    nextTokenIsFunctionName = true;
+                } else if (isDeclare(token)) {
+                    LT::Add(lextable, {LEX_DECLARE, line, LT_TI_NULLIDX});
+                } else if (isReturn(token)) {
+                    LT::Add(lextable, {LEX_RETURN, line, LT_TI_NULLIDX});
+                } else if (isPrint(token)) {
+                    LT::Add(lextable, {LEX_PRINT, line, LT_TI_NULLIDX});
+                } else if (isMain(token)) {
+                    LT::Add(lextable, {LEX_MAIN, line, LT_TI_NULLIDX});
+                } else if (isValidId(token)) {
+                    int idx = IT::IsId(idtable, token);
+                    if (idx == LT_TI_NULLIDX) {
+                        IT::Entry entry;
+                        strncpy(entry.id, token, ID_MAXSIZE);
+                        entry.id[ID_MAXSIZE - 1] = '\0';
+                        entry.idxfirstLE = lextable.size;
+
+                        if (nextTokenIsFunctionName) {
+                            entry.idtype = IT::F;
+                            nextTokenIsFunctionName = false;
+                        } else {
+                            entry.idtype = IT::V;
+                        }
+
+                        entry.iddatatype = nextIdDatatype;
+
+                        if (nextIdDatatype == IT::INT) {
+                            entry.value.vint = TI_INT_DEFAULT;
+                        } else if (nextIdDatatype == IT::STR) {
+                            entry.value.vstr[0].len = 0;
+                            entry.value.vstr[0].str[0] = '\0';
+                        }
+
+                        IT::Add(idtable, entry);
+                        idx = idtable.size - 1;
+                    }
+                    LT::Add(lextable, {LEX_ID, line, idx});
+                }
+                continue;
+            } else {
+                throw ERROR_THROW_IN(111, line, col);
+            }
+        }
+    }
+}
+
+// Log.h
+#pragma once
+#include <fstream>
+#include "In.h"
+#include "Error.h"
+#include "Parm.h"
+#include "LT.h"
+#include "IT.h"
+
+namespace Log {
+    struct LOG {
+        wchar_t logfile[PARM_MAXSIZE];
+        std::ofstream* stream;
+    };
+
+    static const LOG INITLOG {L"", NULL};
+    LOG getlog(wchar_t logfile[]);
+    void WriteLine(LOG log, char* c, ...);
+    void WriteLine(LOG log, wchar_t* c, ...);
+    void WriteLog(LOG log);
+    void WriteParm(LOG log, Parm::PARM parm);
+    void WriteIn(LOG log, In::IN in);
+    void WriteError(LOG log, Error::ERROR error);
+    void WriteLT(LOG log, LT::LexTable lextable);
+    void WriteIT(LOG log, IT::IdTable idtable);
+    void Close(LOG log);
+}
+
+
+// Log.cpp
+#include "../Headers/Log.h"
+#include <cstring>
+#include <iomanip>
+
+namespace Log {
+    LOG getlog(wchar_t logfile[]) {
+        LOG log = Log::INITLOG;
+        wcscpy(log.logfile, logfile);
+
+        char clogfile[PARM_MAXSIZE];
+        wcstombs(clogfile, logfile, PARM_MAXSIZE + 1);
+        log.stream = new std::ofstream();
+        log.stream->open(clogfile, std::ios::app);
+        if (!log.stream->is_open() || !log.stream->good()) {
+            delete log.stream;
+            log.stream = nullptr;
+            throw ERROR_THROW(112);
+        }
+        return log;
+    }
+
+    void WriteLine(LOG log, char *c, ...) {
+        if (log.stream->good() || log.stream->is_open()) {
+            char **current = &c;
+            while (current) {
+                if (strncmp(*current, "", strlen(*current))) {
+                    (*log.stream) << *current << " ";
+                }
+                current++;
+            }
+            (*log.stream) << std::endl;
+        }
+        else {
+            throw ERROR_THROW(112);
+        }
+    }
+
+    void WriteLine(LOG log, wchar_t *c, ...) {
+        if (log.stream->good() || log.stream->is_open()) {
+            wchar_t **current = &c;
+            while (current) {
+                if (wcscmp(*current, L"")) {
+                    const int len = wcslen(*current);
+                    char c_current[len];
+                    wcstombs(c_current, *current, len + 1);
+                    (*log.stream) << c_current << " ";
+                }
+                current++;
+            }
+            (*log.stream) << std::endl;
+        } else {
+            throw ERROR_THROW(113);
+        }
+    }
+
+    void WriteLog(LOG log) {
+        if (log.stream->good() || log.stream->is_open()) {
+            time_t rawtime;
+            time(&rawtime);
+            struct tm timeinfo;
+            localtime_r(&rawtime, &timeinfo);
+            char buffer[80];
+            strftime(buffer, sizeof(buffer), "%d.%m.%Y %H:%M:%S", &timeinfo);
+            (*log.stream) << "---- Протокол ----- " << buffer << " ----" << std::endl;
+        } else {
+            throw ERROR_THROW(113);
+        }
+    }
+
+    void WriteParm(LOG log, Parm::PARM parm) {
+        if (log.stream->good() || log.stream->is_open()) {
+            const int in_len = wcslen(parm.in) + 1, out_len = wcslen(parm.out) + 1, log_len = wcslen(parm.log) + 1;
+            char c_in[in_len], c_out[out_len], c_log[log_len];
+            wcstombs(c_in, parm.in, in_len);
+            wcstombs(c_out, parm.out, out_len);
+            wcstombs(c_log, parm.log, log_len);
+            (*log.stream) << "---- Входные параметры: ----\n" << "-in: " << c_in << std::endl << "-out: " << c_out <<
+                    std::endl
+                    << "-log: " << c_log << std::endl;
+        } else {
+            throw ERROR_THROW(113);
+        }
+    }
+
+    void WriteIn(LOG log, In::IN in) {
+        if (log.stream->good() || log.stream->is_open()) {
+            (*log.stream) << "---- Исходные данные: ----\n" << "Количество символов: " << in.size << std::endl <<
+                    "Проигнорировано: " << in.ignor << std::endl << "Количество строк: " << in.lines << std::endl;
+        } else {
+            throw ERROR_THROW(113);
+        }
+    }
+
+    void WriteError(LOG log, Error::ERROR error) {
+        if (log.stream->good() || log.stream->is_open()) {
+            (*log.stream) << "Ошибка " << error.id << ". " << error.message << ", строка: " << error.inext.line <<
+                    ", символ: " << error.inext.col << std::endl;
+        }
+    }
+
+   void WriteLT(LOG log, LT::LexTable lextable) {
+        if (!(log.stream->good() || log.stream->is_open())) {
+            throw ERROR_THROW(113);
+        }
+
+        (*log.stream) << "---- Таблица лексем ----" << std::endl;
+        (*log.stream) << std::left
+                      << std::setw(6)  << "Idx"
+                      << std::setw(8)  << "Lex"
+                      << std::setw(10) << "IdxTI"
+                      << std::setw(8)  << "Line"
+                      << std::endl;
+        (*log.stream) << std::string(34, '-') << std::endl;
+
+        for (int i = 0; i < lextable.size; ++i) {
+            LT::Entry &entry = lextable.table[i];
+
+            // char lexch = entry.lexema[0];
+            char lexch = entry.lexema;
+
+            (*log.stream) << std::left
+                          << std::setw(6)  << i
+                          << std::setw(8);
+
+            if (lexch >= 32 && lexch <= 126) {
+                // печатный ASCII
+                (*log.stream) << lexch;
+            } else {
+                // непечатный — выводим числовой код
+                (*log.stream) << ("\\x" + std::to_string(static_cast<unsigned char>(lexch)));
+            }
+
+            (*log.stream) << std::setw(10);
+            if (entry.idxTI == LT_TI_NULLIDX) {
+                (*log.stream) << "-";
+            } else {
+                (*log.stream) << entry.idxTI;
+            }
+
+            (*log.stream) << std::setw(8) << entry.sn << std::endl;
+        }
+
+        (*log.stream) << std::endl;
+    }
+
+    void WriteIT(LOG log, IT::IdTable idtable) {
+        if (!(log.stream->good() || log.stream->is_open())) {
+            throw ERROR_THROW(113);
+        }
+
+        (*log.stream) << "---- Таблица идентификаторов ----" << std::endl;
+        (*log.stream) << std::left
+                      << std::setw(6)  << "Idx"
+                      << std::setw(8)  << "Name"
+                      << std::setw(10) << "FirstLE"
+                      << std::setw(10) << "DType"
+                      << std::setw(12) << "IType"
+                      << std::setw(18) << "Value"
+                      << std::endl;
+        (*log.stream) << std::string(64, '-') << std::endl;
+
+        for (int i = 0; i < idtable.size; ++i) {
+            IT::Entry &entry = idtable.table[i];
+
+            int idlen = 0;
+            for (; idlen < ID_MAXSIZE && entry.id[idlen] != '\0'; ++idlen);
+            std::string idstr(entry.id, idlen);
+
+            const char* dtype = "unknown";
+            if (entry.iddatatype == IT::INT) dtype = "integer";
+            else if (entry.iddatatype == IT::STR) dtype = "string";
+
+            const char* itype = "unknown";
+            switch (entry.idtype) {
+                case IT::V: itype = "var"; break;
+                case IT::F: itype = "func"; break;
+                case IT::P: itype = "param"; break;
+                default: itype = "other"; break;
+            }
+
+            std::string valstr;
+            if (entry.iddatatype == IT::INT) {
+                valstr = std::to_string(entry.value.vint);
+            } else if (entry.iddatatype == IT::STR) {
+                unsigned char slen = static_cast<unsigned char>(entry.value.vstr[0].len);
+                if (slen > 0 && slen < TI_STR_MAXSIZE) {
+                    valstr.assign(entry.value.vstr[0].str, slen);
+                } else {
+                    int sllen = 0;
+                    while (sllen < (TI_STR_MAXSIZE - 1) && entry.value.vstr[0].str[sllen] != '\0') ++sllen;
+                    valstr.assign(entry.value.vstr[0].str, sllen);
+                }
+            } else {
+                valstr = "-";
+            }
+
+            (*log.stream) << std::left
+                          << std::setw(6)  << i
+                          << std::setw(8)  << idstr
+                          << std::setw(10) << entry.idxfirstLE
+                          << std::setw(10) << dtype
+                          << std::setw(12) << itype
+                          << std::setw(18) << valstr
+                          << std::endl;
+        }
+
+        (*log.stream) << std::endl;
+    }
+    void Close(LOG log) {
+        if (log.stream->is_open() && log.stream->good()) {
+            log.stream->close();
+        }
+        delete log.stream;
+        log.stream = nullptr;
+    }
+}
+
+
+// MFst.h
+#pragma once
+#include "GRB.h"
+#include <deque>
+#include "Lexer.h"
+#define MFST_DIAGN_NUMBER 3
+
+// Отладка
+#define MFST_TRACE_START std::cout << std::setw(4) << std::left << "Шаг" << ":" \
+    << std::setw(20) << std::left << " Правило" \
+    << std::setw(30) << std::left << " Входная лента" \
+    << std::setw(20) << std::left << " Стек" \
+    << std::endl;
+#define MFST_TRACE1 std::cout << std::setw(4) << std::left << ++FST_TRACE_n << ": " \
+    << std::setw(20) << std::left << rule.getCRule(rbuf,nrulechain) \
+    << std::setw(30) << std::left << getCLenta(lbuf, lenta_position) \
+    << std::setw(20) << std::left << getCSt(sbuf) \
+    << std::endl;
+#define MFST_TRACE2 std::cout << std::setw(4) << std::left << FST_TRACE_n << ": " \
+    << std::setw(20) << std::left << " " \
+    << std::setw(30) << std::left << getCLenta(lbuf, lenta_position) \
+    << std::setw(20) << std::left << getCSt(sbuf) \
+    << std::endl;
+#define MFST_TRACE3 std::cout << std::setw(4) << std::left << ++FST_TRACE_n << ": " \
+    << std::setw(20) << std::left << " " \
+    << std::setw(30) << std::left << getCLenta(lbuf, lenta_position) \
+    << std::setw(20) << std::left << getCSt(sbuf) \
+    << std::endl;
+#define MFST_TRACE4(c) std::cout << std::setw(4) << std::left << ++FST_TRACE_n << ": " << std::setw(20)<<std::left << c << std::endl;
+#define MFST_TRACE5(c) std::cout << std::setw(4) << std::left << FST_TRACE_n << ": " << std::setw(20) << std::left << c << std::endl;
+#define MFST_TRACE6(c,k) std::cout << std::setw(4)<<std::left << FST_TRACE_n << ": " << std::setw(20) << std::left << c << k << std::endl;
+#define MFST_TRACE7 std::cout << std::setw(4)<<std::left << state.lenta_position << ": " \
+    << std::setw(20) << std::left << rule.getCRule(rbuf, state.nrulechain) \
+    << std::endl;
+
+// Кастомная реализация стека с доступом к элементам
+class MFSTSTSTACK {
+private:
+    std::deque<short> container;
+
+public:
+    void push(short value) { container.push_back(value); }
+    void pop() {
+        if (!container.empty()) container.pop_back();
+    }
+    short top() const {
+        if (!container.empty()) return container.back();
+        return 0;
+    }
+    bool empty() const { return container.empty(); }
+    size_t size() const { return container.size(); }
+
+    short& operator[](size_t index) { return container[index]; }
+    const short& operator[](size_t index) const { return container[index]; }
+
+    std::deque<short>& getContainer() { return container; }
+    const std::deque<short>& getContainer() const { return container; }
+};
+
+namespace MFST {
+    struct MfstState {
+        short lenta_position;
+        short nrule;
+        short nrulechain;
+        MFSTSTSTACK st;
+
+        MfstState();
+
+        MfstState(
+            short pposition,
+            MFSTSTSTACK pst,
+            short pnrulechain);
+
+        MfstState(
+            short pposition,
+            MFSTSTSTACK pst,
+            short pnrule,
+            short pnrulechain);
+    };
+
+    // Кастомная реализация стека состояний
+    class MFSTSTATE {
+    private:
+        std::deque<MfstState> container;
+
+    public:
+        void push(const MfstState& value) { container.push_back(value); }
+        void pop() {
+            if (!container.empty()) container.pop_back();
+        }
+        MfstState& top() {
+            return container.back();
+        }
+        const MfstState& top() const {
+            return container.back();
+        }
+        bool empty() const { return container.empty(); }
+        size_t size() const { return container.size(); }
+
+        // Доступ к элементам как к массиву
+        MfstState& operator[](size_t index) { return container[index]; }
+        const MfstState& operator[](size_t index) const { return container[index]; }
+
+        // Доступ к внутреннему контейнеру
+        std::deque<MfstState>& getContainer() { return container; }
+        const std::deque<MfstState>& getContainer() const { return container; }
+    };
+
+    struct Mfst // магазинный автомат
+    {
+        enum RC_STEP {
+            // код возврата функции step
+            NS_OK, // найдено правило и цепочка, цепочка записана в стек
+            NS_NORULE, // не найдено правило грамматики (ошибка в грамматике)
+            NS_NORULECHAIN, // не найдена подходящая цепочка правила (ошибка в исходном коде)
+            NS_ERROR, // неизвестный нетерминальный символ грамматики
+            TS_OK, // тек. символ ленты == вершине стека, продвинулась лента, pop стека
+            TS_NOK, // тек. символ ленты != вершине стека, восстановлено состояние
+            LENTA_END, // текущая позиция ленты >= lenta_size
+            SURPRISE // неожиданный код возврата (ошибка в step)
+        };
+
+        struct MfstDiagnosis // диагностика
+        {
+            short lenta_position; // позиция на ленте
+            RC_STEP rc_step; // код завершения шага
+            short nrule; // номер правила
+            short nrule_chain; // номер цепочки правила
+            MfstDiagnosis();
+
+            MfstDiagnosis( // диагностика
+                short plenta_position, // позиция на ленте
+                RC_STEP prc_step, // код завершения шага
+                short pnrule, // номер правила
+                short pnrule_chain // номер цепочки правила
+            );
+        } diagnosis[MFST_DIAGN_NUMBER]; // последние самые глубокие сообщения
+        GRBALPHABET *lenta; // перекодированная (TS/NS) лента (из Lexer)
+        short lenta_position; // текущая позиция на ленте
+        short nrule; // номер текущего правила
+        short nrulechain; // номер текущей цепочки, текущего правила
+        short lenta_size; // размер ленты
+        GRB::Greibach greibach; // грамматика Грейбах
+        Lexer::LEX lex; // результат работы лексического анализатора
+        MFSTSTSTACK st; // стек автомата
+        MFSTSTATE storestate; // стек для сохранения состояний
+        Mfst();
+
+        Mfst(
+            Lexer::LEX plex, // результат работы лексического анализатора
+            GRB::Greibach pgreibach // грамматика Грейбах
+        );
+
+        char *getCSt(char *buf); // получить содержимое стека
+        char *getCLenta(char *buf, short pos, short n = 25); // лента: n символов с pos
+        char *getDiagnosis(short n, char *buf); // получить n-ую строку диагностики или 0x00
+        bool savestate(); // сохранить состояние автомата
+        bool reststate(); // восстановить состояние автомата
+        bool push_chain(GRB::Rule::Chain chain); // поместить цепочку правила в стек
+        RC_STEP step(); // выполнить шаг автомата
+        bool start(); // запустить автомат
+        bool savediagnosis(
+            RC_STEP pprc_step // код завершения шага
+        );
+
+        void printrules();
+
+        struct Deducation {
+            short size;
+            short *nrules;
+            short *nrulechains;
+
+            Deducation() {
+                size = 0;
+                nrules = 0;
+                nrulechains = 0;
+            };
+        } deducation;
+
+        bool savededucation();
+    };
+}
+
+
+// Mfst.cpp
+#include <stack>
+#include <iomanip>
+#include <iostream>
+#include "../Headers/Error.h"
+#include "../Headers/Mfst.h"
+#include "../Headers/GRB.h"
+
+#define MFST_DIAGN_MAXSIZE 2*ERROR_MAXSIZE_MESSAGE
+#define MFST_DIAGN_NUMBER 3
+#define ISNS(n) GRB::Rule::Chain::isN(n)
+#define NS(n) GRB::Rule::Chain::N(n)
+#define TS(n) GRB::Rule::Chain::T(n)
+
+int FST_TRACE_n = -1;
+char rbuf[205], sbuf[205], lbuf[1024]; // печать
+
+namespace MFST {
+    MfstState::MfstState() {
+        lenta_position = 0;
+        nrule = -1;
+        nrulechain = -1;
+    };
+
+    MfstState::MfstState(short pposition, MFSTSTSTACK pst, short pnrulechain) {
+        lenta_position = pposition;
+        st = pst;
+        nrule = pnrulechain;
+    };
+
+    MfstState::MfstState(short pposition, MFSTSTSTACK pst, short pnrule, short pnrulechain) {
+        lenta_position = pposition;
+        st = pst;
+        nrule = pnrule;
+        nrulechain = pnrulechain;
+    };
+
+    Mfst::MfstDiagnosis::MfstDiagnosis() {
+        lenta_position = -1;
+        rc_step = SURPRISE;
+        nrule = -1;
+        nrule_chain = -1;
+    };
+
+    Mfst::MfstDiagnosis::MfstDiagnosis(short plenta_positionm, RC_STEP prc_step, short pnrule, short pnrule_chain) {
+        lenta_position = plenta_positionm;
+        rc_step = prc_step;
+        nrule = pnrule;
+        nrule_chain = pnrule_chain;
+    };
+
+    Mfst::Mfst() {
+        lenta = 0;
+        lenta_size = lenta_position = 0;
+    };
+
+    Mfst::Mfst(Lexer::LEX plex, GRB::Greibach pgreibach) {
+        greibach = pgreibach;
+        lex = plex;
+        lenta = new short[lenta_size = lex.lextable.size];
+        for (int k = 0; k < lenta_size; k++) {
+            lenta[k] = TS(lex.lextable.table[k].lexema);
+        }
+        lenta_position = 0;
+        st.push(greibach.stbottomT);
+        st.push(greibach.startN);
+        nrulechain = -1;
+    };
+
+    Mfst::RC_STEP Mfst::step() {
+        RC_STEP rc = SURPRISE;
+        if (lenta_position < lenta_size) {
+            if (ISNS(st.top())) {
+                GRB::Rule rule;
+                if ((nrule = greibach.getRule(st.top(), rule)) >= 0) {
+                    GRB::Rule::Chain chain;
+                    if ((nrulechain = rule.getNextChain(lenta[lenta_position], chain, nrulechain + 1)) >= 0) {
+                        MFST_TRACE1
+                        savestate();
+                        st.pop();
+                        push_chain(chain);
+                        rc = NS_OK;
+                        MFST_TRACE2
+                    } else {
+                        MFST_TRACE4("TNS_NORULECHAIN/NS_NORULE")
+                        savediagnosis(NS_NORULECHAIN);
+                        if (!reststate()) {
+                            // Неудачный откат -> фатальная ошибка NS_NORULE
+                            // 1. Получаем индекс лексемы, на которой произошла ошибка
+                            short lpos = diagnosis[0].lenta_position;
+                            if (lpos < 0) lpos = 0;
+                            int line = lex.lextable.table[lpos].sn;
+
+                            // 2. Получаем код ошибки из грамматики Грейбах (Rule.iderror)
+                            int errid = greibach.getRule(diagnosis[0].nrule).iderror;
+                            if (errid <= 0) errid = 1; // Failsafe: 601 "Ошибочный оператор"
+
+                            throw ERROR_THROW_IN(GRB_ERROR_SERIES + errid, line, 0); // 👈 Выбрасываем исключение
+                        }
+                        rc = NS_NORULECHAIN; // Если откат прошел, продолжаем цикл
+                    };
+                } else {
+                    rc = NS_ERROR;
+                    savediagnosis(rc);
+                    int line = lex.lextable.table[lenta_position].sn;
+
+                    GRB::Rule rule;
+                    greibach.getRule(st.top(), rule);
+                    int errid = rule.iderror;
+
+                    if (errid <= 0) errid = 1;
+                };
+            } else if ((st.top() == lenta[lenta_position])) {
+                lenta_position++;
+                st.pop();
+                nrulechain = -1;
+                rc = TS_OK;
+                MFST_TRACE3
+            } else {
+                MFST_TRACE4("TS_NOK/NS_NORULECHAIN")
+                if (!reststate()) {
+                    // Неудачный откат -> фатальная ошибка NS_NORULE
+                    short lpos = diagnosis[0].lenta_position;
+                    if (lpos < 0) lpos = 0;
+                    int line = lex.lextable.table[lpos].sn;
+
+                    // Получаем код ошибки из грамматики
+                    int errid = greibach.getRule(diagnosis[0].nrule).iderror;
+                    if (errid <= 0) errid = 1; // Failsafe: 601
+
+                    throw ERROR_THROW_IN( GRB_ERROR_SERIES + errid, line, 0); // 👈 Выбрасываем исключение
+                }
+                rc = TS_NOK; // Если откат прошел, продолжаем
+            };
+        } else {
+            rc = LENTA_END;
+            MFST_TRACE4("LENTA_END")
+        };
+        return rc;
+    }
+
+    bool Mfst::push_chain(GRB::Rule::Chain chain) {
+        for (int k = chain.size - 1; k >= 0; k--) {
+            st.push(chain.nt[k]);
+        }
+        return true;
+    }
+
+    bool Mfst::savestate() {
+        storestate.push(MfstState(lenta_position, st, nrule, nrulechain));
+        MFST_TRACE6("SAVESTATE:", storestate.size());
+        return true;
+    }
+
+    bool Mfst::reststate() {
+        bool rc = false;
+        MfstState state;
+        if (rc = (storestate.size() > 0)) {
+            state = storestate.top();
+            lenta_position = state.lenta_position;
+            st = state.st;
+            nrule = state.nrule;
+            nrulechain = state.nrulechain;
+            storestate.pop();
+            MFST_TRACE5("RESTSTATE")
+            MFST_TRACE2
+        };
+
+        return rc;
+    }
+
+    bool Mfst::savediagnosis(RC_STEP prc_step) {
+        bool rc = false;
+        short k = 0;
+        while (k < MFST_DIAGN_NUMBER && lenta_position <= diagnosis[k].lenta_position) k++;
+        if (rc = (k < MFST_DIAGN_NUMBER)) {
+            diagnosis[k] = MfstDiagnosis(lenta_position, prc_step, nrule, nrulechain);
+            for (short j = k + 1; j < MFST_DIAGN_NUMBER; j++) diagnosis[j].lenta_position = -1;
+        };
+        return rc;
+    };
+
+    bool Mfst::start() {
+        bool rc = false; // Изначально считаем, что разбор НЕУСПЕШЕН
+        RC_STEP rc_step = SURPRISE;
+        char buf[MFST_DIAGN_MAXSIZE];
+        rc_step = step();
+        while (rc_step == NS_OK || rc_step == NS_NORULECHAIN || rc_step == TS_OK || rc_step == TS_NOK) {
+            rc_step = step();
+        }
+
+        switch (rc_step) {
+            case LENTA_END: {
+                // Лента кончилась. Проверяем стек.
+                MFST_TRACE4("------>LENTA_END")
+                std::cout << "--------------------------------------------------------------------- ----" << std::endl;
+
+                // 📍 ИСПРАВЛЕНИЕ: Проверяем, пуст ли стек (осталось только дно '$')
+                if (st.size() == 1 && st.top() == greibach.stbottomT) {
+                    std::sprintf(buf, "%d: всего строк %d, синтаксический анализ выполнен без ошибок", 0, lenta_size);
+                    std::cout << std::setw(4) << std::left << 0 << ": всего строк " << lenta_size <<
+                            ", синтаксический анализ выполнен без ошибок" << std::endl;
+                    rc = true; // <-- Только ЭТО - настоящий успех
+                } else {
+                    // Лента кончилась, но стек не пуст. Это ОШИБКА.
+                    MFST_TRACE4("------>ОШИБКА: Лента закончилась, но стек не пуст")
+                    std::cout << "Ошибка: Неожиданный конец файла. Стек: " << getCSt(sbuf) << std::endl;
+
+                    // 💣 ДОПОЛНЕНИЕ: ВЫБРОС ИСКЛЮЧЕНИЯ (Ошибка 600: Неверная структура программы)
+                    int line = (lenta_size > 0) ? lex.lextable.table[lenta_size - 1].sn : 1;
+                    throw ERROR_THROW_IN(GRB_ERROR_SERIES + 0, line, 0);
+                }
+                break;
+            }
+
+            case NS_NORULE: {
+                // Полный откат, правила не найдены
+                MFST_TRACE4("------>NS_NORULE")
+                std::cout << "--------------------------------------------------------------------- ----" << std::endl;
+                std::cout << getDiagnosis(0, buf) << std::endl;
+                std::cout << getDiagnosis(1, buf) << std::endl;
+                std::cout << getDiagnosis(2, buf) << std::endl;
+
+                // 💣 ДОПОЛНЕНИЕ: ВЫБРОС ИСКЛЮЧЕНИЯ (Используем iderror из диагностики)
+                if (diagnosis[0].lenta_position >= 0) {
+                    short lpos = diagnosis[0].lenta_position;
+                    int line = lex.lextable.table[lpos].sn;
+                    GRB::Rule rule;
+                    greibach.getRule(diagnosis[0].nrule, rule);
+                    int errid = rule.iderror;
+                    if (errid <= 0) errid = 1; // 601 - Ошибочный оператор
+                    throw ERROR_THROW_IN(GRB_ERROR_SERIES + errid, line, 0);
+                } else {
+                    // Fallback, если диагностика пуста
+                    throw ERROR_THROW_IN(GRB_ERROR_SERIES + 1, 1, 0);
+                }
+            }
+
+            case NS_ERROR: {
+                // Нет правила для нетерминала
+                MFST_TRACE4("------>NS_ERROR")
+                // Добавляем минимальную трассировку для NS_ERROR, как в NS_NORULE
+                std::cout << "--------------------------------------------------------------------- ----" << std::endl;
+                std::cout << getDiagnosis(0, buf) << std::endl;
+
+                // 💣 ДОПОЛНЕНИЕ: ВЫБРОС ИСКЛЮЧЕНИЯ (Используем iderror нетерминала на вершине стека)
+                int line = (lenta_position < lenta_size)
+                               ? lex.lextable.table[lenta_position].sn
+                               : lex.lextable.table[lenta_size - 1].sn;
+                GRB::Rule rule;
+                greibach.getRule(st.top(), rule); // Нетерминал на вершине стека
+                int errid = rule.iderror;
+                if (errid <= 0) errid =  1; // 601 - Ошибочный оператор
+                throw ERROR_THROW_IN(GRB_ERROR_SERIES + errid, line, 0);
+            }
+
+            case NS_NORULECHAIN: // Откат, не удалось найти правило для текущей цепочки
+                MFST_TRACE4("------>NS_NORULENORULECHAIN")
+                std::cout << "--------------------------------------------------------------------- ----" << std::endl;
+                std::cout << getDiagnosis(0, buf) << std::endl; // Показываем последнюю ошибку
+                break;
+
+            case SURPRISE: {
+                // Непредвиденное состояние (системный сбой)
+                MFST_TRACE4("------>SURPRISE")
+                // 💣 ДОПОЛНЕНИЕ: ВЫБРОС ИСКЛЮЧЕНИЯ (Системный сбой)
+                throw ERROR_THROW(1);
+            }
+        };
+
+        return rc; // Возвращаем 'true' только при настоящем успехе
+    }
+
+    char *Mfst::getCSt(char *buf) {
+        for (int k = (signed) st.size() - 1; k >= 0; --k) {
+            short p = st[k]; // Используем operator[] вместо st.c[k]
+            buf[st.size() - 1 - k] = GRB::Rule::Chain::alphabet_to_char(p);
+        }
+        buf[st.size()] = 0x00;
+        return buf;
+    }
+
+    char *Mfst::getCLenta(char *buf, short pos, short n) {
+        short i, k = (pos + n < lenta_size) ? pos + n : lenta_size;
+        for (i = pos; i < k; i++) buf[i - pos] = GRB::Rule::Chain::alphabet_to_char(lenta[i]);
+        buf[i - pos] = 0x00;
+        return buf;
+    }
+
+    char *Mfst::getDiagnosis(short n, char *buf) {
+        char *rc = "";
+        int errid = 0;
+        int lpos = -1;
+        if (n < MFST_DIAGN_NUMBER && (lpos = diagnosis[n].lenta_position) >= 0) {
+            errid = greibach.getRule(diagnosis[n].nrule).iderror;
+            Error::ERROR err = Error::geterror(errid);
+            std::sprintf(buf, "%d: строка %d, %s", err.id, lex.lextable.table[lpos].sn, err.message);
+            rc = buf;
+        };
+        return rc;
+    }
+
+    void Mfst::printrules() {
+        MfstState state;
+        GRB::Rule rule;
+        for (unsigned short k = 0; k < storestate.size(); k++) {
+            state = storestate[k]; // Используем operator[] вместо storestate.c[k]
+            rule = greibach.getRule(state.nrule);
+            MFST_TRACE7
+        }
+    }
+
+    bool Mfst::savededucation() {
+        MfstState state;
+        GRB::Rule rule;
+        deducation.nrules = new short[deducation.size = storestate.size()];
+        deducation.nrulechains = new short[deducation.size];
+        for (unsigned short k = 0; k < storestate.size(); k++) {
+            state = storestate[k]; // Используем operator[] вместо storestate.c[k]
+            deducation.nrules[k] = state.nrule;
+            deducation.nrulechains[k] = state.nrulechain;
+        }
+        return true;
+    }
+}
+
+
+// Out.h
+#pragma once;
+#include <fstream>;
+#include "Parm.h";
+#include "Error.h"
+
+namespace Out {
+    struct OUT {
+        wchar_t outfile[PARM_MAXSIZE];
+        std::ofstream* stream;
+    };
+
+    static const OUT INITOUT = {L"",NULL};
+    OUT getout(wchar_t outfile[PARM_MAXSIZE]);
+    void Write (OUT out, unsigned char* text);
+    void WriteError(OUT out, Error::ERROR error);
+    void Close (OUT out);
+}
+
+
+// Out.cpp
+#include "../Headers/Out.h";
+#include "../Headers/Error.h"
+
+#include <complex>
+#include <cstring>
+
+namespace Out {
+    OUT getout(wchar_t outfile[PARM_MAXSIZE]) {
+        OUT out = Out::INITOUT;
+        wcscpy(out.outfile,outfile);
+
+        char coutfile[PARM_MAXSIZE];
+        wcstombs(coutfile,outfile,PARM_MAXSIZE + 1);
+        out.stream = new std::ofstream();
+        out.stream->open(coutfile, std::ios::out);
+        if (!out.stream->is_open() || !out.stream->good()) {
+            delete out.stream;
+            out.stream = nullptr;
+            throw ERROR_THROW(114);
+        }
+        return out;
+    }
+
+    void Write(OUT out, unsigned char* text) {
+        if (out.stream->good() || !out.stream->is_open()) {
+            int idx = 0;
+            while (text[idx] != '\0') {
+                (*out.stream) << text[idx];
+                idx++;
+            }
+        } else {
+            throw ERROR_THROW(1);
+        }
+
+    }
+
+    void WriteError(OUT out, Error::ERROR error) {
+        if (out.stream->good() || out.stream->is_open()) {
+            (*out.stream) << "Ошибка " << error.id << ". " << error.message << ", строка: " << error.inext.line <<
+                    ", символ: " << error.inext.col << std::endl;
+        }
+    }
+
+    void Close(OUT out) {
+        if (out.stream->is_open() && out.stream->good()) {
+            out.stream->close();
+        }
+        delete out.stream;
+        out.stream = nullptr;
+    }
+
+}
+
+
+// Parm.h
+#pragma once
+#define PARM_IN L"-in:"
+#define PARM_OUT L"-out:"
+#define PARM_LOG L"-log:"
+#define PARM_MAXSIZE 300
+#define PARM_OUT_DEFAULT_EXT L".out"
+#define PARM_LOG_DEFAULT_EXT L".log"
+
+namespace Parm {
+    struct PARM {
+        wchar_t in[PARM_MAXSIZE];
+        wchar_t out[PARM_MAXSIZE];
+        wchar_t log[PARM_MAXSIZE];
+    };
+
+    PARM getparm(int argc, wchar_t *argv[]);
+}
+
+
+// Parm.cpp
+#include "../Headers/Parm.h"
+#include "../Headers/Error.h"
+#include <cwchar>
+
+namespace Parm {
+    PARM getparm(int argc, wchar_t *argv[]) {
+        PARM parameters = {L"\0", L"\0", L"\0"};
+        if (argc <= 1) {
+            throw ERROR_THROW(100);
+        }
+        bool hasInParm = false,
+                hasOutParm = false,
+                hasLogParm = false;
+        for (int i = 1; i < argc; i++) {
+            // i = 1, т.к. 0 параметр - название исполнительного файла
+            if (wcslen(argv[i]) > PARM_MAXSIZE) {
+                throw ERROR_THROW(104);
+            }
+
+            if (argv[i][0] == L'-') {
+                if (wcsstr(argv[i],PARM_IN) == argv[i] && wcslen(argv[i]) >= wcslen(PARM_IN)) {
+                    wchar_t *value = argv[i] + wcslen(PARM_IN); // Сдвиг указателя на значение параметра
+                    if (wcslen(value) > PARM_MAXSIZE) {
+                        throw ERROR_THROW(104);
+                    }
+                    if (wcslen(value) == 0) {
+                        throw ERROR_THROW(102);
+                    }
+                    wcscpy(parameters.in, value);
+                    hasInParm = true;
+                } else if (wcsstr(argv[i],PARM_OUT) == argv[i] && wcslen(argv[i]) >= wcslen(PARM_OUT)) {
+                    wchar_t *value = argv[i] + wcslen(PARM_OUT); // Сдвиг указателя на значение параметра
+                    if (wcslen(value) > PARM_MAXSIZE) {
+                        throw ERROR_THROW(104);
+                    }
+                    if (wcslen(value) == 0) {
+                        continue;
+                    }
+                    wcscpy(parameters.out, value);
+                    hasOutParm = true;
+                } else if (wcsstr(argv[i],PARM_LOG) == argv[i] && wcslen(argv[i]) >= wcslen(PARM_LOG)) {
+                    wchar_t *value = argv[i] + wcslen(PARM_LOG); // Сдвиг указателя на значение параметра
+                    if (wcslen(value) > PARM_MAXSIZE) {
+                        throw ERROR_THROW(104);
+                    }
+                    if (wcslen(value) == 0) {
+                        continue;
+                    }
+                    wcscpy(parameters.log, value);
+                    hasLogParm = true;
+                } else {
+                    throw ERROR_THROW(101);
+                }
+            } else {
+                throw ERROR_THROW(101);
+            }
+        }
+
+        if (!hasInParm) {
+            throw ERROR_THROW(100);
+        }
+
+
+        // Параметры по умолчанию
+        if (!hasOutParm) {
+            wchar_t temp[PARM_MAXSIZE] = {0};
+            wcscpy(temp, parameters.in);
+            if (wcslen(temp) + wcslen(PARM_OUT_DEFAULT_EXT) < PARM_MAXSIZE) {
+                wcscat(temp, PARM_OUT_DEFAULT_EXT);
+                wcscpy(parameters.out, temp);
+            } else {
+                throw ERROR_THROW(104);
+            }
+        }
+        if (!hasLogParm) {
+            wchar_t temp[PARM_MAXSIZE] = {0};
+            wcscpy(temp, parameters.in);
+            if (wcslen(temp) + wcslen(PARM_LOG_DEFAULT_EXT) < PARM_MAXSIZE) {
+                wcscat(temp, PARM_LOG_DEFAULT_EXT);
+                wcscpy(parameters.log, temp);
+            } else {
+                throw ERROR_THROW(104);
+            }
+        }
+
+        return parameters;
+    }
+}
+
+
+// Rule.h
+#pragma once
+#include "GRB.h"
+#define GRB_ERROR_SERIES 600
+
+namespace GRB {
+#define NS(n) Rule::Chain::N(n)
+#define TS(n) Rule::Chain::T(n)
+    // ------------------------------------------
+    // ИЗМЕНЕНИЕ 1: Количество правил увеличено с 6 до 8
+    // ------------------------------------------
+    Greibach greibach(NS('S'), TS('$'), // стартовый символ, дно стека
+                      8, // 👈 Изменено: 6 -> 8
+                      Rule(NS('S'), GRB_ERROR_SERIES + 0, // 600 - неверная структура программы
+                           4, // S->m{NrE;}; | tfi(F){NrE;};S | m{NrE;};S | tfi(F){NrE;}
+                           Rule::Chain(8, TS('m'), TS('{'), NS('N'), TS('r'), NS('E'), TS(';'), TS('}'),TS(';')),
+                           Rule::Chain(14, TS('t'), TS('f'), TS('i'), TS('('), NS('F'), TS(')'), TS('{'), NS('N'),
+                                       TS('r'), NS('E'), TS(';'), TS('}'), TS(';'), NS('S')),
+                           Rule::Chain(9, TS('m'), TS('{'), NS('N'), TS('r'), NS('E'), TS(';'), TS('}'), TS(';'),
+                                       NS('S')),
+                           Rule::Chain(12, TS('t'), TS('f'), TS('i'), TS('('), NS('F'), TS(')'), TS('{'), NS('N'),
+                                       TS('r'), NS('E'), TS(';'), TS('}'))
+                      ),
+                      Rule(NS('N'), GRB_ERROR_SERIES + 1, // 601 - Ошибочный оператор
+                           9, // N->dti;|rE;|i=E;|dtfi(F);|dtiN|rE;N|i=E;N|dtfi(F);N
+                           Rule::Chain(4, TS('d'), TS('t'), TS('i'), TS(';')),
+                           Rule::Chain(3, TS('r'), NS('E'), TS(';')),
+                           Rule::Chain(4, TS('i'), TS('='), NS('E'), TS(';')),
+                           Rule::Chain(4, TS('i'), TS('='), NS('E'), TS(';')), // Дубликат?
+                           Rule::Chain(8, TS('d'), TS('t'), TS('f'), TS('i'), TS('('), NS('F'), TS(')'), TS(';')),
+                           Rule::Chain(4, TS('d'), TS('t'), TS('i'), NS('N')),
+                           Rule::Chain(4, TS('r'), NS('E'), TS(';'), NS('N')),
+                           Rule::Chain(5, TS('i'), TS('='), NS('E'), TS(';'), NS('N')),
+                           Rule::Chain(9, TS('d'), TS('t'), TS('f'), TS('i'), TS('('), NS('F'), TS(')'), TS(';'),
+                                       NS('N'))
+                      ),
+                      Rule(NS('E'), GRB_ERROR_SERIES + 2, // 602 - Ошибка в выражении
+                           8, // E->i|l|(E)|i(W)|iM|lM|(E)M|i(W)M
+                           Rule::Chain(1, TS('i')),
+                           Rule::Chain(1, TS('l')),
+                           Rule::Chain(3, TS('('), NS('E'), TS(')')),
+                           Rule::Chain(4, TS('i'), TS('('), NS('W'), TS(')')),
+                           Rule::Chain(2, TS('i'), NS('M')),
+                           Rule::Chain(2, TS('l'), NS('M')),
+                           Rule::Chain(4, TS('('), NS('E'), TS(')'), NS('M')),
+                           Rule::Chain(5, TS('i'), TS('('), NS('W'), TS(')'), NS('M'))
+                      ),
+                      // ------------------------------------------
+                      // ИЗМЕНЕНИЕ 2: Добавление NS('F') для ошибки 603
+                      // F -> t i , F | t i
+                      // ------------------------------------------
+                      Rule(NS('F'), GRB_ERROR_SERIES + 3, // 603 - Ошибка в параметрах функции
+                           2,
+                           // F -> t i , F (рекурсивный случай: 'integer x, ...')
+                           Rule::Chain(4, TS('t'), TS('i'), TS(','), NS('F')),
+                           // F -> t i (базовый случай: 'integer y')
+                           Rule::Chain(2, TS('t'), TS('i'))
+                      ),
+                      // ------------------------------------------
+                      // ИЗМЕНЕНИЕ 3: Добавление NS('W') для ошибки 604
+                      // W -> E , W | E
+                      // ------------------------------------------
+                      Rule(NS('W'), GRB_ERROR_SERIES + 4, // 604 - Ошибка в параметрах вызываемой функции
+                           2,
+                           // W -> E , W (рекурсивный случай: 'x, ...')
+                           Rule::Chain(3, NS('E'), TS(','), NS('W')),
+                           // W -> E (базовый случай: 'y')
+                           Rule::Chain(1, NS('E'))
+                      ),
+                      // ------------------------------------------
+                      // ИЗМЕНЕНИЕ 4: Добавление NS('M') для полной логики ошибки 602
+                      // M -> v E | e (epsilon, пустая строка, которую заменяет)
+                      // Поскольку в ГНФ нельзя использовать e, M должен разворачиваться в символ,
+                      // который может быть следующим за выражением (например, ; или )
+                      // Предположим, M - это продолжение выражения после i или l
+                      // И M - это оператор v E (v: +, -, *, /)
+                      // Если M является опциональным продолжением:
+                      // M -> v E | ; | ) | }
+                      // Но в ваших правилах M используется только для продолжения выражения
+                      // E -> i M
+                      // E -> i v E | i
+                      // => M -> v E
+                      // M не должен быть пустым! Поскольку E уже имеет нерекурсивные ветки i | l | (E) | i(W)
+                      // M должен быть определен так, чтобы он всегда начинался с терминала,
+                      // а следующий символ выражения - это оператор v.
+                      // M -> v E
+                      // ------------------------------------------
+                      Rule(NS('M'), GRB_ERROR_SERIES + 2, // Ошибка в выражении (продолжение)
+                           1, // M -> v E
+                           Rule::Chain(2, TS('v'), NS('E'))
+                      )
+    );
+}
