@@ -7,5 +7,6 @@ let tasks = [
 ];
 
 const task = { id: 6, title: "Redux", isDone: true };
+
 tasks = [...tasks, task];
 console.log(tasks);

@@ -1,5 +1,7 @@
 #include "Modules/Headers/Error.h"
 
+//TODO: Исключения для: Размер литерала, длина идентификатора,
+
 namespace Error {
     // 0-99 - Системные ошибки
     // 100-109 - Ошибки параметров
@@ -24,7 +26,7 @@ namespace Error {
         ERROR_ENTRY_NODEF(105), ERROR_ENTRY_NODEF(106), ERROR_ENTRY_NODEF(107),
         ERROR_ENTRY_NODEF(108), ERROR_ENTRY_NODEF(109),
         ERROR_ENTRY(110, "Ошибка при открытии файла с исходным кодом (-in)"),
-        ERROR_ENTRY(111, "Недопустимый символ"),
+        ERROR_ENTRY(111, "Недопустимый символ в исходном коде"),
         ERROR_ENTRY(112, "Ошибка создания потока логирования"),
         ERROR_ENTRY(113, "Ошибка обработки протокола"),
         ERROR_ENTRY(114, "Ошибка создания потока вывода"),

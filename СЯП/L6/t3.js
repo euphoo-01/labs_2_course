@@ -26,12 +26,12 @@ let store = {
 
 const {
 	state: {
-		profilePage: { posts },
+		profilePage: { posts: adsf },
 		dialogsPage: { dialogs, messages },
 	},
 } = store;
 
-posts.forEach((el) => console.log(el.likesCount));
+adsf.forEach((el) => console.log(el.likesCount));
 
 console.log(dialogs.filter((el) => !(el.id % 2)));
 

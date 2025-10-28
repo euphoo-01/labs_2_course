@@ -12,7 +12,7 @@ const circle = {
 	},
 
 	get area() {
-		return Math.PI * this._radius * this._radius;
+		return Math.PI * Math.pow(this._radius, 2);
 	},
 };
 
@@ -20,5 +20,3 @@ console.log(circle.radius);
 circle.radius = 2;
 console.log(circle.radius);
 console.log(circle.area.toFixed(2));
-
-

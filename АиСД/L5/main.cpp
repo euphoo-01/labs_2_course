@@ -7,7 +7,7 @@ using namespace std;
 #define V 8
 
 //Прима
-int minKey(vector<int>& key, vector<bool>& mstSet) {
+int minKey(vector<int> &key, vector<bool> &mstSet) {
     int min = numeric_limits<int>::max(), min_index = -1;
     for (int v = 0; v < V; v++)
         if (!mstSet[v] && key[v] < min)
@@ -15,7 +15,7 @@ int minKey(vector<int>& key, vector<bool>& mstSet) {
     return min_index;
 }
 
-vector<pair<pair<int,int>,int>> Prima(vector<vector<int>>& graph, int &totalWeight) {
+vector<pair<pair<int, int>, int> > Prima(vector<vector<int> > &graph, int &totalWeight) {
     vector<int> parent(V);
     vector<int> key(V);
     vector<bool> mstSet(V);
@@ -36,28 +36,34 @@ vector<pair<pair<int,int>,int>> Prima(vector<vector<int>>& graph, int &totalWeig
                 parent[v] = u, key[v] = graph[u][v];
     }
 
-    vector<pair<pair<int,int>,int>> result;
+    vector<pair<pair<int, int>, int> > result;
     cout << "Рёбра минимального остовного дерева (Прим):\n";
     for (int i = 1; i < V; i++) {
         cout << "V" << parent[i] + 1 << " - V" << i + 1
-             << "  вес: " << graph[i][parent[i]] << endl;
+                << "  вес: " << graph[i][parent[i]] << endl;
         totalWeight += graph[i][parent[i]];
-        result.push_back({{parent[i]+1, i+1}, graph[i][parent[i]]});
+        result.push_back({{parent[i] + 1, i + 1}, graph[i][parent[i]]});
     }
     cout << "Суммарный вес: " << totalWeight << endl << endl;
     return result;
 }
 
 //Краскал
-struct Edge { int src, dest, weight; };
-struct Subset { int parent, rank; };
+struct Edge {
+    int src, dest, weight;
+};
 
-int find(vector<Subset>& subsets, int i) {
+struct Subset {
+    int parent, rank;
+};
+
+int find(vector<Subset> &subsets, int i) {
     if (subsets[i].parent != i)
         subsets[i].parent = find(subsets, subsets[i].parent);
     return subsets[i].parent;
 }
-void Union(vector<Subset>& subsets, int x, int y) {
+
+void Union(vector<Subset> &subsets, int x, int y) {
     int xroot = find(subsets, x);
     int yroot = find(subsets, y);
     if (subsets[xroot].rank < subsets[yroot].rank)
@@ -69,12 +75,13 @@ void Union(vector<Subset>& subsets, int x, int y) {
         subsets[xroot].rank++;
     }
 }
-vector<pair<pair<int,int>,int>> Kruskal(vector<vector<int>>& graph, int &totalWeight) {
+
+vector<pair<pair<int, int>, int> > Kruskal(vector<vector<int> > &graph, int &totalWeight) {
     vector<Edge> edges;
     totalWeight = 0;
 
     for (int i = 0; i < V; i++) {
-        for (int j = i+1; j < V; j++) {
+        for (int j = i + 1; j < V; j++) {
             if (graph[i][j] != 0) {
                 edges.push_back({i, j, graph[i][j]});
             }
@@ -91,7 +98,7 @@ vector<pair<pair<int,int>,int>> Kruskal(vector<vector<int>>& graph, int &totalWe
         subsets[v].rank = 0;
     }
 
-    vector<pair<pair<int,int>,int>> result;
+    vector<pair<pair<int, int>, int> > result;
     cout << "Рёбра минимального остовного дерева (Краскал):\n";
     int e = 0, i = 0;
 
@@ -102,9 +109,9 @@ vector<pair<pair<int,int>,int>> Kruskal(vector<vector<int>>& graph, int &totalWe
 
         if (x != y) {
             cout << "V" << next_edge.src + 1 << " - V" << next_edge.dest + 1
-                 << "  вес: " << next_edge.weight << endl;
+                    << "  вес: " << next_edge.weight << endl;
             totalWeight += next_edge.weight;
-            result.push_back({{next_edge.src+1, next_edge.dest+1}, next_edge.weight});
+            result.push_back({{next_edge.src + 1, next_edge.dest + 1}, next_edge.weight});
             Union(subsets, x, y);
             e++;
         }
@@ -112,16 +119,17 @@ vector<pair<pair<int,int>,int>> Kruskal(vector<vector<int>>& graph, int &totalWe
     cout << "Суммарный вес: " << totalWeight << endl << endl;
     return result;
 }
+
 int main() {
-    vector<vector<int>> graph = {
-        {0, 2, 0, 8,10, 0, 0, 0}, // V1
-        {2, 0, 3, 0, 5, 0, 0, 0}, // V2
-        {0, 3, 0, 0,12, 0, 0, 7}, // V3
-        {8, 0, 0, 0,14, 3,11, 0}, // V4
-        {10,5,12,14,0, 0, 4, 8},  // V5
-        {0, 0, 0, 3, 0, 0, 6, 0}, // V6
-        {0, 0, 0,11, 4, 6, 0, 9}, // V7
-        {0, 0, 7, 0, 8, 0, 9, 0}  // V8
+    vector<vector<int> > graph = {
+        {0, 2, 0, 8, 2, 0, 0, 0}, // V1
+        {2, 0, 3, 10, 5, 0, 0, 0}, // V2
+        {0, 3, 0, 0, 12, 0, 0, 7}, // V3
+        {8, 10, 0, 0, 14, 3, 1, 0}, // V4
+        {2, 5, 12, 14, 0, 11, 4, 8}, // V5
+        {0, 0, 0, 3, 11, 0, 6, 0}, // V6
+        {0, 0, 0, 1, 4, 6, 0, 9}, // V7
+        {0, 0, 7, 0, 8, 0, 9, 0} // V8
     };
 
     int weightPrima, weightKruskal;
@@ -129,12 +137,12 @@ int main() {
     auto mstKruskal = Kruskal(graph, weightKruskal);
 
     cout << "Прима: ";
-    for (auto &edge : mstPrima)
+    for (auto &edge: mstPrima)
         cout << "(V" << edge.first.first << "-V" << edge.first.second << ":" << edge.second << ") ";
     cout << " | Вес = " << weightPrima << endl;
 
     cout << "Краскал: ";
-    for (auto &edge : mstKruskal)
+    for (auto &edge: mstKruskal)
         cout << "(V" << edge.first.first << "-V" << edge.first.second << ":" << edge.second << ") ";
     cout << " | Вес = " << weightKruskal << endl;
 

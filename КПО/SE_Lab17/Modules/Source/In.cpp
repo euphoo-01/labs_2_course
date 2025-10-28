@@ -41,13 +41,13 @@ unsigned char *convertWindows1251ToUTF8(const unsigned char *input) {
 
 namespace In {
     IN getin(wchar_t infile[]) {
-        IN result = {0, 0, 0, {},IN_CODE_TABLE};
+        IN result = {0, 0, 0, {}, IN_CODE_TABLE};
         int filename_length = wcslen(infile) + 1;
         char filename[filename_length];
         wcstombs(filename, infile, filename_length);
 
         int cur_line = 1, cur_col = 0, cur_pos = 0,
-                result_pos = 0, ignored = 0;
+            result_pos = 0, ignored = 0;
 
         result.text = new unsigned char[IN_MAX_LEN_TEXT];
         std::ifstream file(filename, std::ios::binary);
@@ -55,6 +55,7 @@ namespace In {
             throw ERROR_THROW(110);
         }
         bool inString = false; // флаг, находимся ли внутри строки
+        bool wasSpace = false; // флаг, был ли предыдущий символ пробелом
 
         while (true) {
             const int ch = file.get();
@@ -68,15 +69,27 @@ namespace In {
             if (inString) {
                 result.text[result_pos++] = static_cast<char>(ch);
                 if (ch == '\'') {
-                    inString = false; // конец строки
+                    inString = false;
                 }
+                wasSpace = (ch == ' '); // обновляем флаг пробела
                 continue;
             }
 
             if (ch == '\'') {
                 inString = true;
                 result.text[result_pos++] = static_cast<char>(ch);
+                wasSpace = false; // строка сбрасывает флаг пробела
                 continue;
+            }
+
+            if (ch == ' ') {
+                if (wasSpace && !inString) {
+                    ignored++; // игнорируем лишний пробел
+                    continue;
+                }
+                wasSpace = true; // отмечаем, что встретили пробел
+            } else {
+                wasSpace = false; // сбрасываем флаг пробела для непробельных символов
             }
 
             switch (result.code[ch]) {
@@ -86,6 +99,7 @@ namespace In {
                     if (ch == IN_CODE_ENDL) {
                         cur_line++;
                         cur_col = 0;
+                        wasSpace = false; // перевод строки сбрасывает флаг пробела
                     }
                     break;
                 case IN::I:
@@ -93,6 +107,7 @@ namespace In {
                     if (ch == IN_CODE_ENDL) {
                         cur_line++;
                         cur_col = 0;
+                        wasSpace = false; // перевод строки сбрасывает флаг пробела
                     }
                     break;
                 case IN::F:

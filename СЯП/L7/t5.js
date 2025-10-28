@@ -2,7 +2,7 @@ const counter = (function () {
 	let count = 0;
 
 	return {
-		increment() {
+		increment: function () {
 			return ++count;
 		},
 		decrement() {

@@ -1,7 +1,7 @@
 #pragma once
 #define LEXEMA_FIXSIZE 1
 #define LT_MAXSIZE 4096
-#define LT_TI_NULLIDX 0xfffffff
+#define LT_TI_NULLIDX -1
 #define LEX_INTEGER 't'
 #define LEX_STRING 't'
 #define LEX_ID 'i'

@@ -29,8 +29,8 @@ function* moveObject(x = 0, y = 0) {
 	}
 }
 
-let gen = moveObject(0, 0);
+let gen = moveObject();
 
-while (exit === 0) {
+while (!exit) {
 	console.log(gen.next().value);
 }
