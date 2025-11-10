@@ -5,7 +5,7 @@
 using namespace std;
 
 typedef struct _product {
-    string name = "undefined";
+    string name = "безымянный";
     int weight = 0;
     int cost = 0;
 } Product;
@@ -21,7 +21,6 @@ int main() {
         if (name == "q") break;
         cout << "Введите вес: ";
         cin >> weight;
-
         cout << "Введите цену: ";
         cin >> cost;
 
@@ -37,16 +36,11 @@ int main() {
     cin >> N;
 
     vector<int> dp(N + 1, 0);
-    vector<vector<string> > selected(N + 1);
 
-    for (int w = 1; w <= N; w++) {
-        for (int i = 0; i < products.size(); i++) {
-            if (products[i].weight <= w) {
-                if (dp[w] < dp[w - products[i].weight] + products[i].cost) {
-                    dp[w] = dp[w - products[i].weight] + products[i].cost;
-                    selected[w] = selected[w - products[i].weight];
-                    selected[w].push_back(products[i].name);
-                }
+    for (int i = 0; i < products.size(); i++) {
+        for (int w = products[i].weight; w <= N; w++) {
+            if (dp[w] < dp[w - products[i].weight] + products[i].cost) {
+                dp[w] = dp[w - products[i].weight] + products[i].cost;
             }
         }
     }
@@ -54,16 +48,33 @@ int main() {
     int max_cost = dp[N];
     cout << "Максимальная стоимость: " << max_cost << endl;
 
+    vector<string> selected_items;
     map<string, int> product_count;
-    for (const auto &product_name: selected[N]) {
-        product_count[product_name]++;
+
+    int remaining_weight = N;
+    while (remaining_weight > 0) {
+        bool found = false;
+
+        for (int i = 0; i < products.size(); i++) {
+            if (remaining_weight >= products[i].weight &&
+                dp[remaining_weight] == dp[remaining_weight - products[i].weight] + products[i].cost) {
+
+                selected_items.push_back(products[i].name);
+                product_count[products[i].name]++;
+                remaining_weight -= products[i].weight;
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) break;
     }
 
-    cout << "Всего товаров: " << selected[N].size() << endl;
+    cout << "Всего товаров: " << selected_items.size() << endl;
 
     int total_weight = 0;
-    for (const auto &product_name: selected[N]) {
-        for (const auto &product: products) {
+    for (const auto &product_name : selected_items) {
+        for (const auto &product : products) {
             if (product.name == product_name) {
                 total_weight += product.weight;
                 break;
@@ -73,10 +84,9 @@ int main() {
     cout << "Вес: " << total_weight << endl;
 
     cout << "\nТовары:" << endl;
-    for (const auto &[product_name, count]: product_count) {
+    for (const auto &[product_name, count] : product_count) {
         cout << product_name << ": " << count << " шт." << endl;
     }
-
 
     return 0;
 }
