@@ -1,5 +1,7 @@
 // 1
 
+console.log("\n 1: \n");
+
 // T1
 let user = {
 	name: "Masha",
@@ -109,9 +111,6 @@ function clone(element) {
 
 	return _clone;
 }
-
-
-
 
 let user4 = {
 	name: "Masha",
@@ -302,20 +301,24 @@ cloneUser5.studies.department.group = 12;
 cloneUser5.studies.exams.find((el) =>
 	el.hasOwnProperty("programming")
 ).mark = 10;
+console.log("\n 2: \n");
 console.log(JSON.stringify(cloneUser5, null, 4));
 
 // 3
+console.log("\n 3: \n");
 cloneUser6.studies.exams.find((el) =>
 	el.hasOwnProperty("programming")
 ).professor.name = "Dmitry Shiman";
 console.log(JSON.stringify(cloneUser6, null, 4));
 
 // 4
+console.log("\n 4: \n");
 cloneUser7.studies.exams
 	.find((el) => el.professor.name === "Petr Ivanov")
 	.professor.articles.find((el) => el.title === "About CSS").pagesNumber = 3;
 console.log(JSON.stringify(cloneUser7, null, 4));
 
 // 5
+console.log("\n 5: \n");
 cloneStore.state.profilePage.posts.forEach((el) => (el.message = "Hello"));
 console.log(JSON.stringify(cloneStore, null, 4));
