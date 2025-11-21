@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Коммивояджер</title>
+  <script type="text/javascript" src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+  <style>
+    #graph {
+      width: 90vw;
+      height: 90vh;
+      border: 1px solid lightgray;
+    }
+  </style>
+</head>
+<body>
+<div id="graph"></div>
+
+<script type="text/javascript">
+  var nodes = new vis.DataSet([
+    {id: 0, label: 'Город 1'},
+    {id: 1, label: 'Город 2'},
+    {id: 2, label: 'Город 3'},
+    {id: 3, label: 'Город 4'},
+    {id: 4, label: 'Город 5'},
+    {id: 5, label: 'Город 6'},
+    {id: 6, label: 'Город 7'},
+    {id: 7, label: 'Город 8'}
+  ]);
+
+  var matrix = [
+    [0, 29, 20, 999, 16, 31, 100, 12],
+    [25, 0, 15, 29, 999, 40, 72, 21],
+    [18, 13, 0, 15, 14, 25, 999, 9],
+    [21, 999, 17, 0, 4, 12, 90, 17],
+    [19, 28, 11, 2, 0, 16, 94, 999],
+    [33, 42, 22, 10, 18, 0, 95, 24],
+    [999, 70, 81, 93, 91, 92, 0, 90],
+    [14, 23, 7, 999, 9, 26, 88, 0]
+  ];
+
+  var edges = new vis.DataSet();
+  for (var i = 0; i < matrix.length; i++) {
+    for (var j = 0; j < matrix[i].length; j++) {
+      if (matrix[i][j] !== 0 && matrix[i][j] !== 999) {
+        edges.add({
+          from: i,
+          to: j,
+          label: String(matrix[i][j]),
+          length: matrix[i][j],
+          arrows: 'to',
+          font: {align: 'top'}
+        });
+      }
+    }
+  }
+
+  var container = document.getElementById('graph');
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {
+    edges: {
+      font: {
+        size: 12,
+        align: 'top'
+      },
+      arrows: {
+        to: {enabled: true, scaleFactor: 0.5}
+      }
+    },
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 16
+        }
+    },
+    physics: {
+      barnesHut: {
+        gravitationalConstant: -15000,
+        centralGravity: 0.01,
+        springLength: 100,
+        springConstant: 0.02,
+        damping: 0.05
+      },
+      minVelocity: 0.3
+    }
+  };
+  
+  var network = new vis.Network(container, data, options);
+</script>
+
+</body>
+</html>

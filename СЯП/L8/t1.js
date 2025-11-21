@@ -78,6 +78,7 @@ const array = [
 	{ id: 4, name: "Petya", group: 10 },
 	{ id: 5, name: "Kira", group: 11 },
 ];
+
 const copyArray = [...array.map((el) => ({ ...el }))];
 
 console.log("T5:");
