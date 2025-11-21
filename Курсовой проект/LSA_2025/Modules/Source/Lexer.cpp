@@ -51,7 +51,12 @@ namespace Lexer {
 
             // 2. Comments
             if (in.text[i] == '/' && i + 1 < in.size && in.text[i + 1] == '/') {
-                while (i < in.size && in.text[i] != '\n') i++;
+                i += 2; // Skip '//'
+                col += 2;
+                while (i < in.size && in.text[i] != '\n') {
+                    i++;
+                    col++;
+                }
                 continue;
             }
 
@@ -66,7 +71,8 @@ namespace Lexer {
             else if (in.text[i] == '!' && next_char == '=') { lexema = LEX_NOT_EQUAL; shift = 2; }
             else if (in.text[i] == '<' && next_char == '=') { lexema = LEX_LESS_EQUAL; shift = 2; }
             else if (in.text[i] == '>' && next_char == '=') { lexema = LEX_GREATER_EQUAL; shift = 2; }
-            else if (strchr(";,{}()+-*:~=<>", in.text[i])) { lexema = in.text[i]; }
+            else if (in.text[i] == '=') { lexema = '='; }
+            else if (strchr(";,{}()+-*:~<>", in.text[i])) { lexema = in.text[i]; }
 
             if (lexema != '\0') {
                 LT::Add(lextable, LT::Entry{lexema, line, LT_TI_NULLIDX});
