@@ -45,7 +45,7 @@ namespace L3
     }
 
     
-    public class SimpleCollection<T> : ICollectable<T>
+    public class LabCollection<T> : ICollectable<T>
     {
         protected List<T> items = new List<T>();
 
@@ -78,12 +78,12 @@ namespace L3
     }
 
     
-    public class CollectionType<T> : SimpleCollection<T> where T: ICloneable, new()
+    public class CollectionType<T> : LabCollection<T> where T: ICloneable, new()
     {
         
         public T? Find(Predicate<T> predicate)
         {
-            return items.Find(predicate);
+            return items.Find(predicate) ?? default(T);
         }
         
         
@@ -133,58 +133,70 @@ namespace L3
     {
         static void Main(string[] args)
         {
-            
-            Console.WriteLine("\nТип int\n");
-            var intCollection = new SimpleCollection<int>();
-            intCollection.Add(10);
-            intCollection.Add(20);
-            intCollection.Add(30);
-            intCollection.Show();
-            intCollection.Remove(20);
-            intCollection.Show();
-            
-            Console.WriteLine("\nТип string\n");
-            var stringCollection = new SimpleCollection<string>();
-            stringCollection.Add("Hello");
-            stringCollection.Add("World");
-            stringCollection.Show();
-            stringCollection.Remove("Hello");
-            stringCollection.Show();
-
-            
-            Console.WriteLine("\nТип Production\n");
-            var prodCollection = new CollectionType<Production>();
-            var p1 = new Production("GeekBrains");
-            var p2 = new Production("SkillFactory");
-            prodCollection.Add(p1);
-            prodCollection.Add(p2);
-            prodCollection.Show();
-            
-            
-            Console.WriteLine("\nOrg = SkillFactory:\n");
-            var foundProd = prodCollection.Find(p => p.Org == "SkillFactory");
-            if (foundProd != null)
+            try
             {
-                Console.WriteLine($"Найден элемент: {foundProd}");
-            }
+                Console.WriteLine("\nТип int\n");
+                var intCollection = new LabCollection<int>();
+                intCollection.Add(10);
+                intCollection.Add(20);
+                intCollection.Add(30);
+                intCollection.Show();
+                intCollection.Remove(20);
+                intCollection.Show();
 
-            
-            Console.WriteLine("\nCохранение и загрузка\n");
-            var fileCollection = new CollectionType<Production>();
-            fileCollection.Add(new Production("Microsoft"));
-            fileCollection.Add(new Production("Apple"));
-            fileCollection.Add(new Production("Google"));
-            
-            string filePath = "collection.json";
-            fileCollection.SaveToFile(filePath);
-            
-            fileCollection.Show(); 
-            
-            
-            var newFileCollection = new CollectionType<Production>();
-            newFileCollection.LoadFromFile(filePath);
-            Console.WriteLine("\nКоллекция из файла:");
-            newFileCollection.Show();
+                Console.WriteLine("\nТип string\n");
+                var stringCollection = new LabCollection<string>();
+                stringCollection.Add("Hello");
+                stringCollection.Add("World");
+                stringCollection.Show();
+                stringCollection.Remove("Hello");
+                stringCollection.Show();
+
+
+                Console.WriteLine("\nТип Production\n");
+                var prodCollection = new CollectionType<Production>();
+                var p1 = new Production("GeekBrains");
+                var p2 = new Production("SkillFactory");
+                prodCollection.Add(p1);
+                prodCollection.Add(p2);
+                prodCollection.Show();
+
+
+                Console.WriteLine("\nOrg = SkillFactory:\n");
+                var foundProd = prodCollection.Find(p => p.Org == "SkillFactory");
+                if (foundProd != null)
+                {
+                    Console.WriteLine($"Найден элемент: {foundProd}");
+                }
+
+
+                Console.WriteLine("\nCохранение и загрузка\n");
+                var fileCollection = new CollectionType<Production>();
+                fileCollection.Add(new Production("Microsoft"));
+                fileCollection.Add(new Production("Apple"));
+                fileCollection.Add(new Production("Google"));
+
+                string filePath = "collection.json";
+                fileCollection.SaveToFile(filePath);
+
+                fileCollection.Show();
+
+
+                var newFileCollection = new CollectionType<Production>();
+                newFileCollection.LoadFromFile(filePath);
+                Console.WriteLine("\nКоллекция из файла:");
+                newFileCollection.Show();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Произошла ошибка: {ex.Message}");
+            }
+            finally
+            {
+                Console.WriteLine("Привет из finally!");
+                Console.WriteLine("Нажмите Enter для завершения работы программы...");
+                Console.Read();
+            }
         }
     }
 }

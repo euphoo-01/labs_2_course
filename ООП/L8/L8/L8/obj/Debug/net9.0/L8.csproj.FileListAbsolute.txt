@@ -1,0 +1,15 @@
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/bin/Debug/net9.0/L8
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/bin/Debug/net9.0/L8.deps.json
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/bin/Debug/net9.0/L8.runtimeconfig.json
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/bin/Debug/net9.0/L8.dll
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/bin/Debug/net9.0/L8.pdb
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/obj/Debug/net9.0/L8.GeneratedMSBuildEditorConfig.editorconfig
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/obj/Debug/net9.0/L8.AssemblyInfoInputs.cache
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/obj/Debug/net9.0/L8.AssemblyInfo.cs
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/obj/Debug/net9.0/L8.csproj.CoreCompileInputs.cache
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/obj/Debug/net9.0/L8.sourcelink.json
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/obj/Debug/net9.0/L8.dll
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/obj/Debug/net9.0/refint/L8.dll
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/obj/Debug/net9.0/L8.pdb
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/obj/Debug/net9.0/L8.genruntimeconfig.cache
+/home/euphoo/02. University/2 КУРС/ООП/L8/L8/L8/obj/Debug/net9.0/ref/L8.dll
