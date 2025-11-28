@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader"><![CDATA[{
+  "useNewFormat": true
+}]]></component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="Serializer" targetName="Serializer" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="aa65ab88-7bb5-4849-b0b5-1abec3bacb34" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../hello" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../hello.asm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../hello.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE_Lab20/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE_Lab20/.vscode/tasks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE_Lab20/asm02.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE_Lab20/l20" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE_Lab20/l20.asm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE_Lab20/l20.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE_Lab21/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE_Lab21/.vscode/tasks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE_Lab21/asm03.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE_Lab21/l21" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE_Lab21/l21.asm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE_Lab21/l21.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/.idea/editor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/.idea/markdown.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Headers/Error.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Headers/FST.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Headers/GRB.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Headers/IT.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Headers/In.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Headers/LT.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Headers/Lexer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Headers/Log.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Headers/Mfst.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Headers/Out.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Headers/Parm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Headers/Rule.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Source/Error.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Source/FST.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Source/GRB.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Source/IT.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Source/In.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Source/LT.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Source/Lexer.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Source/Log.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Source/Mfst.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Source/Out.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/Modules/Source/Parm.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/meson.build" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/specs.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/test_input.in.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/test_input.in.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Курсовой проект/LSA_2025/todo.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../ООП/L8/L8/L8/obj/Debug/net9.0/L8.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../ООП/L8/L8/L8/obj/Debug/net9.0/L8.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../ООП/L8/L8/L8/obj/Debug/net9.0/L8.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../ООП/L8/L8/L8/obj/Debug/net9.0/L8.AssemblyInfoInputs.cache" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2025" />
+    <option name="minorVersion" value="2.3" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="35y9Wfpb9ffXd2GqP2A6aZO2MvP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "master",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Serializer" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Serializer" TARGET_NAME="Serializer" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Serializer" RUN_TARGET_NAME="Serializer">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aa65ab88-7bb5-4849-b0b5-1abec3bacb34" name="Changes" comment="" />
+      <created>1764071477977</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1764071477977</updated>
+      <workItem from="1764071479099" duration="10000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

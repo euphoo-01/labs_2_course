@@ -7,7 +7,7 @@
 			"command": "bash",
 			"args": [
 				"-c",
-				"nasm -f elf64 -g ${fileBasename} && ld -o ${fileBasenameNoExtension} ${fileBasenameNoExtension}.o"
+				"nasm -f elf64 -g ${relativeFile} && ld -o ${relativeFileDirname}/${fileBasenameNoExtension} ${relativeFileDirname}/${fileBasenameNoExtension}.o"
 			],
 			"group": {
 				"kind": "build",
