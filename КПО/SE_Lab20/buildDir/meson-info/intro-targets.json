@@ -1,0 +1,74 @@
+[
+  {
+    "name": "SE_PLab20",
+    "id": "SE_PLab20@exe",
+    "type": "executable",
+    "defined_in": "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/meson.build",
+    "filename": [
+      "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/buildDir/SE_PLab20"
+    ],
+    "build_by_default": true,
+    "target_sources": [
+      {
+        "language": "cpp",
+        "machine": "host",
+        "compiler": [
+          "/usr/bin/g++"
+        ],
+        "parameters": [
+          "-I/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/buildDir/SE_PLab20.p",
+          "-I/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/buildDir",
+          "-I/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20",
+          "-I/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Headers",
+          "-fdiagnostics-color=always",
+          "-D_GLIBCXX_ASSERTIONS=1",
+          "-D_FILE_OFFSET_BITS=64",
+          "-Wall",
+          "-Winvalid-pch",
+          "-Wextra",
+          "-Wpedantic",
+          "-std=c++20",
+          "-O0",
+          "-g"
+        ],
+        "sources": [
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/main.cpp",
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Source/Error.cpp",
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Source/Log.cpp",
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Source/Parm.cpp",
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Source/In.cpp",
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Source/Out.cpp",
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Source/LT.cpp",
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Source/IT.cpp",
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Source/Lexer.cpp",
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Source/FST.cpp",
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Source/Mfst.cpp",
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Source/GRB.cpp",
+          "/home/euphoo/02. University/2 \u041a\u0423\u0420\u0421/\u041a\u041f\u041e/SE_Lab20/Modules/Source/RPN.cpp"
+        ],
+        "generated_sources": [],
+        "unity_sources": []
+      },
+      {
+        "linker": [
+          "/usr/bin/g++"
+        ],
+        "parameters": [
+          "-Wl,--as-needed",
+          "-Wl,--no-undefined"
+        ]
+      }
+    ],
+    "extra_files": [],
+    "subproject": null,
+    "dependencies": [
+      "iconv"
+    ],
+    "depends": [],
+    "win_subsystem": "console",
+    "installed": true,
+    "install_filename": [
+      "/usr/local/bin/SE_PLab20"
+    ]
+  }
+]

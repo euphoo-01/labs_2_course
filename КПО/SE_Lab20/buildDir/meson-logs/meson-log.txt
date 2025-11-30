@@ -1,0 +1,734 @@
+Build started at 2025-11-30T10:58:07.060907
+Main binary: /usr/bin/python
+Build Options: 
+Python system: Linux
+The Meson build system
+Version: 1.9.1
+Source dir: /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20
+Build dir: /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir
+Build type: native build
+Project name: SE_PLab20
+Project version: 1.0.0
+C++ compiler for the host machine: /usr/bin/g++ (gcc 15.2.1 "g++ (GCC) 15.2.1 20250813")
+C++ linker for the host machine: /usr/bin/g++ ld.bfd 2.45.0
+-----------
+Detecting archiver via: `gcc-ar --version` -> 0
+stdout:
+GNU ar (GNU Binutils) 2.45.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+Эта программа является открытым программным обеспечением; вы можете
+распространять её согласно условиям GNU General Public License версии 3 или
+(по вашему выбору) более новой версии.
+Эта программа не имеет абсолютно никаких гарантий.
+-----------
+C++ compiler for the build machine: /usr/bin/g++ (gcc 15.2.1 "g++ (GCC) 15.2.1 20250813")
+C++ linker for the build machine: /usr/bin/g++ ld.bfd 2.45.0
+-----------
+Detecting archiver via: `gcc-ar --version` -> 0
+stdout:
+GNU ar (GNU Binutils) 2.45.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+Эта программа является открытым программным обеспечением; вы можете
+распространять её согласно условиям GNU General Public License версии 3 или
+(по вашему выбору) более новой версии.
+Эта программа не имеет абсолютно никаких гарантий.
+-----------
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Target machine cpu family: x86_64
+Target machine cpu: x86_64
+Dependency iconv found: YES unknown (cached)
+Build targets in project: 1
+
+Found ninja-1.12.1 at /home/euphoo/opt/clion/bin/ninja/linux/x64/ninja
+Running compile:
+Working directory:  /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b
+Code:
+
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+-----------
+Command line: `/usr/bin/g++ '/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp' -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive` -> 0
+Running compile:
+Working directory:  /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0
+Code:
+
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+-----------
+Command line: `/usr/bin/g++ '/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp' -o '/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj' -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive` -> 1
+stderr:
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+-----------
+Running compile:
+Working directory:  /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se
+Code:
+
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+-----------
+Command line: `/usr/bin/g++ '/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp' -o '/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj' -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive` -> 1
+stderr:
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+-----------
+Running compile:
+Working directory:  /tmp/tmpcl_biv2a
+Code:
+int i = static_cast<int>(0);
+-----------
+Command line: `/usr/bin/g++ /tmp/tmpcl_biv2a/testfile.cpp -o /tmp/tmpcl_biv2a/output.obj -D_FILE_OFFSET_BITS=64 -c -std=c++20` -> 0
+Compiler accepts -std=c++20: YES
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpea_2zw9b/testfile.cpp -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -fpermissive 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("version")
+          #error "Header 'version' could not be found"
+         #endif
+        #else
+         #include <version>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        int main(void) {
+            /* If it's not defined as a macro, try to use as a symbol */
+            #ifndef _LIBCPP_VERSION
+                _LIBCPP_VERSION;
+            #endif
+            return 0;
+        }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp: In function 'int main()':
+/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp5z5s4lw0/testfile.cpp:6:17: error: '_LIBCPP_VERSION' was not declared in this scope
+    6 |                 _LIBCPP_VERSION;
+      |                 ^~~~~~~~~~~~~~~
+
+Using cached compile:
+Cached command line:  /usr/bin/g++ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp -o /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ 
+        #include <version>
+        using _LIBCPP_VERSION;
+        int main(void) { return 0; }
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmpohy8f8se/testfile.cpp:3:15: error: expected nested-name-specifier before '_LIBCPP_VERSION'
+    3 |         using _LIBCPP_VERSION;
+      |               ^~~~~~~~~~~~~~~
+
+Running compile:
+Working directory:  /home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp6g77_yrt
+Code:
+
+-----------
+Command line: `/usr/bin/g++ '/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp6g77_yrt/testfile.cpp' -o '/home/euphoo/02. University/2 КУРС/КПО/SE_Lab20/buildDir/meson-private/tmp6g77_yrt/output.obj' -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs` -> 0
+stdout:
+install: /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/
+programs: =/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/bin/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/bin/
+libraries: =/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/lib/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/:/lib/x86_64-pc-linux-gnu/15.2.1/:/lib/../lib/:/usr/lib/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../:/lib/:/usr/lib/
+-----------
