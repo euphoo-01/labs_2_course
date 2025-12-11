@@ -3,10 +3,10 @@
     "cpp": {
       "id": "gcc",
       "exelist": [
-        "/usr/bin/g++"
+        "c++"
       ],
       "linker_exelist": [
-        "/usr/bin/g++"
+        "c++"
       ],
       "file_suffixes": [
         "cpp",
@@ -30,7 +30,7 @@
       ],
       "default_suffix": "cpp",
       "version": "15.2.1",
-      "full_version": "g++ (GCC) 15.2.1 20250813",
+      "full_version": "c++ (GCC) 15.2.1 20250813",
       "linker_id": "ld.bfd"
     }
   },
@@ -38,10 +38,10 @@
     "cpp": {
       "id": "gcc",
       "exelist": [
-        "/usr/bin/g++"
+        "c++"
       ],
       "linker_exelist": [
-        "/usr/bin/g++"
+        "c++"
       ],
       "file_suffixes": [
         "cpp",
@@ -65,7 +65,7 @@
       ],
       "default_suffix": "cpp",
       "version": "15.2.1",
-      "full_version": "g++ (GCC) 15.2.1 20250813",
+      "full_version": "c++ (GCC) 15.2.1 20250813",
       "linker_id": "ld.bfd"
     }
   }

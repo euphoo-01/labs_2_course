@@ -1,22 +1,20 @@
 class Human {
-	#birthYear;
-
 	constructor(firstName, lastName, birthYear, address) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.#birthYear = birthYear;
+		this.birthYear = birthYear;
 		this.address = address;
 	}
 
 	get age() {
-		return new Date().getFullYear() - this.#birthYear;
+		return new Date().getFullYear() - this.birthYear;
 	}
 
 	set age(newAge) {
 		console.log(
-			`(Изменение возраста на ${newAge}, вычисляем новый год рождения)`
+			`Изменение возраста на ${newAge}`
 		);
-		this.#birthYear = new Date().getFullYear() - newAge;
+		this.birthYear = new Date().getFullYear() - newAge;
 	}
 
 	getFullName() {
@@ -24,7 +22,7 @@ class Human {
 	}
 
 	setAddress(newAddress) {
-		console.log(`(Адрес для ${this.getFullName()} изменен на: ${newAddress})`);
+		console.log(`Адрес для ${this.getFullName()} изменен на: ${newAddress}`);
 		this.address = newAddress;
 	}
 
@@ -82,8 +80,8 @@ class Faculty {
 		return uniqueGroups.size;
 	}
 
-	getDevCount() {
-		console.log(`\n--- Поиск студентов ДЭВИ на факультете "${this.name}" ---`);
+	getDeviCount() {
+		console.log(`\nПоиск студентов ДЭВИ на факультете "${this.name}"`);
 		const deviStudents = this.students.filter((student) => {
 			const specialtyCode = student.studentId.toString()[1];
 			return specialtyCode === "3";
@@ -94,7 +92,7 @@ class Faculty {
 
 	getGroupList(groupNumber) {
 		console.log(
-			`\n--- Поиск студентов группы ${groupNumber} на факультете "${this.name}" ---`
+			`\nПоиск студентов группы ${groupNumber} на факультете "${this.name}"`
 		);
 		const groupStudents = this.students.filter((s) => s.group === groupNumber);
 
@@ -170,6 +168,6 @@ const fitFaculty = new Faculty("Факультет информационных 
 console.log(`Всего студентов: ${fitFaculty.studentCount}`);
 console.log(`Всего групп: ${fitFaculty.groupCount}`);
 
-fitFaculty.getDevCount();
+fitFaculty.getDeviCount();
 fitFaculty.getGroupList("10702122");
 fitFaculty.getGroupList("999999");

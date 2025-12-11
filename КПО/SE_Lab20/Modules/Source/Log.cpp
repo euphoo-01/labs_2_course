@@ -8,7 +8,7 @@ namespace Log {
         wcscpy(log.logfile, logfile);
 
         char clogfile[PARM_MAXSIZE];
-        wcstombs(clogfile, logfile, PARM_MAXSIZE + 1);
+        wcstombs(clogfile, logfile, PARM_MAXSIZE);
         log.stream = new std::ofstream();
         log.stream->open(clogfile, std::ios::app);
         if (!log.stream->is_open() || !log.stream->good()) {

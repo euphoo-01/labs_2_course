@@ -301,12 +301,12 @@
     "description": "Maximum number of linker processes to run or 0 for no limit"
   },
   {
-    "name": "b_pch",
-    "value": true,
+    "name": "b_pie",
+    "value": false,
     "section": "base",
     "machine": "any",
     "type": "boolean",
-    "description": "Use precompiled headers"
+    "description": "Build executables as position independent"
   },
   {
     "name": "b_coverage",
@@ -317,33 +317,49 @@
     "description": "Enable coverage tracking."
   },
   {
-    "name": "b_staticpic",
+    "name": "b_lto",
+    "value": false,
+    "section": "base",
+    "machine": "any",
+    "type": "boolean",
+    "description": "Use link time optimization"
+  },
+  {
+    "name": "b_lto_threads",
+    "value": 0,
+    "section": "base",
+    "machine": "any",
+    "type": "integer",
+    "description": "Use multiple threads for Link Time Optimization"
+  },
+  {
+    "name": "b_pch",
     "value": true,
     "section": "base",
     "machine": "any",
     "type": "boolean",
-    "description": "Build static libraries as position independent"
+    "description": "Use precompiled headers"
   },
   {
-    "name": "b_pgo",
-    "value": "off",
+    "name": "b_lundef",
+    "value": true,
+    "section": "base",
+    "machine": "any",
+    "type": "boolean",
+    "description": "Use -Wl,--no-undefined when linking"
+  },
+  {
+    "name": "b_colorout",
+    "value": "always",
     "section": "base",
     "machine": "any",
     "choices": [
-      "off",
-      "generate",
-      "use"
+      "auto",
+      "always",
+      "never"
     ],
     "type": "combo",
-    "description": "Use profile guided optimization"
-  },
-  {
-    "name": "b_sanitize",
-    "value": [],
-    "section": "base",
-    "machine": "any",
-    "type": "array",
-    "description": "Code sanitizer to use"
+    "description": "Use colored output"
   },
   {
     "name": "b_ndebug",
@@ -359,28 +375,17 @@
     "description": "Disable asserts"
   },
   {
-    "name": "b_pie",
-    "value": false,
+    "name": "b_pgo",
+    "value": "off",
     "section": "base",
     "machine": "any",
-    "type": "boolean",
-    "description": "Build executables as position independent"
-  },
-  {
-    "name": "b_lundef",
-    "value": true,
-    "section": "base",
-    "machine": "any",
-    "type": "boolean",
-    "description": "Use -Wl,--no-undefined when linking"
-  },
-  {
-    "name": "b_lto",
-    "value": false,
-    "section": "base",
-    "machine": "any",
-    "type": "boolean",
-    "description": "Use link time optimization"
+    "choices": [
+      "off",
+      "generate",
+      "use"
+    ],
+    "type": "combo",
+    "description": "Use profile guided optimization"
   },
   {
     "name": "b_asneeded",
@@ -391,25 +396,20 @@
     "description": "Use -Wl,--as-needed when linking"
   },
   {
-    "name": "b_lto_threads",
-    "value": 0,
+    "name": "b_staticpic",
+    "value": true,
     "section": "base",
     "machine": "any",
-    "type": "integer",
-    "description": "Use multiple threads for Link Time Optimization"
+    "type": "boolean",
+    "description": "Build static libraries as position independent"
   },
   {
-    "name": "b_colorout",
-    "value": "always",
+    "name": "b_sanitize",
+    "value": [],
     "section": "base",
     "machine": "any",
-    "choices": [
-      "auto",
-      "always",
-      "never"
-    ],
-    "type": "combo",
-    "description": "Use colored output"
+    "type": "array",
+    "description": "Code sanitizer to use"
   },
   {
     "name": "cpp_args",

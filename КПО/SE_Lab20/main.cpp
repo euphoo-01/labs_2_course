@@ -110,7 +110,6 @@ int main(int argc, char *argv[]) {
 
             mfst.printrules(mfst_log);
 
-            // -- Преобразование выражений в ОПЗ --
             for (int i = 0; i < lextable.size; ++i) {
                 switch (lextable.table[i].lexema) {
                     case LEX_RETURN:

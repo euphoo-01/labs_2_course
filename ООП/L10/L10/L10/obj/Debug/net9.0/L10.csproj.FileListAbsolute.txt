@@ -1,0 +1,15 @@
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/bin/Debug/net9.0/L10
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/bin/Debug/net9.0/L10.deps.json
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/bin/Debug/net9.0/L10.runtimeconfig.json
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/bin/Debug/net9.0/L10.dll
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/bin/Debug/net9.0/L10.pdb
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/obj/Debug/net9.0/L10.GeneratedMSBuildEditorConfig.editorconfig
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/obj/Debug/net9.0/L10.AssemblyInfoInputs.cache
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/obj/Debug/net9.0/L10.AssemblyInfo.cs
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/obj/Debug/net9.0/L10.csproj.CoreCompileInputs.cache
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/obj/Debug/net9.0/L10.sourcelink.json
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/obj/Debug/net9.0/L10.dll
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/obj/Debug/net9.0/refint/L10.dll
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/obj/Debug/net9.0/L10.pdb
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/obj/Debug/net9.0/L10.genruntimeconfig.cache
+/home/euphoo/02. University/2 КУРС/ООП/L10/L10/L10/obj/Debug/net9.0/ref/L10.dll

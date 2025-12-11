@@ -1,6 +1,6 @@
-#pragma once;
-#include <fstream>;
-#include "Parm.h";
+#pragma once
+#include <fstream>
+#include "Parm.h"
 #include "Error.h"
 
 namespace Out {

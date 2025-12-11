@@ -10,7 +10,7 @@ namespace Out {
         wcscpy(out.outfile,outfile);
 
         char coutfile[PARM_MAXSIZE];
-        wcstombs(coutfile,outfile,PARM_MAXSIZE + 1);
+        wcstombs(coutfile,outfile,PARM_MAXSIZE);
         out.stream = new std::ofstream();
         out.stream->open(coutfile, std::ios::out);
         if (!out.stream->is_open() || !out.stream->good()) {

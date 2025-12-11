@@ -5,6 +5,7 @@
 #define LEX_INTEGER 't'
 #define LEX_STRING 't'
 #define LEX_ID 'i'
+#define LEX_CALL 'c'
 #define LEX_LITERAL 'l'
 #define LEX_FUNCTION 'f'
 #define LEX_DECLARE 'd'

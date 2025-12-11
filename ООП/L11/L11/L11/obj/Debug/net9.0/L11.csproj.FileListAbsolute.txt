@@ -1,0 +1,15 @@
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/bin/Debug/net9.0/L11
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/bin/Debug/net9.0/L11.deps.json
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/bin/Debug/net9.0/L11.runtimeconfig.json
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/bin/Debug/net9.0/L11.dll
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/bin/Debug/net9.0/L11.pdb
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/obj/Debug/net9.0/L11.GeneratedMSBuildEditorConfig.editorconfig
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/obj/Debug/net9.0/L11.AssemblyInfoInputs.cache
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/obj/Debug/net9.0/L11.AssemblyInfo.cs
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/obj/Debug/net9.0/L11.csproj.CoreCompileInputs.cache
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/obj/Debug/net9.0/L11.sourcelink.json
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/obj/Debug/net9.0/L11.dll
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/obj/Debug/net9.0/refint/L11.dll
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/obj/Debug/net9.0/L11.pdb
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/obj/Debug/net9.0/L11.genruntimeconfig.cache
+/home/euphoo/02. University/2 КУРС/ООП/L11/L11/L11/obj/Debug/net9.0/ref/L11.dll

@@ -343,32 +343,44 @@ namespace Lexer {
                     LT::Add(lextable, {LEX_MAIN, line, LT_TI_NULLIDX});
                 } else if (isValidId(token)) {
                     int idx = IT::IsId(idtable, token);
-                    if (idx == LT_TI_NULLIDX) {
+                    char lexeme_to_add = LEX_ID; // Default to variable 'i'
+
+                    if (idx == LT_TI_NULLIDX) { // New identifier
                         IT::Entry entry;
                         strncpy(entry.id, token, ID_MAXSIZE);
                         entry.id[ID_MAXSIZE - 1] = '\0';
                         entry.idxfirstLE = lextable.size;
+                        entry.iddatatype = nextIdDatatype;
 
                         if (nextTokenIsFunctionName) {
                             entry.idtype = IT::F;
                             nextTokenIsFunctionName = false;
+                            lexeme_to_add = LEX_ID; // It's a definition, grammar expects 'i'
                         } else {
                             entry.idtype = IT::V;
+                            lexeme_to_add = LEX_ID; // It's a variable
                         }
 
-                        entry.iddatatype = nextIdDatatype;
-
-                        if (nextIdDatatype == IT::INT) {
+                        if (entry.iddatatype == IT::INT) {
                             entry.value.vint = TI_INT_DEFAULT;
-                        } else if (nextIdDatatype == IT::STR) {
+                        } else if (entry.iddatatype == IT::STR) {
                             entry.value.vstr[0].len = 0;
                             entry.value.vstr[0].str[0] = '\0';
                         }
 
                         IT::Add(idtable, entry);
                         idx = idtable.size - 1;
+                    } else { // Existing identifier
+                        IT::Entry entry = IT::GetEntry(idtable, idx);
+                        if (entry.idtype == IT::F) {
+                            // An existing function identifier implies a function call, so use 'c'
+                            lexeme_to_add = LEX_CALL;
+                        } else {
+                            // It's a variable, use 'i'
+                            lexeme_to_add = LEX_ID;
+                        }
                     }
-                    LT::Add(lextable, {LEX_ID, line, idx});
+                    LT::Add(lextable, {lexeme_to_add, line, idx});
                 }
                 continue;
             } else {

@@ -9,7 +9,7 @@ ninja_required_version = 1.8.2
 # Rules for compiling.
 
 rule cpp_COMPILER
- command = /usr/bin/g++ $ARGS -MD -MQ $out -MF $DEPFILE -o $out -c $in
+ command = c++ $ARGS -MD -MQ $out -MF $DEPFILE -o $out -c $in
  deps = gcc
  depfile = $DEPFILE_UNQUOTED
  description = Compiling C++ object $out
@@ -17,7 +17,7 @@ rule cpp_COMPILER
 # Rules for linking.
 
 rule cpp_LINKER
- command = /usr/bin/g++ $ARGS -o $out $in $LINK_ARGS
+ command = c++ $ARGS -o $out $in $LINK_ARGS
  description = Linking target $out
 
 # Other rules
@@ -161,7 +161,7 @@ build meson-benchmark-prereq: phony
 build clean: phony meson-internal__clean
 
 build meson-internal__clean: CUSTOM_COMMAND PHONY
- COMMAND = /home/euphoo/opt/clion/bin/ninja/linux/x64/ninja -t clean
+ COMMAND = /usr/bin/ninja -t clean
  description = Cleaning
 
 build build.ninja: REGENERATE_BUILD ../meson.build meson-private/coredata.dat
