@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Алексей</Name>
+  <Age>25</Age>
+  <Balance>500</Balance>
+  <Inventory>
+    <Product xsi:type="Cake">
+      <Name>Прага</Name>
+      <Price>50</Price>
+      <Manufacturer>Хлебозавод</Manufacturer>
+      <Weight>1000</Weight>
+      <Calories>4000</Calories>
+      <ExpirationDate>2025-12-17T15:41:10.1905738+03:00</ExpirationDate>
+      <Cooker>Мария</Cooker>
+      <SugarPercent>45</SugarPercent>
+      <Filling>сливочный крем</Filling>
+      <Diameter>20</Diameter>
+    </Product>
+  </Inventory>
+</Person>

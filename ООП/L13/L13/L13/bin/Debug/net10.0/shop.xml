@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Shop>
+  <Item id="1">
+    <Name>Хлеб</Name>
+    <Price>2</Price>
+  </Item>
+  <Item id="2">
+    <Name>Молоко</Name>
+    <Price>3</Price>
+  </Item>
+  <Item id="3">
+    <Name>Сыр</Name>
+    <Price>10</Price>
+  </Item>
+</Shop>

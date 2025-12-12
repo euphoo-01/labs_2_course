@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "pi7vImtt4NY=",
+  "success": true,
+  "projectFilePath": "/home/euphoo/02. University/2 КУРС/ООП/L13/L4/L4/L4.csproj",
+  "expectedPackageFiles": [
+    "/home/euphoo/.nuget/packages/microsoft.netcore.app.ref/9.0.11/microsoft.netcore.app.ref.9.0.11.nupkg.sha512",
+    "/home/euphoo/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.11/microsoft.aspnetcore.app.ref.9.0.11.nupkg.sha512",
+    "/home/euphoo/.nuget/packages/microsoft.netcore.app.host.linux-x64/9.0.11/microsoft.netcore.app.host.linux-x64.9.0.11.nupkg.sha512"
+  ],
+  "logs": []
+}

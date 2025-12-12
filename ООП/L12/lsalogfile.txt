@@ -1,0 +1,7 @@
+12.12.2025 15:11:15: Start - Программа запущена
+12.12.2025 15:11:15: LSADiskInfo.ShowAllDrivesInfo - вывод информации о всех дисках
+12.12.2025 15:11:15: LSAFileInfo.ShowFileInfo - запрос инфо о файле test_lsa.txt
+12.12.2025 15:11:15: LSADirInfo.ShowDirInfo - запрос инфо о директории /home/euphoo/02. University/2 КУРС/ООП/L12
+12.12.2025 15:11:15: LSAFileManager.TaskA - начало задания A с диском /
+12.12.2025 15:11:15: LSAFileManager.TaskB - начало задания B, источник dummy_source, расширение .txt
+12.12.2025 15:11:15: LSAFileManager.TaskC - начало задания C (архивация)

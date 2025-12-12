@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Product xsi:type="Cake">
+    <Name>Прага</Name>
+    <Price>50</Price>
+    <Manufacturer>Хлебозавод</Manufacturer>
+    <Weight>1000</Weight>
+    <Calories>4000</Calories>
+    <ExpirationDate>2025-12-17T15:41:10.1905738+03:00</ExpirationDate>
+    <Cooker>Мария</Cooker>
+    <SugarPercent>45</SugarPercent>
+    <Filling>сливочный крем</Filling>
+    <Diameter>20</Diameter>
+  </Product>
+  <Product xsi:type="Flowers">
+    <Name>Тюльпаны</Name>
+    <Price>15</Price>
+    <Manufacturer>Holland</Manufacturer>
+    <Type>Тюльпан</Type>
+    <Quantity>5</Quantity>
+    <Color>Желтый</Color>
+    <Expiration>2025-12-19T15:41:10.3096981+03:00</Expiration>
+  </Product>
+  <Product xsi:type="Watch">
+    <Name>Rolex</Name>
+    <Price>5000</Price>
+    <Manufacturer>Rolex SA</Manufacturer>
+    <Mechanism>механический</Mechanism>
+    <Material>Золото</Material>
+    <IsWaterproof>true</IsWaterproof>
+  </Product>
+</ArrayOfProduct>

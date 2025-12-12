@@ -1,0 +1,28 @@
+12.12.2025 16:23:18: Start - Программа запущена
+12.12.2025 16:23:18: LSADiskInfo.ShowAllDrivesInfo - вывод информации о всех дисках
+12.12.2025 16:23:18: LSAFileInfo.ShowFileInfo - запрос инфо о файле test_lsa.txt
+12.12.2025 16:23:18: LSADirInfo.ShowDirInfo - запрос инфо о директории /home/euphoo/02. University/2 КУРС/ООП/L12/L12/L12/bin/Debug/net10.0
+12.12.2025 16:23:18: LSAFileManager.TaskA - начало задания A с диском /
+12.12.2025 16:23:18: LSAFileManager.TaskB - начало задания B, источник dummy_source, расширение .txt
+12.12.2025 16:23:18: LSAFileManager.TaskC - начало задания C (архивация)
+12.12.2025 16:48:27: Start - Программа запущена
+12.12.2025 16:48:27: LSADiskInfo.ShowAllDrivesInfo - вывод информации о всех дисках
+12.12.2025 16:48:27: LSAFileInfo.ShowFileInfo - запрос инфо о файле test_lsa.txt
+12.12.2025 16:48:27: LSADirInfo.ShowDirInfo - запрос инфо о директории /home/euphoo/02. University/2 КУРС/ООП/L12/L12/L12/bin/Debug/net10.0
+12.12.2025 16:48:27: LSAFileManager.TaskA - начало задания A с диском /
+12.12.2025 16:48:27: LSAFileManager.TaskB - начало задания B, источник dummy_source, расширение .txt
+12.12.2025 16:48:27: LSAFileManager.TaskC - начало задания C (архивация)
+12.12.2025 16:49:46: Start - Программа запущена
+12.12.2025 16:49:46: LSADiskInfo.ShowAllDrivesInfo - вывод информации о всех дисках
+12.12.2025 16:49:46: LSAFileInfo.ShowFileInfo - запрос инфо о файле test_lsa.txt
+12.12.2025 16:49:46: LSADirInfo.ShowDirInfo - запрос инфо о директории /home/euphoo/02. University/2 КУРС/ООП/L12/L12/L12/bin/Debug/net10.0
+12.12.2025 16:49:46: LSAFileManager.TaskA - начало задания A с диском /
+12.12.2025 16:49:46: LSAFileManager.TaskB - начало задания B, источник dummy_source, расширение .txt
+12.12.2025 16:49:46: LSAFileManager.TaskC - начало задания C (архивация)
+12.12.2025 16:52:58: Start - Программа запущена
+12.12.2025 16:52:58: LSADiskInfo.ShowAllDrivesInfo - вывод информации о всех дисках
+12.12.2025 16:52:58: LSAFileInfo.ShowFileInfo - запрос инфо о файле test_lsa.txt
+12.12.2025 16:52:58: LSADirInfo.ShowDirInfo - запрос инфо о директории /home/euphoo/02. University/2 КУРС/ООП/L12/L12/L12/bin/Debug/net10.0
+12.12.2025 16:52:58: LSAFileManager.TaskA - начало задания A с диском /
+12.12.2025 16:52:58: LSAFileManager.TaskB - начало задания B, источник dummy_source, расширение .txt
+12.12.2025 16:52:58: LSAFileManager.TaskC - начало задания C (архивация)

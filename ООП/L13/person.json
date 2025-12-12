@@ -1,0 +1,20 @@
+{
+  "Name": "\u0410\u043B\u0435\u043A\u0441\u0435\u0439",
+  "Age": 25,
+  "Balance": 500,
+  "Inventory": [
+    {
+      "$type": "Cake",
+      "Filling": "\u0441\u043B\u0438\u0432\u043E\u0447\u043D\u044B\u0439 \u043A\u0440\u0435\u043C",
+      "Diameter": 20,
+      "Cooker": "\u041C\u0430\u0440\u0438\u044F",
+      "SugarPercent": 45,
+      "Weight": 1000,
+      "Calories": 4000,
+      "ExpirationDate": "2025-12-17T15:41:10.1905738+03:00",
+      "Name": "\u041F\u0440\u0430\u0433\u0430",
+      "Price": 50,
+      "Manufacturer": "\u0425\u043B\u0435\u0431\u043E\u0437\u0430\u0432\u043E\u0434"
+    }
+  ]
+}
