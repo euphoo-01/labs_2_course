@@ -42,7 +42,7 @@ namespace L12
                 File.Copy(dirInfoFile, copyPath, true);
                 
                 File.Delete(dirInfoFile);
-                Console.WriteLine("оригинальный файл удален, осталась копия: lsadirinfo_copy.txt");
+                Console.WriteLine("копия: lsadirinfo_copy.txt");
             }
             catch (Exception ex)
             {

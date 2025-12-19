@@ -35,8 +35,8 @@ namespace L12
                 if (currentDrive == null) currentDrive = "/";
                 LSAFileManager.TaskA(currentDrive);
                 
+                
                 // b
-                Console.WriteLine("--- Task B ---");
                 string dummyDir = "dummy_source";
                 Directory.CreateDirectory(dummyDir);
                 File.WriteAllText(Path.Combine(dummyDir, "f1.txt"), "text1");
@@ -45,7 +45,6 @@ namespace L12
                 
                 LSAFileManager.TaskB(dummyDir, ".txt");
                 
-                // cleanup dummy
                 Directory.Delete(dummyDir, true);
                 
                 // c

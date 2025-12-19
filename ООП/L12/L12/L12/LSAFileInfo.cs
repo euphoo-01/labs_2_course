@@ -7,7 +7,7 @@ namespace L12
     {
         public static void ShowFileInfo(string filePath)
         {
-            LSALog.Write("LSAFileInfo.ShowFileInfo", $"запрос инфо о файле {filePath}");
+            LSALog.Write("LSAFileInfo.ShowFileInfo", $"запрос инфы о файле {filePath}");
             try
             {
                 FileInfo fileInfo = new FileInfo(filePath);
