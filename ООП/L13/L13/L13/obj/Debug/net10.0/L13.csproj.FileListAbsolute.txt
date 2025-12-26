@@ -20,3 +20,4 @@
 /home/euphoo/02. University/2 КУРС/ООП/L13/L13/L13/obj/Debug/net10.0/L13.pdb
 /home/euphoo/02. University/2 КУРС/ООП/L13/L13/L13/obj/Debug/net10.0/L13.genruntimeconfig.cache
 /home/euphoo/02. University/2 КУРС/ООП/L13/L13/L13/obj/Debug/net10.0/ref/L13.dll
+/home/euphoo/02. University/2 КУРС/ООП/L13/L13/L13/bin/Debug/net10.0/SoapFormatter.dll

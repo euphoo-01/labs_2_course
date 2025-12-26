@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Formatters.Soap;
 using System.Text.Json;
 using System.Xml.Serialization;
 
@@ -29,13 +30,13 @@ namespace L13
                 case Format.Binary:
                     try
                     {
-                        // #pragma warning disable SYSLIB0011
+#pragma warning disable SYSLIB0011
                         BinaryFormatter binFormatter = new BinaryFormatter();
                         using (FileStream fs = new FileStream(filePath, FileMode.Create))
                         {
                             binFormatter.Serialize(fs, obj);
                         }
-                        // #pragma warning restore SYSLIB0011
+#pragma warning restore SYSLIB0011
                         Console.WriteLine($"[CustomSerializer] Объект успешно сериализован в {format} формат: {filePath}");
                     }
                     catch (PlatformNotSupportedException)
@@ -49,41 +50,64 @@ namespace L13
                     break;
 
                 case Format.SOAP:
-                    Console.WriteLine("[CustomSerializer] Внимание: Для SOAP формата требуется установка пакета System.Runtime.Serialization.Formatters.Soap, который не входит в стандартную библиотеку .NET Core/.NET 5+. Пропускаем.");
+                    try
+                    {
+                        SoapFormatter soapFormatter = new SoapFormatter();
+                        using (FileStream fs = new FileStream(filePath, FileMode.Create))
+                        {
+                            soapFormatter.Serialize(fs, obj);
+                        }
+                        Console.WriteLine($"[CustomSerializer] Объект успешно сериализован в {format} формат: {filePath}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"[CustomSerializer] Ошибка при SOAP сериализации: {ex.Message}");
+                    }
                     break;
 
                 case Format.JSON:
-                    string jsonString = JsonSerializer.Serialize(obj, new JsonSerializerOptions { WriteIndented = true, IncludeFields = true });
-                    File.WriteAllText(filePath, jsonString);
-                    Console.WriteLine($"[CustomSerializer] Объект успешно сериализован в {format} формат: {filePath}");
+                    {
+                        string jsonString = JsonSerializer.Serialize(
+                            obj,
+                            new JsonSerializerOptions { WriteIndented = true, IncludeFields = true }
+                        );
+                        File.WriteAllText(filePath, jsonString);
+                        Console.WriteLine($"[CustomSerializer] Объект успешно сериализован в {format} формат: {filePath}");
+                    }
                     break;
 
                 case Format.XML:
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-                    using (FileStream fs = new FileStream(filePath, FileMode.Create))
                     {
-                        xmlSerializer.Serialize(fs, obj);
+                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                        using (FileStream fs = new FileStream(filePath, FileMode.Create))
+                        {
+                            xmlSerializer.Serialize(fs, obj);
+                        }
+                        Console.WriteLine($"[CustomSerializer] Объект успешно сериализован в {format} формат: {filePath}");
                     }
-                    Console.WriteLine($"[CustomSerializer] Объект успешно сериализован в {format} формат: {filePath}");
                     break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(format), format, "Неизвестный формат сериализации");
             }
         }
 
         public static T Deserialize<T>(string filePath, Format format)
         {
-            T result = default(T);
+            T result = default;
+
             switch (format)
             {
                 case Format.Binary:
                     try
                     {
-                        // #pragma warning disable SYSLIB0011
+#pragma warning disable SYSLIB0011
                         BinaryFormatter binFormatter = new BinaryFormatter();
                         using (FileStream fs = new FileStream(filePath, FileMode.Open))
                         {
                             result = (T)binFormatter.Deserialize(fs);
                         }
-                        // #pragma warning restore SYSLIB0011
+#pragma warning restore SYSLIB0011
                         Console.WriteLine($"[CustomSerializer] Объект успешно десериализован из {format} формата: {filePath}");
                     }
                     catch (PlatformNotSupportedException)
@@ -97,24 +121,44 @@ namespace L13
                     break;
 
                 case Format.SOAP:
-                    Console.WriteLine("[CustomSerializer] SOAP формат не поддерживается.");
+                    try
+                    {
+                        SoapFormatter soapFormatter = new SoapFormatter();
+                        using (FileStream fs = new FileStream(filePath, FileMode.Open))
+                        {
+                            result = (T)soapFormatter.Deserialize(fs);
+                        }
+                        Console.WriteLine($"[CustomSerializer] Объект успешно десериализован из {format} формата: {filePath}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"[CustomSerializer] Ошибка при SOAP десериализации: {ex.Message}");
+                    }
                     break;
 
                 case Format.JSON:
-                    string jsonString = File.ReadAllText(filePath);
-                    result = JsonSerializer.Deserialize<T>(jsonString, new JsonSerializerOptions { IncludeFields = true });
-                    Console.WriteLine($"[CustomSerializer] Объект успешно десериализован из {format} формата: {filePath}");
+                    {
+                        string jsonString = File.ReadAllText(filePath);
+                        result = JsonSerializer.Deserialize<T>(jsonString, new JsonSerializerOptions { IncludeFields = true });
+                        Console.WriteLine($"[CustomSerializer] Объект успешно десериализован из {format} формата: {filePath}");
+                    }
                     break;
 
                 case Format.XML:
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-                    using (FileStream fs = new FileStream(filePath, FileMode.Open))
                     {
-                        result = (T)xmlSerializer.Deserialize(fs);
+                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                        using (FileStream fs = new FileStream(filePath, FileMode.Open))
+                        {
+                            result = (T)xmlSerializer.Deserialize(fs);
+                        }
+                        Console.WriteLine($"[CustomSerializer] Объект успешно десериализован из {format} формата: {filePath}");
                     }
-                    Console.WriteLine($"[CustomSerializer] Объект успешно десериализован из {format} формата: {filePath}");
                     break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(format), format, "Неизвестный формат десериализации");
             }
+
             return result;
         }
     }

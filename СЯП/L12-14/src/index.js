@@ -1,5 +1,6 @@
-import { init } from './logic/app.js';
+import "./style.css";
+import { init } from "./logic/app.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-    init();
+document.addEventListener("DOMContentLoaded", () => {
+	init();
 });

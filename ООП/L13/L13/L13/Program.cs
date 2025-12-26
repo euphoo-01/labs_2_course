@@ -33,7 +33,7 @@ namespace L13
 
             var person = new Person("Алексей", 25, 500);
             person.Inventory.Add(cake);
-            person.SecretPassword = "ShouldNotBeSeen";
+            person.SecretPassword = "кириешки";
 
             Console.WriteLine("Исходный объект:");
             person.ShowInventory();
@@ -47,10 +47,15 @@ namespace L13
             if (personBin != null)
                 personBin.ShowInventory();
             else
-                Console.WriteLine("Binary deserialization returned null (skipped).");
+                Console.WriteLine("Бинарная десериализация вернула null.");
 
             // SOAP
-            CustomSerializer.Serialize(person, "person.soap", CustomSerializer.Format.SOAP);
+            string soapFile = "person.soap";
+            CustomSerializer.Serialize(person, soapFile, CustomSerializer.Format.SOAP);
+            var personSoap = CustomSerializer.Deserialize<Person>(soapFile, CustomSerializer.Format.SOAP);
+            Console.WriteLine("Результат SOAP:");
+            personSoap.ShowInventory();
+            
             
             // JSON
             string jsonFile = "person.json";

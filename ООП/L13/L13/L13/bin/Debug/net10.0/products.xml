@@ -6,7 +6,7 @@
     <Manufacturer>Хлебозавод</Manufacturer>
     <Weight>1000</Weight>
     <Calories>4000</Calories>
-    <ExpirationDate>2025-12-17T16:19:37.9156247+03:00</ExpirationDate>
+    <ExpirationDate>2025-12-24T17:10:44.299293+03:00</ExpirationDate>
     <Cooker>Мария</Cooker>
     <SugarPercent>45</SugarPercent>
     <Filling>сливочный крем</Filling>
@@ -19,7 +19,7 @@
     <Type>Тюльпан</Type>
     <Quantity>5</Quantity>
     <Color>Желтый</Color>
-    <Expiration>2025-12-19T16:19:38.1112391+03:00</Expiration>
+    <Expiration>2025-12-26T17:10:44.6737193+03:00</Expiration>
   </Product>
   <Product xsi:type="Watch">
     <Name>Rolex</Name>

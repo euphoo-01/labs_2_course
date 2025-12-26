@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Валидация формы</title>
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+			form {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				max-width: 400px;
+			}
+			.form-field {
+				display: flex;
+				flex-direction: column;
+			}
+			.error-message {
+				color: red;
+				font-size: 0.8em;
+				height: 1.2em;
+			}
+			input,
+			textarea {
+				padding: 5px;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+			}
+			input.invalid,
+			textarea.invalid {
+				border-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Форма</h1>
+		<form id="validation-form" novalidate>
+			<div class="form-field">
+				<label for="surname">Фамилия</label>
+				<input type="text" id="surname" name="surname" />
+				<span class="error-message" id="surname-error"></span>
+			</div>
+			<div class="form-field">
+				<label for="name">Имя</label>
+				<input type="text" id="name" name="name" />
+				<span class="error-message" id="name-error"></span>
+			</div>
+			<div class="form-field">
+				<label for="email">E-mail</label>
+				<input type="text" id="email" name="email" />
+				<span class="error-message" id="email-error"></span>
+			</div>
+			<div class="form-field">
+				<label for="phone">Телефон</label>
+				<input type="text" id="phone" name="phone" />
+				<span class="error-message" id="phone-error"></span>
+			</div>
+			<div class="form-field">
+				<label for="about">Расскажите о себе</label>
+				<textarea id="about" name="about" rows="4"></textarea>
+				<span class="error-message" id="about-error"></span>
+			</div>
+			<button type="submit">Проверить</button>
+		</form>
+		<script src="index.js"></script>
+	</body>
+</html>

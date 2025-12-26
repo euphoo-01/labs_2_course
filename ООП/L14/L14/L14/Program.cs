@@ -120,7 +120,7 @@ internal static class Program
             var d = AppDomain.CreateDomain("NewDomain");
 #pragma warning restore SYSLIB0024
             Log("Создан домен: " + d.FriendlyName);
-            
+
             AppDomain.Unload(d);
             Log("Домен выгружен.");
         }
@@ -155,6 +155,7 @@ internal static class Program
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
+
             Log("Unload requested (AssemblyLoadContext).");
         }
     }
@@ -177,7 +178,8 @@ internal static class Program
         t.Start();
 
         Thread.Sleep(400);
-        Log($"Поток во время работы: name={t.Name}, id={t.ManagedThreadId}, priority={t.Priority}, state={t.ThreadState}");
+        Log(
+            $"Поток во время работы: name={t.Name}, id={t.ManagedThreadId}, priority={t.Priority}, state={t.ThreadState}");
 
         Log("Пауза на 2 секунды...");
         pause.Reset();
@@ -187,7 +189,8 @@ internal static class Program
         pause.Set();
 
         t.Join();
-        Log($"Поток после завершения: name={t.Name}, id={t.ManagedThreadId}, priority={t.Priority}, state={t.ThreadState}");
+        Log(
+            $"Поток после завершения: name={t.Name}, id={t.ManagedThreadId}, priority={t.Priority}, state={t.ThreadState}");
     }
 
     private static void PrimeWorker(int n, ManualResetEventSlim pause)
@@ -217,7 +220,8 @@ internal static class Program
         if (x % 2 == 0) return false;
 
         for (int d = 3; d * d <= x; d += 2)
-            if (x % d == 0) return false;
+            if (x % d == 0)
+                return false;
 
         return true;
     }
@@ -228,10 +232,13 @@ internal static class Program
         int n = ReadInt("Введите n для чет/нечет: ", min: 2, fallback: 20);
 
         Log("Параллельный вывод (разная скорость), один поток с повышенным приоритетом:");
-        var evenA = new Thread(() => PrintEvens(n, delayMs: 120, prefix: "evenA")) { Priority = ThreadPriority.Highest };
-        var oddA  = new Thread(() => PrintOdds(n, delayMs: 60, prefix: "oddA")) { Priority = ThreadPriority.Normal };
-        evenA.Start(); oddA.Start();
-        evenA.Join(); oddA.Join();
+        var evenA = new Thread(() => PrintEvens(n, delayMs: 120, prefix: "evenA"))
+            { Priority = ThreadPriority.Highest };
+        var oddA = new Thread(() => PrintOdds(n, delayMs: 60, prefix: "oddA")) { Priority = ThreadPriority.Normal };
+        evenA.Start();
+        oddA.Start();
+        evenA.Join();
+        oddA.Join();
 
         Log("");
         Log("Сначала четные, потом нечетные (синхронизация через Join):");
@@ -259,6 +266,7 @@ internal static class Program
                     evenTurn = false;
                     Monitor.PulseAll(sync);
                 }
+
                 Thread.Sleep(90);
             }
         });
@@ -274,12 +282,15 @@ internal static class Program
                     evenTurn = true;
                     Monitor.PulseAll(sync);
                 }
+
                 Thread.Sleep(40);
             }
         });
 
-        evenC.Start(); oddC.Start();
-        evenC.Join(); oddC.Join();
+        evenC.Start();
+        oddC.Start();
+        evenC.Join();
+        oddC.Join();
     }
 
     private static void PrintEvens(int n, int delayMs, string prefix)
@@ -307,13 +318,13 @@ internal static class Program
 
         int ticks = 0;
         using var timer = new Timer(_ =>
-        {
-            int t = Interlocked.Increment(ref ticks);
-            Log($"tick={t}, time={DateTime.Now:HH:mm:ss}, threadId={Thread.CurrentThread.ManagedThreadId}");
-        },
-        state: null,
-        dueTime: TimeSpan.Zero,
-        period: TimeSpan.FromSeconds(1));
+            {
+                int t = Interlocked.Increment(ref ticks);
+                Log($"tick={t}, time={DateTime.Now:HH:mm:ss}, threadId={Thread.CurrentThread.ManagedThreadId}");
+            },
+            state: null,
+            dueTime: TimeSpan.Zero,
+            period: TimeSpan.FromSeconds(1));
 
         Thread.Sleep(5200);
         Log("ticks total: " + ticks);
@@ -342,7 +353,13 @@ internal static class Program
 
     private static string Safe(Func<string> get, string fallback)
     {
-        try { return get(); }
-        catch { return fallback; }
+        try
+        {
+            return get();
+        }
+        catch
+        {
+            return fallback;
+        }
     }
 }
