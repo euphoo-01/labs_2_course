@@ -1,5 +1,3 @@
-import { TodoList } from "../entities/todolist.js";
-
 const renderTodoListItems = (tasks, todoListInstance, rerenderCallback) => {
 	const todolistWrapper = document.createElement("ul");
 	todolistWrapper.className = "todo-list-items";
