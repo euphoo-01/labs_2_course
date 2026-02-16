@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/euphoo/02. University/2 КУРС/ООП/L15/L15/L15/L15.csproj": {}
+    "/home/euphoo/02. University/2 КУРС/ООП/1 сем/L15/L15/L15/L15.csproj": {}
   },
   "projects": {
-    "/home/euphoo/02. University/2 КУРС/ООП/L15/L15/L15/L15.csproj": {
+    "/home/euphoo/02. University/2 КУРС/ООП/1 сем/L15/L15/L15/L15.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/euphoo/02. University/2 КУРС/ООП/L15/L15/L15/L15.csproj",
+        "projectUniqueName": "/home/euphoo/02. University/2 КУРС/ООП/1 сем/L15/L15/L15/L15.csproj",
         "projectName": "L15",
-        "projectPath": "/home/euphoo/02. University/2 КУРС/ООП/L15/L15/L15/L15.csproj",
+        "projectPath": "/home/euphoo/02. University/2 КУРС/ООП/1 сем/L15/L15/L15/L15.csproj",
         "packagesPath": "/home/euphoo/.nuget/packages/",
-        "outputPath": "/home/euphoo/02. University/2 КУРС/ООП/L15/L15/L15/obj/",
+        "outputPath": "/home/euphoo/02. University/2 КУРС/ООП/1 сем/L15/L15/L15/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/euphoo/.nuget/NuGet/NuGet.Config"
@@ -57,7 +57,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[10.0.0, 10.0.0]"
+              "version": "[10.0.3, 10.0.3]"
             }
           ],
           "frameworkReferences": {
@@ -65,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.100/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
