@@ -1,0 +1,2 @@
+/home/euphoo/02. University/2 КУРС/БД/SQL_Learning/Solution1/ConsoleApplication1/obj/Debug/ConsoleApplication1.csproj.AssemblyReference.cache
+/home/euphoo/02. University/2 КУРС/БД/SQL_Learning/Solution1/ConsoleApplication1/obj/Debug/ConsoleApplication1.csproj.CoreCompileInputs.cache

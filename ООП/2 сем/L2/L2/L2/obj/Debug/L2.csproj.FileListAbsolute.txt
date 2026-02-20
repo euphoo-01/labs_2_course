@@ -1,0 +1,6 @@
+/home/euphoo/02. University/2 КУРС/ООП/2 сем/L2/L2/L2/bin/Debug/L2.exe
+/home/euphoo/02. University/2 КУРС/ООП/2 сем/L2/L2/L2/bin/Debug/L2.pdb
+/home/euphoo/02. University/2 КУРС/ООП/2 сем/L2/L2/L2/obj/Debug/L2.csproj.AssemblyReference.cache
+/home/euphoo/02. University/2 КУРС/ООП/2 сем/L2/L2/L2/obj/Debug/L2.csproj.CoreCompileInputs.cache
+/home/euphoo/02. University/2 КУРС/ООП/2 сем/L2/L2/L2/obj/Debug/L2.exe
+/home/euphoo/02. University/2 КУРС/ООП/2 сем/L2/L2/L2/obj/Debug/L2.pdb

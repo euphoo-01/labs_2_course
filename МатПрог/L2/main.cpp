@@ -10,10 +10,27 @@
 #ifdef TEST
 int main(int argc, char* argv[])
 {
-    setlocale(LC_ALL, "rus");
     char AA[][2] = { "A", "B", "C", "D", "E" };
     int N = sizeof(AA) / sizeof(AA[0]);
     int M = 3;
+
+    std::cout << std::endl << "Подмножества:";
+    std::cout << std::endl << "Исходное множество: { ";
+    for (int i = 0; i < N; i++) std::cout << AA[i] << ((i < N - 1) ? ", " : " ");
+    std::cout << "}";
+
+    combi::subset s1(N);
+    short n_sub = s1.getfirst();
+    while (n_sub >= 0)
+    {
+        std::cout << std::endl << std::setw(2) << s1.mask << ": { ";
+        for (int i = 0; i < n_sub; i++)
+            std::cout << AA[s1.ntx(i)] << ((i < n_sub - 1) ? ", " : " ");
+        std::cout << "}";
+        n_sub = s1.getnext();
+    };
+    std::cout << std::endl << "Всего подмножеств: " << s1.count() << std::endl;
+
 
     std::cout << std::endl << "Перестановки:";
     std::cout << std::endl << "Исходное множество: { ";

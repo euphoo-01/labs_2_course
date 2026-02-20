@@ -43,7 +43,9 @@
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
-      <Content Include="queries.sql" />
+      <Content Include="L1_queries.sql" />
+      <Content Include="L2_queries.sql" />
+      <Content Include="Нормализация.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

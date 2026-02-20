@@ -29,7 +29,7 @@ int distance(int n, int* r, const int* d)
 {
     int rc = 0;
     for (int i = 0; i < n - 1; i++) rc = sum(rc, d[r[i] * n + r[i + 1]]);
-    return sum(rc, d[r[n - 1] * n + 0]); //+ последняя дуга (n-1,0)
+    return sum(rc, d[r[n - 1] * n ]); //+ последняя дуга
 };
 
 void indx(int n, int* r, const int* s, const short* ntx)
