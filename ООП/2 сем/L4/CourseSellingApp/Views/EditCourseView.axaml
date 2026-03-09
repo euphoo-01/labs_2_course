@@ -1,0 +1,99 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:CourseSellingApp.ViewModels"
+        xmlns:converters="using:CourseSellingApp.Converters"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="700"
+        x:Class="CourseSellingApp.Views.EditCourseView"
+        x:DataType="vm:EditCourseViewModel"
+        Title="Course Details"
+        WindowStartupLocation="CenterOwner"
+        Width="400" Height="700">
+
+    <Window.Resources>
+        <converters:BitmapValueConverter x:Key="BitmapValueConverter"/>
+    </Window.Resources>
+
+    <Window.Styles>
+        <Style Selector="Border.drop-target:dragover">
+            <Setter Property="Background" Value="#E0E0E0"/>
+        </Style>
+    </Window.Styles>
+
+    <Design.DataContext>
+        <vm:EditCourseViewModel />
+    </Design.DataContext>
+
+  <Grid RowDefinitions="*,Auto" Margin="15">
+    <ScrollViewer Grid.Row="0">
+        <StackPanel Spacing="10">
+
+            <TextBlock Text="Cover Image:"/>
+            <Border Name="DropZone"
+                    BorderBrush="Gray"
+                    BorderThickness="1.5"
+                    CornerRadius="4"
+                    MinHeight="150"
+                    Padding="10"
+                    AllowDrop="True"
+                    Classes="drop-target">
+                <Panel>
+                    <Image Source="{Binding Course.CoverImagePath, Converter={StaticResource BitmapValueConverter}}"
+                           Stretch="Uniform"
+                           IsVisible="{Binding Course.CoverImagePath, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <TextBlock Text="Drop image here (.png, .jpg)"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               IsVisible="{Binding Course.CoverImagePath, Converter={x:Static StringConverters.IsNullOrEmpty}}"/>
+                </Panel>
+            </Border>
+
+            <TextBlock Text="Name:"/>
+            <TextBox Text="{Binding Course.Name}"/>
+
+            <TextBlock Text="Full Name:"/>
+            <TextBox Text="{Binding Course.FullName}"/>
+
+            <TextBlock Text="Author:"/>
+            <TextBox Text="{Binding Course.Author}"/>
+
+            <TextBlock Text="Description:"/>
+            <TextBox Text="{Binding Course.Description}" TextWrapping="Wrap" Height="80" AcceptsReturn="True"/>
+
+            <TextBlock Text="Category:"/>
+            <TextBox Text="{Binding Course.Category}"/>
+
+            <Grid ColumnDefinitions="*,*">
+              <StackPanel Grid.Column="0" Spacing="5" Margin="0,0,5,0">
+                <TextBlock Text="Price:"/>
+                <NumericUpDown Value="{Binding Course.Price}" FormatString="C" Minimum="0"/>
+              </StackPanel>
+              <StackPanel Grid.Column="1" Spacing="5" Margin="5,0,0,0">
+                <TextBlock Text="Rating (0-5):"/>
+                <NumericUpDown Value="{Binding Course.Rating}" FormatString="N1" Increment="0.1" Minimum="0" Maximum="5"/>
+              </StackPanel>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*">
+                <StackPanel Grid.Column="0" Spacing="5" Margin="0,0,5,0">
+                    <TextBlock Text="Quantity:"/>
+                    <NumericUpDown Value="{Binding Course.Quantity}" Minimum="0"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Spacing="5" Margin="5,0,0,0">
+                    <TextBlock Text="Discount (%):"/>
+                    <NumericUpDown Value="{Binding Course.Discount}" Minimum="0"/>
+                </StackPanel>
+            </Grid>
+
+            <CheckBox IsChecked="{Binding Course.IsAvailable}" Content="Is Available" Margin="0,10,0,0"/>
+
+        </StackPanel>
+    </ScrollViewer>
+    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right" Margin="0,15,0,0">
+      <Button Content="Save" Command="{Binding SaveCommand}" IsDefault="True"/>
+      <Button Content="Cancel" Command="{Binding CancelCommand}" IsCancel="True"/>
+    </StackPanel>
+  </Grid>
+
+</Window>

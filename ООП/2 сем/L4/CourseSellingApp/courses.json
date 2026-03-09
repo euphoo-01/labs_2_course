@@ -1,0 +1,56 @@
+[
+  {
+    "Id": 1,
+    "Name": "C# Advanced",
+    "FullName": "Advanced C# Programming Course",
+    "Description": "Deep dive into advanced C# concepts like asynchronous programming, LINQ, and more.",
+    "ImagePaths": [
+      "/Assets/placeholder.png"
+    ],
+    "Category": "Programming",
+    "Rating": 4.8,
+    "Price": 199.99,
+    "Quantity": 50,
+    "Discount": 10.0,
+    "IsAvailable": true,
+    "RelatedCoursesIds": [],
+    "PurchasesCount": 0,
+    "Author": "John Doe"
+  },
+  {
+    "Id": 2,
+    "Name": "Intro to Math",
+    "FullName": "Introduction to University Mathematics",
+    "Description": "Covering the fundamentals of calculus, algebra, and discrete mathematics.",
+    "ImagePaths": [
+      "/Assets/placeholder.png"
+    ],
+    "Category": "Mathematics",
+    "Rating": 4.5,
+    "Price": 99.99,
+    "Quantity": 100,
+    "Discount": 0.0,
+    "IsAvailable": true,
+    "RelatedCoursesIds": [],
+    "PurchasesCount": 0,
+    "Author": "Jane Smith"
+  },
+  {
+    "Id": 4,
+    "Name": "New Course [Edited]",
+    "FullName": "Full Name of the New Course",
+    "Description": "A brand new course to learn exciting things.",
+    "ImagePaths": [
+      "/Assets/placeholder.png"
+    ],
+    "Category": "Programming",
+    "Rating": 0.0,
+    "Price": 149.99,
+    "Quantity": 0,
+    "Discount": 0.0,
+    "IsAvailable": true,
+    "RelatedCoursesIds": [],
+    "PurchasesCount": 0,
+    "Author": "AI Assistant"
+  }
+]

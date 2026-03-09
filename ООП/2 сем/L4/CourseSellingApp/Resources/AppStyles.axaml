@@ -1,0 +1,65 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <StackPanel Spacing="10">
+                <Button Content="Styled Button"/>
+                <Button Classes="AccentButton" Content="Accent Button"/>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Base Button -->
+    <Style Selector="Button">
+        <Setter Property="Background" Value="#F0F0F0"/>
+        <Setter Property="Foreground" Value="#333333"/>
+        <Setter Property="BorderBrush" Value="#CCCCCC"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0.2"/>
+            </Transitions>
+        </Setter>
+    </Style>
+
+    <!-- Button PointerOver -->
+    <Style Selector="Button:pointerover">
+        <Setter Property="Background" Value="#E0E0E0"/>
+    </Style>
+
+    <!-- Button Pressed -->
+    <Style Selector="Button:pressed">
+        <Setter Property="Background" Value="#D0D0D0"/>
+    </Style>
+
+    <!-- Accent Button -->
+    <Style Selector="Button.AccentButton">
+        <Setter Property="Background" Value="#007ACC"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="#005A9E"/>
+    </Style>
+
+    <Style Selector="Button.AccentButton:pointerover">
+        <Setter Property="Background" Value="#005A9E"/>
+    </Style>
+
+    <Style Selector="Button.AccentButton:pressed">
+        <Setter Property="Background" Value="#004C8A"/>
+    </Style>
+
+    <!-- ListBoxItem -->
+    <Style Selector="ListBoxItem">
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="2"/>
+    </Style>
+
+    <Style Selector="ListBoxItem:selected">
+        <Setter Property="Background" Value="#CCE5FF"/>
+    </Style>
+
+</Styles>

@@ -1,0 +1,23 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- General -->
+    <system:String x:Key="Title">Course Selling App</system:String>
+
+    <!-- MainWindow -->
+    <system:String x:Key="Header.AvailableCourses">Available Courses</system:String>
+    <system:String x:Key="Button.Add">Add</system:String>
+    <system:String x:Key="Button.Edit">Edit</system:String>
+    <system:String x:Key="Button.Delete">Delete</system:String>
+    <system:String x:Key="Text.SelectCourse">Select a course to see the details.</system:String>
+
+    <!-- Details -->
+    <system:String x:Key="Details.Category">Category:</system:String>
+    <system:String x:Key="Details.Rating">Rating:</system:String>
+    <system:String x:Key="Details.Price">Price:</system:String>
+    <system:String x:Key="Details.Author">Author:</system:String>
+    <system:String x:Key="Details.AvailableSlots">Available Slots:</system:String>
+    <system:String x:Key="Image.Placeholder">Course Image Placeholder</system:String>
+
+</ResourceDictionary>
