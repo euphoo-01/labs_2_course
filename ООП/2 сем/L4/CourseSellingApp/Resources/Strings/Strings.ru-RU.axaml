@@ -2,22 +2,36 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <!-- General -->
     <system:String x:Key="Title">Приложение для продажи курсов</system:String>
-
-    <!-- MainWindow -->
     <system:String x:Key="Header.AvailableCourses">Доступные курсы</system:String>
+    <system:String x:Key="Filter.Search">Поиск...</system:String>
+    <system:String x:Key="Filter.Category">Категория</system:String>
+    <system:String x:Key="Filter.MinPrice">Мин. цена</system:String>
+    <system:String x:Key="Filter.MaxPrice">Макс. цена</system:String>
     <system:String x:Key="Button.Add">Добавить</system:String>
     <system:String x:Key="Button.Edit">Изменить</system:String>
     <system:String x:Key="Button.Delete">Удалить</system:String>
     <system:String x:Key="Text.SelectCourse">Выберите курс, чтобы увидеть детали.</system:String>
-
-    <!-- Details -->
     <system:String x:Key="Details.Category">Категория:</system:String>
     <system:String x:Key="Details.Rating">Рейтинг:</system:String>
     <system:String x:Key="Details.Price">Цена:</system:String>
     <system:String x:Key="Details.Author">Автор:</system:String>
     <system:String x:Key="Details.AvailableSlots">Свободных мест:</system:String>
     <system:String x:Key="Image.Placeholder">Изображение курса</system:String>
+    <system:String x:Key="Edit.Title">Детали курса</system:String>
+    <system:String x:Key="Edit.CoverImage">Обложка:</system:String>
+    <system:String x:Key="Edit.SelectImage">Выбрать изображение</system:String>
+    <system:String x:Key="Edit.Name">Название:</system:String>
+    <system:String x:Key="Edit.FullName">Полное название:</system:String>
+    <system:String x:Key="Edit.Author">Автор:</system:String>
+    <system:String x:Key="Edit.Description">Описание:</system:String>
+    <system:String x:Key="Edit.Category">Категория:</system:String>
+    <system:String x:Key="Edit.Price">Цена (BYN):</system:String>
+    <system:String x:Key="Edit.Rating">Рейтинг (0-5):</system:String>
+    <system:String x:Key="Edit.Quantity">Количество:</system:String>
+    <system:String x:Key="Edit.Discount">Скидка (%):</system:String>
+    <system:String x:Key="Edit.IsAvailable">Доступен</system:String>
+    <system:String x:Key="Edit.Save">Сохранить</system:String>
+    <system:String x:Key="Edit.Cancel">Отмена</system:String>
 
 </ResourceDictionary>

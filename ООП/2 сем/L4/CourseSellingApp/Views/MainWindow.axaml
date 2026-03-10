@@ -5,70 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:models="using:CourseSellingApp.Models"
         xmlns:services="using:CourseSellingApp.Services"
+        xmlns:utils="using:CourseSellingApp.Utils"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="CourseSellingApp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/app_icon.ico"
         Title="{DynamicResource Title}">
 
-    <Window.Styles>
-        <Style Selector="ContentControl">
-            <Setter Property="ContentTemplate">
-                <DataTemplate>
-                    <TextBlock Text="{DynamicResource Text.SelectCourse}"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Foreground="Gray"/>
-                </DataTemplate>
-            </Setter>
-        </Style>
-        <Style Selector="ContentControl:has-content">
-            <Setter Property="ContentTemplate">
-                <DataTemplate x:DataType="models:Course">
-                    <ScrollViewer>
-                        <StackPanel Spacing="10">
-                            <TextBlock Text="{Binding FullName}" FontSize="20" FontWeight="Bold" TextWrapping="Wrap"/>
-
-                            <Border Width="200" Height="200" Background="DarkGray" HorizontalAlignment="Center" Margin="0,10">
-                                <Image Source="{Binding CoverImagePath, Converter={StaticResource BitmapValueConverter}}" Stretch="UniformToFill"/>
-                                <TextBlock Text="{DynamicResource Image.Placeholder}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Border>
-
-                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
-                            <Separator/>
-                            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource Details.Category}" FontWeight="Bold" Margin="0,0,10,0"/>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Category}"/>
-
-                                <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource Details.Rating}" FontWeight="Bold" Margin="0,0,10,0"/>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Rating, StringFormat={}{0}/5.0}"/>
-
-                                <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource Details.Price}" FontWeight="Bold" Margin="0,0,10,0"/>
-                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Price, StringFormat={}{0:C}}" Foreground="Green"/>
-
-                                <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource Details.Author}" FontWeight="Bold" Margin="0,0,10,0"/>
-                                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Author}"/>
-
-                                <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource Details.AvailableSlots}" FontWeight="Bold" Margin="0,0,10,0"/>
-                                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Quantity}"/>
-                            </Grid>
-                        </StackPanel>
-                    </ScrollViewer>
-                </DataTemplate>
-            </Setter>
-        </Style>
-    </Window.Styles>
+    <Window.Resources>
+        <utils:BitmapValueConverter x:Key="BitmapValueConverter"/>
+    </Window.Resources>
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
     <Grid ColumnDefinitions="300,*" RowDefinitions="Auto,*" Margin="10">
-        <!-- Header -->
         <Grid Grid.ColumnSpan="2" ColumnDefinitions="*,Auto" Margin="0,0,0,10">
             <TextBlock Text="{DynamicResource Header.AvailableCourses}" FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
             <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="5">
-                 <!-- Role switching buttons -->
                 <Button Content="Login as Client" Command="{Binding LoginCommand}">
                     <Button.CommandParameter>
                         <services:UserRole>Client</services:UserRole>
@@ -84,37 +39,98 @@
             </StackPanel>
         </Grid>
 
-        <!-- Left Panel: Course List and Actions -->
         <DockPanel Grid.Row="1">
-            <!-- Action Buttons, only visible for Admins -->
+            <StackPanel DockPanel.Dock="Top" Spacing="10" Margin="0,0,0,10">
+                <TextBox Text="{Binding SearchQuery}" Watermark="{DynamicResource Filter.Search}" />
+                <Grid ColumnDefinitions="*,*">
+                    <ComboBox Grid.Column="0"
+                              ItemsSource="{Binding Categories}"
+                              SelectedItem="{Binding SelectedCategory}"
+                              PlaceholderText="{DynamicResource Filter.Category}"
+                              HorizontalAlignment="Stretch"
+                              Margin="0,0,5,0"/>
+                    <Grid Grid.Column="1" ColumnDefinitions="*,*">
+                        <NumericUpDown Grid.Column="0" Value="{Binding MinPrice}" Watermark="{DynamicResource Filter.MinPrice}" ShowButtonSpinner="False" Minimum="0" Margin="0,0,5,0"/>
+                        <NumericUpDown Grid.Column="1" Value="{Binding MaxPrice}" Watermark="{DynamicResource Filter.MaxPrice}" ShowButtonSpinner="False" Minimum="0"/>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="5" Margin="0,10,0,0" IsVisible="{Binding IsAdmin}">
                 <Button Content="{DynamicResource Button.Add}" Command="{Binding AddCourseCommand}" />
                 <Button Content="{DynamicResource Button.Edit}" Command="{Binding EditCourseCommand}" />
                 <Button Content="{DynamicResource Button.Delete}" Command="{Binding DeleteCourseCommand}" />
             </StackPanel>
 
-            <!-- Course List -->
-            <ListBox ItemsSource="{Binding Courses}" SelectedItem="{Binding SelectedCourse}">
+            <ListBox ItemsSource="{Binding FilteredCourses}" SelectedItem="{Binding SelectedCourse}">
                 <ListBox.ItemTemplate>
                     <DataTemplate x:DataType="models:Course">
                         <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" Margin="5">
                             <Border Grid.RowSpan="3" Width="60" Height="60" Background="Gray" Margin="0,0,10,0">
-                                <Image Source="{Binding CoverImagePath, Converter={StaticResource BitmapValueConverter}}" Stretch="UniformToFill"/>
-                                <TextBlock Text="Image" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <Panel>
+                                    <Image Source="{Binding CoverImagePath, Converter={StaticResource BitmapValueConverter}}" Stretch="UniformToFill"/>
+                                    <TextBlock Text="Image" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               IsVisible="{Binding CoverImagePath, Converter={x:Static StringConverters.IsNullOrEmpty}}"/>
+                                </Panel>
                             </Border>
 
                             <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontWeight="Bold"/>
                             <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Author}" FontStyle="Italic"/>
-                            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Price, StringFormat={}{0:C}}" Foreground="Green"/>
+                            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Price, StringFormat={}{0:0.00 BYN}}" Foreground="Green"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </DockPanel>
 
-        <!-- Right Panel: Course Details -->
         <Border Grid.Column="1" Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Padding="10" Margin="10,0,0,0">
-            <ContentControl Content="{Binding SelectedCourse}"/>
+            <Panel>
+                <TextBlock Text="{DynamicResource Text.SelectCourse}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="Gray"
+                           IsVisible="{Binding SelectedCourse, Converter={x:Static ObjectConverters.IsNull}}"/>
+
+                <ContentControl Content="{Binding SelectedCourse}"
+                                IsVisible="{Binding SelectedCourse, Converter={x:Static ObjectConverters.IsNotNull}}">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate x:DataType="models:Course">
+                            <ScrollViewer>
+                                <StackPanel Spacing="10">
+                                    <TextBlock Text="{Binding FullName}" FontSize="20" FontWeight="Bold" TextWrapping="Wrap"/>
+
+                                    <Border Width="200" Height="200" Background="DarkGray" HorizontalAlignment="Center" Margin="0,10">
+                                        <Panel>
+                                            <Image Source="{Binding CoverImagePath, Converter={StaticResource BitmapValueConverter}}" Stretch="UniformToFill"/>
+                                            <TextBlock Text="{DynamicResource Image.Placeholder}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       IsVisible="{Binding CoverImagePath, Converter={x:Static StringConverters.IsNullOrEmpty}}"/>
+                                        </Panel>
+                                    </Border>
+
+                                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                                    <Separator/>
+                                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource Details.Category}" FontWeight="Bold" Margin="0,0,10,0"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Category}"/>
+
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource Details.Rating}" FontWeight="Bold" Margin="0,0,10,0"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Rating, StringFormat={}{0}/5.0}"/>
+
+                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource Details.Price}" FontWeight="Bold" Margin="0,0,10,0"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Price, StringFormat={}{0:0.00 BYN}}" Foreground="Green"/>
+
+                                        <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource Details.Author}" FontWeight="Bold" Margin="0,0,10,0"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Author}"/>
+
+                                        <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource Details.AvailableSlots}" FontWeight="Bold" Margin="0,0,10,0"/>
+                                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Quantity}"/>
+                                    </Grid>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
+            </Panel>
         </Border>
     </Grid>
 </Window>
