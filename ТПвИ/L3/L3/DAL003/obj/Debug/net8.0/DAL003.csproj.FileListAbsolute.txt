@@ -1,0 +1,12 @@
+/home/euphoo/02. University/2 КУРС/ТПвИ/L3/L3/DAL003/bin/Debug/net8.0/DAL003.deps.json
+/home/euphoo/02. University/2 КУРС/ТПвИ/L3/L3/DAL003/bin/Debug/net8.0/DAL003.dll
+/home/euphoo/02. University/2 КУРС/ТПвИ/L3/L3/DAL003/bin/Debug/net8.0/DAL003.pdb
+/home/euphoo/02. University/2 КУРС/ТПвИ/L3/L3/DAL003/obj/Debug/net8.0/DAL003.GeneratedMSBuildEditorConfig.editorconfig
+/home/euphoo/02. University/2 КУРС/ТПвИ/L3/L3/DAL003/obj/Debug/net8.0/DAL003.AssemblyInfoInputs.cache
+/home/euphoo/02. University/2 КУРС/ТПвИ/L3/L3/DAL003/obj/Debug/net8.0/DAL003.AssemblyInfo.cs
+/home/euphoo/02. University/2 КУРС/ТПвИ/L3/L3/DAL003/obj/Debug/net8.0/DAL003.csproj.CoreCompileInputs.cache
+/home/euphoo/02. University/2 КУРС/ТПвИ/L3/L3/DAL003/obj/Debug/net8.0/DAL003.sourcelink.json
+/home/euphoo/02. University/2 КУРС/ТПвИ/L3/L3/DAL003/obj/Debug/net8.0/DAL003.dll
+/home/euphoo/02. University/2 КУРС/ТПвИ/L3/L3/DAL003/obj/Debug/net8.0/refint/DAL003.dll
+/home/euphoo/02. University/2 КУРС/ТПвИ/L3/L3/DAL003/obj/Debug/net8.0/DAL003.pdb
+/home/euphoo/02. University/2 КУРС/ТПвИ/L3/L3/DAL003/obj/Debug/net8.0/ref/DAL003.dll
