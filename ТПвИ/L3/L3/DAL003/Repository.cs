@@ -62,7 +62,6 @@ namespace DAL003
 
         public void Dispose()
         {
-            // Resources to release, if any
             GC.SuppressFinalize(this);
         }
     }

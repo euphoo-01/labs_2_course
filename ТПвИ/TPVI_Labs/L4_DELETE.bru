@@ -1,0 +1,16 @@
+meta {
+  name: L4_DELETE
+  type: http
+  seq: 2
+}
+
+delete {
+  url: http://localhost:5032/celebrities/13
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

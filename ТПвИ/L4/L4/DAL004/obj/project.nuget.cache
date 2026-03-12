@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "6+9nRoXatAM=",
+  "success": true,
+  "projectFilePath": "/home/euphoo/02. University/2 КУРС/ТПвИ/L4/L4/DAL004/DAL004.csproj",
+  "expectedPackageFiles": [
+    "/home/euphoo/.nuget/packages/microsoft.netcore.app.ref/8.0.24/microsoft.netcore.app.ref.8.0.24.nupkg.sha512",
+    "/home/euphoo/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.24/microsoft.aspnetcore.app.ref.8.0.24.nupkg.sha512"
+  ],
+  "logs": []
+}
