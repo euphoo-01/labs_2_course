@@ -40,6 +40,7 @@ using (IRepository repository = Repository.Create("Celebrities"))
     app.MapGet("/Celebrities", () => repository.getAllCelebrities());
     app.MapGet("/Celebrities/{id:int}", (int id) => repository.getCelebrityById(id));
     app.MapGet("/Celebrities/BySurname/{surname}", (string surname) => repository.getCelebritiesBySurname(surname));
+    app.MapGet("/Celebrities/PathById/{id:int}", (int id) => repository.getPhotoPathById(id));
     app.MapGet("/", () => "Hello world!");
     app.Run();
 }

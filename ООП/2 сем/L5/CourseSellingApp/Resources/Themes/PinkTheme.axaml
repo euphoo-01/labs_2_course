@@ -1,0 +1,8 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="AppBackgroundBrush" Color="#FFFCE4EC"/>
+    <SolidColorBrush x:Key="AppForegroundBrush" Color="#FF880E4F"/>
+    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#FFF06292"/>
+    <SolidColorBrush x:Key="ButtonForegroundBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="SecondaryBackgroundBrush" Color="#FFF8BBD0"/>
+</ResourceDictionary>

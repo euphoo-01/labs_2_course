@@ -45,6 +45,11 @@
     <ItemGroup>
       <Content Include="L1_queries.sql" />
       <Content Include="L2_queries.sql" />
+      <Content Include="L3_alter.sql" />
+      <Content Include="L3_createTables.sql" />
+      <Content Include="L3_createDb.sql" />
+      <Content Include="L3_dml.sql" />
+      <Content Include="L3_insert.sql" />
       <Content Include="Нормализация.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
