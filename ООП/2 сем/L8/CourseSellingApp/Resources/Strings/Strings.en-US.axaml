@@ -1,0 +1,62 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="Title">Course Selling App</system:String>
+    <system:String x:Key="Header.AvailableCourses">Available Courses</system:String>
+    <system:String x:Key="Header.Help">Help</system:String>
+    <system:String x:Key="Header.ProfileBtn">Profile</system:String>
+    <system:String x:Key="Header.LoginClient">Login as Client</system:String>
+    <system:String x:Key="Header.LoginAdmin">Login as Admin</system:String>
+    <system:String x:Key="Help.Title">Help</system:String>
+    <system:String x:Key="Help.Description">Program for storing and organizing courses.</system:String>
+    <system:String x:Key="Help.Author">Author: euphoo01</system:String>
+    <system:String x:Key="Help.Telegram">Telegram: @euphoo01</system:String>
+    <system:String x:Key="Filter.Search">Search...</system:String>
+    <system:String x:Key="Filter.Category">Category</system:String>
+    <system:String x:Key="Filter.Category.All">All</system:String>
+    <system:String x:Key="Filter.MinPrice">Min Price</system:String>
+    <system:String x:Key="Filter.MaxPrice">Max Price</system:String>
+    <system:String x:Key="Button.Add">Add</system:String>
+    <system:String x:Key="Button.Edit">Edit</system:String>
+    <system:String x:Key="Button.Delete">Delete</system:String>
+    <system:String x:Key="Button.Undo">Undo</system:String>
+    <system:String x:Key="Button.Redo">Redo</system:String>
+    <system:String x:Key="Text.SelectCourse">Select a course to see the details.</system:String>
+    <system:String x:Key="Details.Category">Category:</system:String>
+    <system:String x:Key="Details.Rating">Rating:</system:String>
+    <system:String x:Key="Details.Price">Price:</system:String>
+    <system:String x:Key="Details.Author">Author:</system:String>
+    <system:String x:Key="Details.AvailableSlots">Available Slots:</system:String>
+    <system:String x:Key="Image.Placeholder">Course Image Placeholder</system:String>
+    <system:String x:Key="Edit.Title">Course Details</system:String>
+    <system:String x:Key="Edit.CoverImage">Cover Image:</system:String>
+    <system:String x:Key="Edit.SelectImage">Select Image</system:String>
+    <system:String x:Key="Edit.Name">Name:</system:String>
+    <system:String x:Key="Edit.FullName">Full Name:</system:String>
+    <system:String x:Key="Edit.Author">Author:</system:String>
+    <system:String x:Key="Edit.Description">Description:</system:String>
+    <system:String x:Key="Edit.Category">Category:</system:String>
+    <system:String x:Key="Edit.Price">Price (BYN):</system:String>
+    <system:String x:Key="Edit.Rating">Rating (0-5):</system:String>
+    <system:String x:Key="Edit.Quantity">Quantity:</system:String>
+    <system:String x:Key="Edit.Discount">Discount (%):</system:String>
+    <system:String x:Key="Edit.IsAvailable">Is Available</system:String>
+    <system:String x:Key="Edit.Save">Save</system:String>
+    <system:String x:Key="Edit.Cancel">Cancel</system:String>
+
+    <system:String x:Key="Profile.Title">User Profile</system:String>
+    <system:String x:Key="Profile.Header">Personal Account</system:String>
+    <system:String x:Key="Profile.Name">Name:</system:String>
+    <system:String x:Key="Profile.Email">Email:</system:String>
+    <system:String x:Key="Profile.Language">Language:</system:String>
+    <system:String x:Key="Profile.Language.English">English</system:String>
+    <system:String x:Key="Profile.Language.Russian">Russian</system:String>
+    <system:String x:Key="Profile.Theme">Theme:</system:String>
+    <system:String x:Key="Profile.Theme.Optimistic">Optimistic</system:String>
+    <system:String x:Key="Profile.Theme.Pink">Pink</system:String>
+    <system:String x:Key="Profile.Theme.Grayscale">Grayscale</system:String>
+    <system:String x:Key="Profile.Theme.Dark">Dark</system:String>
+    <system:String x:Key="Profile.SaveChanges">Save Changes</system:String>
+
+</ResourceDictionary>

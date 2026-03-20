@@ -1,0 +1,19 @@
+[
+  {
+    "Id": 3,
+    "Name": "C#",
+    "FullName": "C# Введение",
+    "Description": "Ясос Биб придумал этот оч крутой курс. Тут есть все дешего и сердито!",
+    "ImagePaths": [],
+    "CoverImagePath": "/home/euphoo/02. University/2 КУРС/ООП/2 сем/L4/CourseSellingApp/bin/Debug/net10.0/Assets/Covers/f89f6ca2-6bf5-4bcc-b07d-48371cf583c7.png",
+    "Category": "Software Engineering",
+    "Rating": 5.0,
+    "Price": 300.00,
+    "Quantity": 5,
+    "Discount": 5.0,
+    "IsAvailable": true,
+    "RelatedCoursesIds": [],
+    "PurchasesCount": 0,
+    "Author": "Ясос Биб"
+  }
+]
