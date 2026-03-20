@@ -1,0 +1,104 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:CourseSellingApp.ViewModels"
+        xmlns:utils="using:CourseSellingApp.Utils"
+        xmlns:controls="using:CourseSellingApp.Views.CustomControls"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="700"
+        x:Class="CourseSellingApp.Views.EditCourseView"
+        x:DataType="vm:EditCourseViewModel"
+        Title="{DynamicResource Edit.Title}"
+        WindowStartupLocation="CenterOwner"
+        Width="400" Height="700">
+
+    <Window.Resources>
+        <utils:BitmapValueConverter x:Key="BitmapValueConverter"/>
+    </Window.Resources>
+
+    <Window.Styles>
+        <Style Selector="Border.drop-target:dragover">
+            <Setter Property="Background" Value="#E0E0E0"/>
+        </Style>
+    </Window.Styles>
+
+    <Design.DataContext>
+        <vm:EditCourseViewModel />
+    </Design.DataContext>
+
+  <Grid RowDefinitions="*,Auto" Margin="15">
+    <ScrollViewer Grid.Row="0">
+        <StackPanel Spacing="10">
+
+            <TextBlock Text="{DynamicResource Edit.CoverImage}"/>
+            <Border Name="DropZone"
+                    BorderBrush="Gray"
+                    BorderThickness="1.5"
+                    CornerRadius="4"
+                    MinHeight="150"
+                    Padding="10"
+                    DragDrop.AllowDrop="True"
+                    Classes="drop-target">
+                <Panel>
+                    <Image Source="{Binding Course.CoverImagePath, Converter={StaticResource BitmapValueConverter}}"
+                           Stretch="Uniform"
+                           IsVisible="{Binding Course.CoverImagePath, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <TextBlock Text="{DynamicResource Edit.DropImage}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="Gray"
+                               IsVisible="{Binding Course.CoverImagePath, Converter={x:Static StringConverters.IsNullOrEmpty}}"/>
+                </Panel>
+            </Border>
+            <Button Content="{DynamicResource Edit.SelectImage}"
+                    Command="{Binding SelectImageCommand}"
+                    HorizontalAlignment="Center"/>
+
+            <TextBlock Text="{DynamicResource Edit.Name}"/>
+            <TextBox Text="{Binding Course.Name}"/>
+
+            <TextBlock Text="{DynamicResource Edit.FullName}"/>
+            <TextBox Text="{Binding Course.FullName}"/>
+
+            <TextBlock Text="{DynamicResource Edit.Author}"/>
+            <TextBox Text="{Binding Course.Author}"/>
+
+            <TextBlock Text="{DynamicResource Edit.Description}"/>
+            <TextBox Text="{Binding Course.Description}" TextWrapping="Wrap" Height="80" AcceptsReturn="True"/>
+
+            <TextBlock Text="{DynamicResource Edit.Category}"/>
+            <TextBox Text="{Binding Course.Category}"/>
+
+            <Grid ColumnDefinitions="*,*">
+              <StackPanel Grid.Column="0" Spacing="5" Margin="0,0,5,0">
+                <TextBlock Text="{DynamicResource Edit.Price}"/>
+                <NumericUpDown Value="{Binding Course.Price}" FormatString="0.00" Minimum="0"/>
+              </StackPanel>
+              <StackPanel Grid.Column="1" Spacing="5" Margin="5,0,0,0">
+                <TextBlock Text="{DynamicResource Edit.Rating}"/>
+                <controls:StarRatingControl Value="{Binding Course.Rating}" MaxStars="5"/>
+              </StackPanel>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*">
+                <StackPanel Grid.Column="0" Spacing="5" Margin="0,0,5,0">
+                    <TextBlock Text="{DynamicResource Edit.Quantity}"/>
+                    <NumericUpDown Value="{Binding Course.Quantity}" Minimum="0"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Spacing="5" Margin="5,0,0,0">
+                    <TextBlock Text="{DynamicResource Edit.Discount}"/>
+                    <NumericUpDown Value="{Binding Course.Discount}" Minimum="0"/>
+                </StackPanel>
+            </Grid>
+
+            <CheckBox IsChecked="{Binding Course.IsAvailable}" Content="{DynamicResource Edit.IsAvailable}" Margin="0,10,0,0"/>
+
+        </StackPanel>
+    </ScrollViewer>
+    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right" Margin="0,15,0,0">
+      <Button Content="{DynamicResource Edit.Save}" Command="{Binding SaveCommand}" IsDefault="True"/>
+      <Button Content="{DynamicResource Edit.Cancel}" Command="{Binding CancelCommand}" IsCancel="True"/>
+    </StackPanel>
+  </Grid>
+
+</Window>
