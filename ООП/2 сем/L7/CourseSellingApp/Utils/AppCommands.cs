@@ -1,5 +1,8 @@
 using System;
 using System.Windows.Input;
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+using CourseSellingApp.Views;
 
 namespace CourseSellingApp.Utils
 {
@@ -36,9 +39,14 @@ namespace CourseSellingApp.Utils
             execute: _ => ShowHelpMessage()
         );
 
-        private static void ShowHelpMessage()
+        private static async void ShowHelpMessage()
         {
-            Console.WriteLine("Help command executed.");
+            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop &&
+                desktop.MainWindow != null)
+            {
+                var helpWindow = new HelpWindow();
+                await helpWindow.ShowDialog(desktop.MainWindow);
+            }
         }
     }
 }

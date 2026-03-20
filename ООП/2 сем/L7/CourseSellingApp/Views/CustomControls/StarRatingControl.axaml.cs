@@ -11,7 +11,6 @@ namespace CourseSellingApp.Views.CustomControls
 {
     public partial class StarRatingControl : UserControl
     {
-        // 1. DependencyProperty equivalent (StyledProperty)
         public static readonly StyledProperty<int> MaxStarsProperty =
             AvaloniaProperty.Register<StarRatingControl, int>(
                 nameof(MaxStars),
@@ -27,13 +26,13 @@ namespace CourseSellingApp.Views.CustomControls
 
         private static bool ValidateMaxStars(int value)
         {
-            return value > 0; // Validation: value must be positive
+            return value > 0;
         }
 
         private static int CoerceMaxStars(AvaloniaObject sender, int value)
         {
-            if (value > 10) return 10; // Coercion: max 10 stars
-            if (value < 1) return 1;   // min 1 star
+            if (value > 10) return 10;
+            if (value < 1) return 1;
             return value;
         }
 
@@ -58,7 +57,7 @@ namespace CourseSellingApp.Views.CustomControls
         private static double CoerceValue(AvaloniaObject sender, double value)
         {
             var control = (StarRatingControl)sender;
-            if (value > control.MaxStars) return control.MaxStars; // Value cannot exceed MaxStars
+            if (value > control.MaxStars) return control.MaxStars;
             if (value < 0) return 0;
             return value;
         }

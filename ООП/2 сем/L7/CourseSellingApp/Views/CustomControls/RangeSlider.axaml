@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="CourseSellingApp.Views.CustomControls.RangeSlider">
+    <UserControl.Styles>
+        <Style Selector="Thumb.range">
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Ellipse Width="16" Height="16"
+                             Fill="{DynamicResource ButtonBackgroundBrush}"
+                             Stroke="{DynamicResource AppBackgroundBrush}"
+                             StrokeThickness="2"
+                             Cursor="Hand"/>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Height="30" Margin="8,0">
+        <Border Height="4" Background="Gray" Opacity="0.3" CornerRadius="2" VerticalAlignment="Center"/>
+
+        <Canvas x:Name="TrackCanvas" VerticalAlignment="Center" Height="16">
+            <Border x:Name="ActiveTrack" Height="4"
+                    Background="{DynamicResource ButtonBackgroundBrush}"
+                    CornerRadius="2" Canvas.Top="6"/>
+
+            <Thumb x:Name="LowerThumb" Classes="range" Canvas.Top="0"
+                   DragDelta="LowerThumb_DragDelta"/>
+
+            <Thumb x:Name="UpperThumb" Classes="range" Canvas.Top="0"
+                   DragDelta="UpperThumb_DragDelta"/>
+        </Canvas>
+    </Grid>
+</UserControl>

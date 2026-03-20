@@ -4,6 +4,14 @@
 
     <system:String x:Key="Title">Приложение для продажи курсов</system:String>
     <system:String x:Key="Header.AvailableCourses">Доступные курсы</system:String>
+    <system:String x:Key="Header.Help">Справка</system:String>
+    <system:String x:Key="Header.ProfileBtn">Профиль</system:String>
+    <system:String x:Key="Header.LoginClient">Войти как Клиент</system:String>
+    <system:String x:Key="Header.LoginAdmin">Войти как Админ</system:String>
+    <system:String x:Key="Help.Title">Справка</system:String>
+    <system:String x:Key="Help.Description">Программа для хранения и упорядочивания курсов.</system:String>
+    <system:String x:Key="Help.Author">Автор: euphoo01</system:String>
+    <system:String x:Key="Help.Telegram">Telegram: @euphoo01</system:String>
     <system:String x:Key="Filter.Search">Поиск...</system:String>
     <system:String x:Key="Filter.Category">Категория</system:String>
     <system:String x:Key="Filter.Category.All">Все</system:String>

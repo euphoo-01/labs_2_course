@@ -4,6 +4,14 @@
 
     <system:String x:Key="Title">Course Selling App</system:String>
     <system:String x:Key="Header.AvailableCourses">Available Courses</system:String>
+    <system:String x:Key="Header.Help">Help</system:String>
+    <system:String x:Key="Header.ProfileBtn">Profile</system:String>
+    <system:String x:Key="Header.LoginClient">Login as Client</system:String>
+    <system:String x:Key="Header.LoginAdmin">Login as Admin</system:String>
+    <system:String x:Key="Help.Title">Help</system:String>
+    <system:String x:Key="Help.Description">Program for storing and organizing courses.</system:String>
+    <system:String x:Key="Help.Author">Author: euphoo01</system:String>
+    <system:String x:Key="Help.Telegram">Telegram: @euphoo01</system:String>
     <system:String x:Key="Filter.Search">Search...</system:String>
     <system:String x:Key="Filter.Category">Category</system:String>
     <system:String x:Key="Filter.Category.All">All</system:String>

@@ -1,5 +1,4 @@
 using Avalonia.Controls;
-using Avalonia.Input;
 using Avalonia.Platform.Storage;
 using Avalonia.ReactiveUI;
 using CourseSellingApp.ViewModels;
@@ -20,22 +19,6 @@ namespace CourseSellingApp.Views
                 {
                     ViewModel.SaveCommand.Subscribe(Close).DisposeWith(d);
                     ViewModel.CancelCommand.Subscribe(_ => Close()).DisposeWith(d);
-
-                    var dropZone = this.FindControl<Border>("DropZone");
-                    if (dropZone != null)
-                    {
-                        dropZone.AddHandler(DragDrop.DragOverEvent, (s, e) =>
-                        {
-                            ViewModel.OnDragOver(s, e);
-                            e.Handled = true;
-                        });
-
-                        dropZone.AddHandler(DragDrop.DropEvent, (s, e) =>
-                        {
-                            ViewModel.OnDrop(s, e);
-                            e.Handled = true;
-                        });
-                    }
 
                     ViewModel.SelectImage.RegisterHandler(async interaction =>
                     {

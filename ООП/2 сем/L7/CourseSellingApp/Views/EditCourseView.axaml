@@ -16,11 +16,6 @@
         <utils:BitmapValueConverter x:Key="BitmapValueConverter"/>
     </Window.Resources>
 
-    <Window.Styles>
-        <Style Selector="Border.drop-target:dragover">
-            <Setter Property="Background" Value="#E0E0E0"/>
-        </Style>
-    </Window.Styles>
 
     <Design.DataContext>
         <vm:EditCourseViewModel />
@@ -36,9 +31,7 @@
                     BorderThickness="1.5"
                     CornerRadius="4"
                     MinHeight="150"
-                    Padding="10"
-                    DragDrop.AllowDrop="True"
-                    Classes="drop-target">
+                    Padding="10">
                 <Panel>
                     <Image Source="{Binding Course.CoverImagePath, Converter={StaticResource BitmapValueConverter}}"
                            Stretch="Uniform"

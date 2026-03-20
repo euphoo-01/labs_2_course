@@ -25,14 +25,14 @@
         <Grid Grid.ColumnSpan="2" Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,10">
             <TextBlock Text="{DynamicResource Header.AvailableCourses}" FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
             <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="5">
-                <Button Content="Help" Command="{x:Static utils:AppCommands.ShowHelpCommand}" />
-                <Button Content="Profile" Command="{Binding OpenProfileCommand}" />
-                <Button Content="Login as Client" Command="{Binding LoginCommand}">
+                <Button Content="{DynamicResource Header.Help}" Command="{x:Static utils:AppCommands.ShowHelpCommand}" />
+                <Button Content="{DynamicResource Header.ProfileBtn}" Command="{Binding OpenProfileCommand}" />
+                <Button Content="{DynamicResource Header.LoginClient}" Command="{Binding LoginCommand}">
                     <Button.CommandParameter>
                         <services:UserRole>Client</services:UserRole>
                     </Button.CommandParameter>
                 </Button>
-                <Button Content="Login as Admin" Command="{Binding LoginCommand}">
+                <Button Content="{DynamicResource Header.LoginAdmin}" Command="{Binding LoginCommand}">
                     <Button.CommandParameter>
                         <services:UserRole>Administrator</services:UserRole>
                     </Button.CommandParameter>
@@ -53,18 +53,21 @@
         <Grid Grid.Row="2" RowDefinitions="Auto,*">
             <StackPanel Grid.Row="0" Spacing="10" Margin="0,0,0,10">
                 <TextBox Text="{Binding SearchQuery}" Watermark="{DynamicResource Filter.Search}" />
-                <Grid ColumnDefinitions="*,*">
-                    <ComboBox Grid.Column="0"
-                              ItemsSource="{Binding Categories}"
-                              SelectedItem="{Binding SelectedCategory}"
-                              PlaceholderText="{DynamicResource Filter.Category}"
-                              HorizontalAlignment="Stretch"
-                              Margin="0,0,5,0"/>
-                    <Grid Grid.Column="1" ColumnDefinitions="*,*">
-                        <NumericUpDown Grid.Column="0" Value="{Binding MinPrice}" Watermark="{DynamicResource Filter.MinPrice}" ShowButtonSpinner="False" Minimum="0" Margin="0,0,5,0"/>
-                        <NumericUpDown Grid.Column="1" Value="{Binding MaxPrice}" Watermark="{DynamicResource Filter.MaxPrice}" ShowButtonSpinner="False" Minimum="0"/>
+                <ComboBox ItemsSource="{Binding Categories}"
+                          SelectedItem="{Binding SelectedCategory}"
+                          PlaceholderText="{DynamicResource Filter.Category}"
+                          HorizontalAlignment="Stretch"/>
+                <StackPanel VerticalAlignment="Center">
+                    <Grid ColumnDefinitions="*,Auto,*">
+                        <TextBlock Grid.Column="0" Text="{DynamicResource Filter.MinPrice}" FontSize="12" Foreground="Gray" HorizontalAlignment="Left"/>
+                        <TextBlock Grid.Column="2" Text="{DynamicResource Filter.MaxPrice}" FontSize="12" Foreground="Gray" HorizontalAlignment="Right"/>
                     </Grid>
-                </Grid>
+                    <controls:RangeSlider Minimum="0" Maximum="3000" LowerValue="{Binding MinPriceDouble, Mode=TwoWay}" UpperValue="{Binding MaxPriceDouble, Mode=TwoWay}" Margin="0,5"/>
+                    <Grid ColumnDefinitions="*,Auto,*">
+                        <TextBlock Grid.Column="0" Text="{Binding MinPriceDouble, StringFormat={}{0:0} BYN}" FontSize="12" HorizontalAlignment="Left"/>
+                        <TextBlock Grid.Column="2" Text="{Binding MaxPriceDouble, StringFormat={}{0:0} BYN}" FontSize="12" HorizontalAlignment="Right"/>
+                    </Grid>
+                </StackPanel>
             </StackPanel>
 
             <ListBox Grid.Row="1" ItemsSource="{Binding FilteredCourses}" SelectedItem="{Binding SelectedCourse}" Background="Transparent">

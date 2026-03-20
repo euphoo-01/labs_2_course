@@ -55,10 +55,16 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [/home/euphoo/02. University/2 КУРС/ООП/2 сем/L7/CourseSellingApp/Views/CustomControls/AnimatedCourseCard.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[/home/euphoo/02. University/2 КУРС/ООП/2 сем/L7/CourseSellingApp/Views/CustomControls/RangeSlider.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [/home/euphoo/02. University/2 КУРС/ООП/2 сем/L7/CourseSellingApp/Views/CustomControls/StarRatingControl.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [/home/euphoo/02. University/2 КУРС/ООП/2 сем/L7/CourseSellingApp/Views/EditCourseView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/euphoo/02. University/2 КУРС/ООП/2 сем/L7/CourseSellingApp/Views/HelpWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [/home/euphoo/02. University/2 КУРС/ООП/2 сем/L7/CourseSellingApp/Views/MainWindow.axaml]

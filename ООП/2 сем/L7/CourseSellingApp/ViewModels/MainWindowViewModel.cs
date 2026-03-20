@@ -26,8 +26,8 @@ namespace CourseSellingApp.ViewModels
         private bool _isAdmin;
         private string _searchQuery = string.Empty;
         private string? _selectedCategory;
-        private decimal? _minPrice;
-        private decimal? _maxPrice;
+        private decimal? _minPrice = 0m;
+        private decimal? _maxPrice = 3000m;
 
         public ObservableCollection<Course> Courses { get; }
         public ObservableCollection<Course> FilteredCourses { get; }
@@ -65,13 +65,35 @@ namespace CourseSellingApp.ViewModels
         public decimal? MinPrice
         {
             get => _minPrice;
-            set { this.RaiseAndSetIfChanged(ref _minPrice, value); FilterCourses(); }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _minPrice, value);
+                this.RaisePropertyChanged(nameof(MinPriceDouble));
+                FilterCourses();
+            }
         }
 
         public decimal? MaxPrice
         {
             get => _maxPrice;
-            set { this.RaiseAndSetIfChanged(ref _maxPrice, value); FilterCourses(); }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _maxPrice, value);
+                this.RaisePropertyChanged(nameof(MaxPriceDouble));
+                FilterCourses();
+            }
+        }
+
+        public double? MinPriceDouble
+        {
+            get => (double?)MinPrice;
+            set => MinPrice = (decimal?)value;
+        }
+
+        public double? MaxPriceDouble
+        {
+            get => (double?)MaxPrice;
+            set => MaxPrice = (decimal?)value;
         }
 
         public ReactiveCommand<Unit, Unit> AddCourseCommand { get; }

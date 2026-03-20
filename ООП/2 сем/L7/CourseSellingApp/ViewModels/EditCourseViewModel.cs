@@ -1,4 +1,3 @@
-using Avalonia.Input;
 using Avalonia.Platform.Storage;
 using CourseSellingApp.Models;
 using ReactiveUI;
@@ -66,29 +65,6 @@ namespace CourseSellingApp.ViewModels
 
             SaveCommand = ReactiveCommand.Create(() => Course, canSave);
             CancelCommand = ReactiveCommand.Create(() => (Course?)null);
-        }
-
-        public void OnDragOver(object? sender, DragEventArgs e)
-        {
-            e.DragEffects = DragDropEffects.None;
-
-#pragma warning disable CS0618
-            if (e.Data.GetFiles()?.Any() == true)
-#pragma warning restore CS0618
-            {
-                e.DragEffects = DragDropEffects.Copy;
-            }
-        }
-
-        public async void OnDrop(object? sender, DragEventArgs e)
-        {
-#pragma warning disable CS0618
-            var files = e.Data.GetFiles();
-#pragma warning restore CS0618
-            if (files?.FirstOrDefault()?.TryGetLocalPath() is { } filePath)
-            {
-                await ProcessImageFileAsync(filePath);
-            }
         }
 
         private async Task ProcessImageFileAsync(string filePath)
