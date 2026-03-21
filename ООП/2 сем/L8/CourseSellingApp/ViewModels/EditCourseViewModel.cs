@@ -13,6 +13,7 @@ namespace CourseSellingApp.ViewModels
     public class EditCourseViewModel : ViewModelBase
     {
         public Course Course { get; }
+        public System.Collections.ObjectModel.ObservableCollection<string> AvailableAuthors { get; }
 
         public ReactiveCommand<Unit, Course> SaveCommand { get; }
         public ReactiveCommand<Unit, Course?> CancelCommand { get; }
@@ -23,6 +24,8 @@ namespace CourseSellingApp.ViewModels
         public EditCourseViewModel()
         {
             Course = new Course();
+            AvailableAuthors = new System.Collections.ObjectModel.ObservableCollection<string>();
+            _ = LoadAuthorsAsync();
             ShowMessage = new Interaction<string, Unit>();
             SelectImage = new Interaction<Unit, string?>();
 
@@ -46,6 +49,8 @@ namespace CourseSellingApp.ViewModels
         public EditCourseViewModel(Course course)
         {
             Course = course;
+            AvailableAuthors = new System.Collections.ObjectModel.ObservableCollection<string>();
+            _ = LoadAuthorsAsync();
             ShowMessage = new Interaction<string, Unit>();
             SelectImage = new Interaction<Unit, string?>();
 
@@ -65,6 +70,17 @@ namespace CourseSellingApp.ViewModels
 
             SaveCommand = ReactiveCommand.Create(() => Course, canSave);
             CancelCommand = ReactiveCommand.Create(() => (Course?)null);
+        }
+
+        private async Task LoadAuthorsAsync()
+        {
+            var authorService = new CourseSellingApp.Services.AuthorService();
+            var authors = await authorService.GetAuthorsAsync();
+            AvailableAuthors.Clear();
+            foreach (var author in authors)
+            {
+                AvailableAuthors.Add(author.FullName);
+            }
         }
 
         private async Task ProcessImageFileAsync(string filePath)

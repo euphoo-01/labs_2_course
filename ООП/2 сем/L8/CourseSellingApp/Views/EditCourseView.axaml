@@ -27,7 +27,7 @@
 
             <TextBlock Text="{DynamicResource Edit.CoverImage}"/>
             <Border Name="DropZone"
-                    BorderBrush="Gray"
+                    BorderBrush="{DynamicResource AppForegroundBrush}"
                     BorderThickness="1.5"
                     CornerRadius="4"
                     MinHeight="150"
@@ -39,7 +39,8 @@
                     <TextBlock Text="{DynamicResource Edit.DropImage}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Foreground="Gray"
+                               Foreground="{DynamicResource AppForegroundBrush}"
+                               Opacity="0.5"
                                IsVisible="{Binding Course.CoverImagePath, Converter={x:Static StringConverters.IsNullOrEmpty}}"/>
                 </Panel>
             </Border>
@@ -54,7 +55,7 @@
             <TextBox Text="{Binding Course.FullName}"/>
 
             <TextBlock Text="{DynamicResource Edit.Author}"/>
-            <TextBox Text="{Binding Course.Author}"/>
+            <ComboBox ItemsSource="{Binding AvailableAuthors}" SelectedItem="{Binding Course.Author}" HorizontalAlignment="Stretch"/>
 
             <TextBlock Text="{DynamicResource Edit.Description}"/>
             <TextBox Text="{Binding Course.Description}" TextWrapping="Wrap" Height="80" AcceptsReturn="True"/>

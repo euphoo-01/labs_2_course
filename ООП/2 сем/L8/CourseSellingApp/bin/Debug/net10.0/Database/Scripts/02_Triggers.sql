@@ -1,6 +1,3 @@
--- Скрипт создания триггеров и функций для них (Требование 2)
-
--- 1. Таблица аудита изменения цен на курсы
 CREATE TABLE IF NOT EXISTS CoursePriceAudit (
     Id SERIAL PRIMARY KEY,
     CourseId INT NOT NULL,
@@ -9,11 +6,9 @@ CREATE TABLE IF NOT EXISTS CoursePriceAudit (
     ChangedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. Функция, которая будет вызываться триггером (Аудит цен)
 CREATE OR REPLACE FUNCTION log_course_price_change()
 RETURNS TRIGGER AS $$
 BEGIN
-    -- Если цена изменилась, записываем в лог
     IF NEW.Price <> OLD.Price THEN
         INSERT INTO CoursePriceAudit(CourseId, OldPrice, NewPrice)
         VALUES (OLD.Id, OLD.Price, NEW.Price);
@@ -22,14 +17,12 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- 3. Триггер, срабатывающий после обновления записи в таблице Courses
 DROP TRIGGER IF EXISTS trg_course_price_change ON Courses;
 CREATE TRIGGER trg_course_price_change
 AFTER UPDATE ON Courses
 FOR EACH ROW
 EXECUTE FUNCTION log_course_price_change();
 
--- 4. Триггер для предотвращения удаления категорий, в которых есть курсы
 CREATE OR REPLACE FUNCTION prevent_category_deletion()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -46,7 +39,6 @@ BEFORE DELETE ON Categories
 FOR EACH ROW
 EXECUTE FUNCTION prevent_category_deletion();
 
--- 5. Триггер для автоматического обновления IsAvailable в зависимости от Quantity
 CREATE OR REPLACE FUNCTION update_course_availability()
 RETURNS TRIGGER AS $$
 BEGIN

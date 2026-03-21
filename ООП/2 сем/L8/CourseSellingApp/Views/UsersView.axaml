@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:CourseSellingApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+             x:Class="CourseSellingApp.Views.UsersView"
+             x:DataType="vm:UsersViewModel">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="{DynamicResource Admin.Authors.Title}" FontSize="20" FontWeight="Bold" Margin="10" Foreground="{DynamicResource AppForegroundBrush}"/>
+
+        <!-- Action Buttons -->
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button Content="{DynamicResource Admin.Authors.Add}"
+                    Command="{Binding AddAuthorCommand}"
+                    Margin="5"/>
+            <Button Content="{DynamicResource Admin.Authors.Edit}"
+                    Command="{Binding EditAuthorCommand}"
+                    Margin="5"/>
+            <Button Content="{DynamicResource Admin.Authors.Delete}"
+                    Command="{Binding DeleteAuthorCommand}"
+                    Margin="5"/>
+        </StackPanel>
+
+        <!-- Authors DataGrid -->
+        <DataGrid Name="AuthorsGrid"
+                  ItemsSource="{Binding Authors}"
+                  SelectedItem="{Binding SelectedAuthor}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  CanUserSortColumns="True"
+                  Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{DynamicResource Admin.Authors.ID}" Binding="{Binding Id}" SortMemberPath="Id" Width="Auto"/>
+                <DataGridTextColumn Header="{DynamicResource Admin.Authors.FullName}" Binding="{Binding FullName}" SortMemberPath="FullName" Width="2*"/>
+                <DataGridTextColumn Header="{DynamicResource Admin.Authors.Biography}" Binding="{Binding Biography}" SortMemberPath="Biography" Width="3*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </DockPanel>
+</UserControl>

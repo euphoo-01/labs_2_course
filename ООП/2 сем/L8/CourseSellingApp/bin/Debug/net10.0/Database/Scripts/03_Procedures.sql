@@ -1,6 +1,3 @@
--- Скрипт создания хранимых процедур (Требование 2 и 4c)
-
--- 1. Добавление нового курса
 CREATE OR REPLACE PROCEDURE add_course_proc(
     p_name VARCHAR(200),
     p_full_name VARCHAR(300),
@@ -29,7 +26,6 @@ BEGIN
 END;
 $$;
 
--- 2. Получение списка курсов с информацией о категории и авторе
 CREATE OR REPLACE FUNCTION get_all_courses_with_details()
 RETURNS TABLE (
     Id INT,
@@ -78,7 +74,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- 3. Обновление цены курса через хранимую процедуру с валидацией
 CREATE OR REPLACE PROCEDURE update_course_price_proc(
     p_course_id INT,
     p_new_price NUMERIC(10, 2)
@@ -94,7 +89,6 @@ BEGIN
 END;
 $$;
 
--- 4. Удаление курса по ID (хранимая процедура)
 CREATE OR REPLACE PROCEDURE delete_course_proc(
     p_course_id INT
 )

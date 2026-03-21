@@ -10,8 +10,8 @@
     <system:String x:Key="Header.LoginAdmin">Login as Admin</system:String>
     <system:String x:Key="Help.Title">Help</system:String>
     <system:String x:Key="Help.Description">Program for storing and organizing courses.</system:String>
-    <system:String x:Key="Help.Author">Author: euphoo01</system:String>
-    <system:String x:Key="Help.Telegram">Telegram: @euphoo01</system:String>
+    <system:String x:Key="Help.Author">Author: Lavshuk S.A.</system:String>
+    <system:String x:Key="Help.Telegram">Telegram: @eighhty_six</system:String>
     <system:String x:Key="Filter.Search">Search...</system:String>
     <system:String x:Key="Filter.Category">Category</system:String>
     <system:String x:Key="Filter.Category.All">All</system:String>
@@ -58,5 +58,35 @@
     <system:String x:Key="Profile.Theme.Grayscale">Grayscale</system:String>
     <system:String x:Key="Profile.Theme.Dark">Dark</system:String>
     <system:String x:Key="Profile.SaveChanges">Save Changes</system:String>
+
+    <!-- Admin Panel -->
+    <system:String x:Key="Admin.Nav.Back">Back to Courses</system:String>
+    <system:String x:Key="Admin.Nav.Home">Home</system:String>
+    <system:String x:Key="Admin.Nav.Authors">Authors</system:String>
+    <system:String x:Key="Admin.Nav.Courses">Courses</system:String>
+    <system:String x:Key="Admin.Nav.Logout">Logout</system:String>
+
+    <system:String x:Key="Admin.Home.Welcome">Welcome, Administrator!</system:String>
+    <system:String x:Key="Admin.Home.Description">Select a category from the left to manage the application's data.</system:String>
+
+    <system:String x:Key="Admin.Authors.Title">Authors Management</system:String>
+    <system:String x:Key="Admin.Authors.Add">Add Author</system:String>
+    <system:String x:Key="Admin.Authors.Edit">Edit Author</system:String>
+    <system:String x:Key="Admin.Authors.Delete">Delete Author</system:String>
+    <system:String x:Key="Admin.Authors.ID">ID</system:String>
+    <system:String x:Key="Admin.Authors.FullName">Full Name</system:String>
+    <system:String x:Key="Admin.Authors.Biography">Biography</system:String>
+    <system:String x:Key="Admin.Authors.EditTitle">Edit Author</system:String>
+
+    <system:String x:Key="Admin.Courses.Title">Courses Management</system:String>
+    <system:String x:Key="Admin.Courses.Add">Add Course</system:String>
+    <system:String x:Key="Admin.Courses.Edit">Edit Course</system:String>
+    <system:String x:Key="Admin.Courses.Delete">Delete Course</system:String>
+    <system:String x:Key="Admin.Courses.ID">ID</system:String>
+    <system:String x:Key="Admin.Courses.Name">Name</system:String>
+    <system:String x:Key="Admin.Courses.Author">Author</system:String>
+    <system:String x:Key="Admin.Courses.Category">Category</system:String>
+    <system:String x:Key="Admin.Courses.Price">Price</system:String>
+    <system:String x:Key="Admin.Courses.Available">Available</system:String>
 
 </ResourceDictionary>

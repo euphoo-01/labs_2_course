@@ -10,8 +10,8 @@
     <system:String x:Key="Header.LoginAdmin">Войти как Админ</system:String>
     <system:String x:Key="Help.Title">Справка</system:String>
     <system:String x:Key="Help.Description">Программа для хранения и упорядочивания курсов.</system:String>
-    <system:String x:Key="Help.Author">Автор: euphoo01</system:String>
-    <system:String x:Key="Help.Telegram">Telegram: @euphoo01</system:String>
+    <system:String x:Key="Help.Author">Автор: Лавшук С.А.</system:String>
+    <system:String x:Key="Help.Telegram">Telegram: @eighhty_six</system:String>
     <system:String x:Key="Filter.Search">Поиск...</system:String>
     <system:String x:Key="Filter.Category">Категория</system:String>
     <system:String x:Key="Filter.Category.All">Все</system:String>
@@ -58,5 +58,35 @@
     <system:String x:Key="Profile.Theme.Grayscale">Оттенки серого</system:String>
     <system:String x:Key="Profile.Theme.Dark">Темная</system:String>
     <system:String x:Key="Profile.SaveChanges">Сохранить изменения</system:String>
+
+    <!-- Admin Panel -->
+    <system:String x:Key="Admin.Nav.Back">Вернуться к курсам</system:String>
+    <system:String x:Key="Admin.Nav.Home">Главная</system:String>
+    <system:String x:Key="Admin.Nav.Authors">Авторы</system:String>
+    <system:String x:Key="Admin.Nav.Courses">Курсы</system:String>
+    <system:String x:Key="Admin.Nav.Logout">Выйти</system:String>
+
+    <system:String x:Key="Admin.Home.Welcome">Добро пожаловать, Администратор!</system:String>
+    <system:String x:Key="Admin.Home.Description">Выберите категорию слева для управления данными приложения.</system:String>
+
+    <system:String x:Key="Admin.Authors.Title">Управление авторами</system:String>
+    <system:String x:Key="Admin.Authors.Add">Добавить автора</system:String>
+    <system:String x:Key="Admin.Authors.Edit">Изменить автора</system:String>
+    <system:String x:Key="Admin.Authors.Delete">Удалить автора</system:String>
+    <system:String x:Key="Admin.Authors.ID">ID</system:String>
+    <system:String x:Key="Admin.Authors.FullName">Полное имя</system:String>
+    <system:String x:Key="Admin.Authors.Biography">Биография</system:String>
+    <system:String x:Key="Admin.Authors.EditTitle">Редактировать автора</system:String>
+
+    <system:String x:Key="Admin.Courses.Title">Управление курсами</system:String>
+    <system:String x:Key="Admin.Courses.Add">Добавить курс</system:String>
+    <system:String x:Key="Admin.Courses.Edit">Изменить курс</system:String>
+    <system:String x:Key="Admin.Courses.Delete">Удалить курс</system:String>
+    <system:String x:Key="Admin.Courses.ID">ID</system:String>
+    <system:String x:Key="Admin.Courses.Name">Название</system:String>
+    <system:String x:Key="Admin.Courses.Author">Автор</system:String>
+    <system:String x:Key="Admin.Courses.Category">Категория</system:String>
+    <system:String x:Key="Admin.Courses.Price">Цена</system:String>
+    <system:String x:Key="Admin.Courses.Available">Доступен</system:String>
 
 </ResourceDictionary>

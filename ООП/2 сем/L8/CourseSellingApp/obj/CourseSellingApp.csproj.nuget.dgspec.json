@@ -46,39 +46,43 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[16.1.1, )"
+              "version": "[12.0.1, )"
             },
             "Avalonia": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[11.0.10, )"
+            },
+            "Avalonia.Controls.DataGrid": {
+              "target": "Package",
+              "version": "[11.0.10, )"
             },
             "Avalonia.Desktop": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[11.0.10, )"
             },
             "Avalonia.Diagnostics": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[11.0.10, )"
             },
             "Avalonia.Fonts.Inter": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[11.0.10, )"
             },
             "Avalonia.ReactiveUI": {
               "target": "Package",
-              "version": "[11.3.8, )"
+              "version": "[11.0.10, )"
             },
             "Avalonia.Themes.Fluent": {
               "target": "Package",
-              "version": "[11.3.12, )"
+              "version": "[11.0.10, )"
             },
             "Avalonia.Xaml.Behaviors": {
               "target": "Package",
-              "version": "[11.3.0.6, )"
+              "version": "[11.0.6, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.4.0, )"
+              "version": "[8.2.2, )"
             },
             "MessageBox.Avalonia": {
               "target": "Package",
@@ -86,19 +90,19 @@
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
-              "version": "[10.0.5, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
-              "version": "[10.0.5, )"
+              "version": "[8.0.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[13.0.4, )"
+              "version": "[13.0.3, )"
             },
             "Npgsql": {
               "target": "Package",
-              "version": "[10.0.2, )"
+              "version": "[8.0.3, )"
             }
           },
           "imports": [

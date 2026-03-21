@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:CourseSellingApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+             x:Class="CourseSellingApp.Views.AdminHomeView"
+             x:DataType="vm:AdminHomeViewModel">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="{DynamicResource Admin.Home.Welcome}"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="{DynamicResource AppForegroundBrush}"
+                   Margin="0,0,0,20"/>
+        <TextBlock Text="{DynamicResource Admin.Home.Description}"
+                   Foreground="{DynamicResource AppForegroundBrush}"
+                   FontSize="16"/>
+    </StackPanel>
+</UserControl>

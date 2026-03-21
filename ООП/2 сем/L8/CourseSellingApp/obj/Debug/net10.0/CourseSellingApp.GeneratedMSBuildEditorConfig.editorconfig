@@ -4,13 +4,6 @@ build_property.AvaloniaNameGeneratorBehavior = InitializeComponent
 build_property.AvaloniaNameGeneratorDefaultFieldModifier = internal
 build_property.AvaloniaNameGeneratorFilterByPath = *
 build_property.AvaloniaNameGeneratorFilterByNamespace = *
-build_property.AvaloniaNameGeneratorViewFileNamingStrategy = NamespaceAndClassName
-build_property.AvaloniaNameGeneratorAttachDevTools = true
-build_property.MvvmToolkitEnableINotifyPropertyChangingSupport = true
-build_property._MvvmToolkitIsUsingWindowsRuntimePack = false
-build_property.CsWinRTComponent = 
-build_property.CsWinRTAotOptimizerEnabled = 
-build_property.CsWinRTAotWarningLevel = 
 build_property.TargetFramework = net10.0
 build_property.TargetFrameworkIdentifier = .NETCoreApp
 build_property.TargetFrameworkVersion = v10.0
@@ -52,6 +45,15 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [/home/euphoo/02. University/2 КУРС/ООП/2 сем/L8/CourseSellingApp/Resources/Themes/PinkTheme.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[/home/euphoo/02. University/2 КУРС/ООП/2 сем/L8/CourseSellingApp/Views/AdminHomeView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/euphoo/02. University/2 КУРС/ООП/2 сем/L8/CourseSellingApp/Views/AdminView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/euphoo/02. University/2 КУРС/ООП/2 сем/L8/CourseSellingApp/Views/CoursesView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [/home/euphoo/02. University/2 КУРС/ООП/2 сем/L8/CourseSellingApp/Views/CustomControls/AnimatedCourseCard.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
@@ -59,6 +61,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [/home/euphoo/02. University/2 КУРС/ООП/2 сем/L8/CourseSellingApp/Views/CustomControls/StarRatingControl.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/euphoo/02. University/2 КУРС/ООП/2 сем/L8/CourseSellingApp/Views/EditAuthorView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [/home/euphoo/02. University/2 КУРС/ООП/2 сем/L8/CourseSellingApp/Views/EditCourseView.axaml]
@@ -71,4 +76,7 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [/home/euphoo/02. University/2 КУРС/ООП/2 сем/L8/CourseSellingApp/Views/ProfileView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/euphoo/02. University/2 КУРС/ООП/2 сем/L8/CourseSellingApp/Views/UsersView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

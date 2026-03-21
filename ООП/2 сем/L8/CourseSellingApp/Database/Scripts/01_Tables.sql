@@ -1,5 +1,3 @@
--- Скрипт создания таблиц
-
 CREATE TABLE IF NOT EXISTS Categories (
     Id SERIAL PRIMARY KEY,
     Name VARCHAR(100) NOT NULL UNIQUE
@@ -9,7 +7,7 @@ CREATE TABLE IF NOT EXISTS Authors (
     Id SERIAL PRIMARY KEY,
     FullName VARCHAR(150) NOT NULL,
     Biography TEXT,
-    Photo BYTEA -- Графическая информация (Требование 2)
+    Photo BYTEA
 );
 
 CREATE TABLE IF NOT EXISTS Courses (
@@ -23,10 +21,10 @@ CREATE TABLE IF NOT EXISTS Courses (
     IsAvailable BOOLEAN DEFAULT TRUE,
     PurchasesCount INT DEFAULT 0,
     Rating NUMERIC(3, 2) DEFAULT 0 CHECK (Rating >= 0 AND Rating <= 5),
-    CoverImage BYTEA, -- Графическая информация (Требование 2)
+    CoverImage BYTEA,
     CoverImagePath VARCHAR(500),
-    ImagePaths TEXT, -- Будет хранить JSON массив строк
-    RelatedCoursesIds TEXT, -- Будет хранить JSON массив ID
+    ImagePaths TEXT,
+    RelatedCoursesIds TEXT,
     CategoryId INT NOT NULL,
     AuthorId INT,
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -34,7 +32,6 @@ CREATE TABLE IF NOT EXISTS Courses (
     FOREIGN KEY (AuthorId) REFERENCES Authors(Id) ON DELETE SET NULL
 );
 
--- Индексы для ускорения поиска
 CREATE INDEX IF NOT EXISTS idx_courses_category_id ON Courses(CategoryId);
 CREATE INDEX IF NOT EXISTS idx_courses_author_id ON Courses(AuthorId);
 CREATE INDEX IF NOT EXISTS idx_courses_price ON Courses(Price);

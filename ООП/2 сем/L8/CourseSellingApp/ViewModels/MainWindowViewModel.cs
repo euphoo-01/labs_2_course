@@ -19,7 +19,6 @@ namespace CourseSellingApp.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private readonly ICourseService _courseService;
-        private readonly IUndoRedoService _undoRedoService;
         private readonly IUserService _userService;
         private readonly ILocalizationService _localizationService;
         private Course? _selectedCourse;
@@ -32,8 +31,8 @@ namespace CourseSellingApp.ViewModels
         public ObservableCollection<Course> Courses { get; }
         public ObservableCollection<Course> FilteredCourses { get; }
         public ObservableCollection<string> Categories { get; }
-        public Interaction<EditCourseViewModel, Course?> ShowDialog { get; }
         public Interaction<ProfileViewModel, Unit> ShowProfileDialog { get; }
+        public AdminViewModel AdminViewModel { get; }
 
         public bool IsAdmin
         {
@@ -47,8 +46,7 @@ namespace CourseSellingApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedCourse, value);
         }
 
-        public bool CanUndo => _undoRedoService.CanUndo;
-        public bool CanRedo => _undoRedoService.CanRedo;
+
 
         public string SearchQuery
         {
@@ -96,68 +94,43 @@ namespace CourseSellingApp.ViewModels
             set => MaxPrice = (decimal?)value;
         }
 
-        public ReactiveCommand<Unit, Unit> AddCourseCommand { get; }
-        public ReactiveCommand<Unit, Unit> EditCourseCommand { get; }
-        public ReactiveCommand<Unit, Unit> DeleteCourseCommand { get; }
         public ReactiveCommand<UserRole, Unit> LoginCommand { get; }
         public ReactiveCommand<Unit, Unit> OpenProfileCommand { get; }
-        public ReactiveCommand<Unit, Unit> UndoCommand { get; }
-        public ReactiveCommand<Unit, Unit> RedoCommand { get; }
 
         public MainWindowViewModel(
             ICourseService? courseService = null,
-            IUndoRedoService? undoRedoService = null,
             IUserService? userService = null,
             ILocalizationService? localizationService = null)
         {
             _courseService = courseService ?? Locator.Current.GetService<ICourseService>()!;
-            _undoRedoService = undoRedoService ?? Locator.Current.GetService<IUndoRedoService>()!;
             _userService = userService ?? Locator.Current.GetService<IUserService>()!;
             _localizationService = localizationService ?? Locator.Current.GetService<ILocalizationService>()!;
 
-            _undoRedoService.StateChanged += (s, e) =>
-            {
-                this.RaisePropertyChanged(nameof(CanUndo));
-                this.RaisePropertyChanged(nameof(CanRedo));
-            };
             Courses = new ObservableCollection<Course>();
             FilteredCourses = new ObservableCollection<Course>();
             Categories = new ObservableCollection<string>();
-            ShowDialog = new Interaction<EditCourseViewModel, Course?>();
             ShowProfileDialog = new Interaction<ProfileViewModel, Unit>();
+
+            AdminViewModel = new AdminViewModel();
+            AdminViewModel.BackInteraction.RegisterHandler(async interaction =>
+            {
+                _userService.LoginAs(UserRole.Client);
+                await LoadCoursesAsync();
+                interaction.SetOutput(Unit.Default);
+            });
 
             _userService.OnRoleChanged += (sender, role) => IsAdmin = role == UserRole.Administrator;
             IsAdmin = _userService.CurrentUserRole == UserRole.Administrator;
 
-            var canEditOrDelete = this.WhenAnyValue(
-                x => x.SelectedCourse,
-                x => x.IsAdmin,
-                (course, isAdmin) => course != null && isAdmin)
-                .ObserveOn(RxApp.MainThreadScheduler);
-
-            var canAdd = this.WhenAnyValue(x => x.IsAdmin)
-                .ObserveOn(RxApp.MainThreadScheduler);
-
-            AddCourseCommand = ReactiveCommand.CreateFromTask(AddCourseAsync, canAdd);
-            EditCourseCommand = ReactiveCommand.CreateFromTask(EditCourseAsync, canEditOrDelete);
-            DeleteCourseCommand = ReactiveCommand.CreateFromTask(DeleteCourseAsync, canEditOrDelete);
-            LoginCommand = ReactiveCommand.Create<UserRole>(_userService.LoginAs);
+            LoginCommand = ReactiveCommand.CreateFromTask<UserRole>(async role =>
+            {
+                _userService.LoginAs(role);
+                if (role == UserRole.Client)
+                {
+                    await LoadCoursesAsync();
+                }
+            });
             OpenProfileCommand = ReactiveCommand.CreateFromTask(OpenProfileAsync);
-
-            var canUndoObservable = this.WhenAnyValue(x => x.CanUndo).ObserveOn(RxApp.MainThreadScheduler);
-            var canRedoObservable = this.WhenAnyValue(x => x.CanRedo).ObserveOn(RxApp.MainThreadScheduler);
-
-            UndoCommand = ReactiveCommand.CreateFromTask(async () =>
-            {
-                await _undoRedoService.UndoAsync();
-                await LoadCoursesAsync();
-            }, canUndoObservable);
-
-            RedoCommand = ReactiveCommand.CreateFromTask(async () =>
-            {
-                await _undoRedoService.RedoAsync();
-                await LoadCoursesAsync();
-            }, canRedoObservable);
 
             _localizationService.LanguageChanged += (s, e) =>
             {
@@ -220,63 +193,7 @@ namespace CourseSellingApp.ViewModels
             }
         }
 
-        private async Task AddCourseAsync()
-        {
-            var newCourse = new Course();
-            var viewModel = new EditCourseViewModel(newCourse);
 
-            var result = await ShowDialog.Handle(viewModel);
-            if (result != null)
-            {
-                var command = new AddCourseCommand(_courseService, result);
-                await _undoRedoService.ExecuteAsync(command);
-                await LoadCoursesAsync();
-            }
-        }
-
-        private async Task EditCourseAsync()
-        {
-            if (SelectedCourse == null) return;
-            var courseToEdit = new Course
-            {
-                Id = SelectedCourse.Id,
-                Name = SelectedCourse.Name,
-                FullName = SelectedCourse.FullName,
-                Description = SelectedCourse.Description,
-                ImagePaths = new List<string>(SelectedCourse.ImagePaths ?? new List<string>()),
-                CoverImagePath = SelectedCourse.CoverImagePath,
-                Category = SelectedCourse.Category,
-                Rating = SelectedCourse.Rating,
-                Price = SelectedCourse.Price,
-                Quantity = SelectedCourse.Quantity,
-                Discount = SelectedCourse.Discount,
-                IsAvailable = SelectedCourse.IsAvailable,
-                RelatedCoursesIds = new List<int>(SelectedCourse.RelatedCoursesIds ?? new List<int>()),
-                PurchasesCount = SelectedCourse.PurchasesCount,
-                Author = SelectedCourse.Author
-            };
-
-            var viewModel = new EditCourseViewModel(courseToEdit);
-
-            var result = await ShowDialog.Handle(viewModel);
-            if (result != null)
-            {
-                var command = new EditCourseCommand(_courseService, SelectedCourse, result);
-                await _undoRedoService.ExecuteAsync(command);
-                await LoadCoursesAsync();
-            }
-        }
-
-        private async Task DeleteCourseAsync()
-        {
-            if (SelectedCourse == null) return;
-
-            var command = new DeleteCourseCommand(_courseService, SelectedCourse);
-            await _undoRedoService.ExecuteAsync(command);
-
-            SelectedCourse = null;
-            await LoadCoursesAsync();
-        }
 
         private async Task OpenProfileAsync()
         {

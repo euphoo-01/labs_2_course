@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:CourseSellingApp.ViewModels"
+             xmlns:views="using:CourseSellingApp.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CourseSellingApp.Views.AdminView"
+             x:DataType="vm:AdminViewModel">
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:AdminHomeViewModel}">
+            <views:AdminHomeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:UsersViewModel}">
+            <views:UsersView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CoursesViewModel}">
+            <views:CoursesView/>
+        </DataTemplate>
+    </UserControl.DataTemplates>
+
+    <UserControl.Styles>
+        <Style Selector="Button.NavButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="10,5"/>
+            <Setter Property="Padding" Value="15,10"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        <Style Selector="Button.NavButton:pointerover /template/ Border">
+            <Setter Property="Background" Value="{DynamicResource SecondaryBackgroundBrush}"/>
+        </Style>
+        <Style Selector="Button.NavButton:pressed /template/ Border">
+            <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid ColumnDefinitions="220,*" Background="{DynamicResource AppBackgroundBrush}">
+        <!-- Navigation Panel -->
+        <DockPanel Grid.Column="0" Background="{DynamicResource SecondaryBackgroundBrush}">
+            <StackPanel DockPanel.Dock="Top" Margin="5,10">
+                <Button Content="{DynamicResource Admin.Nav.Back}"
+                        Command="{Binding BackCommand}"
+                        Classes="NavButton"
+                        FontWeight="SemiBold" />
+                <Separator Margin="5,10" Height="1" Background="{DynamicResource AppForegroundBrush}" Opacity="0.2" />
+                <Button Content="{DynamicResource Admin.Nav.Home}"
+                        Command="{Binding NavigateHomeCommand}"
+                        Classes="NavButton"/>
+                <Button Content="{DynamicResource Admin.Nav.Authors}"
+                        Command="{Binding NavigateUsersCommand}"
+                        Classes="NavButton"/>
+                <Button Content="{DynamicResource Admin.Nav.Courses}"
+                        Command="{Binding NavigateCoursesCommand}"
+                        Classes="NavButton"/>
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Content Area -->
+        <ContentControl Grid.Column="1"
+                        Content="{Binding CurrentView}"
+                        Margin="20"/>
+    </Grid>
+</UserControl>

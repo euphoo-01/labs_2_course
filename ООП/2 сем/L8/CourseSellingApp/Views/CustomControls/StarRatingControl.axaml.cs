@@ -1,11 +1,10 @@
 using System;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Media;
 using Avalonia.Layout;
+using Avalonia.Media;
 
 namespace CourseSellingApp.Views.CustomControls
 {
@@ -104,11 +103,12 @@ namespace CourseSellingApp.Views.CustomControls
 
             _starsPanel.Children.Clear();
 
-            for (int i = 1; i <= MaxStars; i++)
+            for (var i = 1; i <= MaxStars; i++)
             {
-                var starPath = new Path
+                var starPath = new Avalonia.Controls.Shapes.Path
                 {
-                    Data = StreamGeometry.Parse("M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"),
+                    Data = StreamGeometry.Parse(
+                        "M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"),
                     Fill = i <= Value ? Brushes.Gold : Brushes.Gray,
                     Width = 24,
                     Height = 24,
@@ -124,7 +124,7 @@ namespace CourseSellingApp.Views.CustomControls
 
         private void StarPath_PointerPressed(object? sender, PointerPressedEventArgs e)
         {
-            if (sender is Path path && path.Tag is int rating)
+            if (sender is Avalonia.Controls.Shapes.Path path && path.Tag is int rating)
             {
                 Value = rating;
                 RaiseEvent(new RoutedEventArgs(RatingChangedEvent, this));

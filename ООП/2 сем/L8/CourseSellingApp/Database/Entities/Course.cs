@@ -3,9 +3,6 @@ using System;
 
 namespace CourseSellingApp.Database.Entities
 {
-    /// <summary>
-    /// Сущность, представляющая таблицу Courses в базе данных.
-    /// </summary>
     public class Course
     {
         public int Id { get; set; }
@@ -20,8 +17,8 @@ namespace CourseSellingApp.Database.Entities
         public double Rating { get; set; }
         public byte[]? CoverImage { get; set; }
         public string? CoverImagePath { get; set; }
-        public string? ImagePaths { get; set; } // JSON string
-        public string? RelatedCoursesIds { get; set; } // JSON string
+        public string? ImagePaths { get; set; }
+        public string? RelatedCoursesIds { get; set; }
         public int CategoryId { get; set; }
         public int? AuthorId { get; set; }
         public DateTime CreatedAt { get; set; }

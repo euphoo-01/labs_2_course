@@ -1,6 +1,5 @@
 using System.Reactive;
 using Avalonia.ReactiveUI;
-using CourseSellingApp.Models;
 using CourseSellingApp.ViewModels;
 using ReactiveUI;
 using System.Reactive.Disposables;
@@ -17,29 +16,13 @@ namespace CourseSellingApp.Views
             {
                 if (ViewModel != null)
                 {
-                    ViewModel.ShowDialog.RegisterHandler(async interaction =>
-                        await DoShowDialogAsync(interaction))
-                        .DisposeWith(disposables);
-
-                    ViewModel.ShowProfileDialog.RegisterHandler(async interaction =>
-                        await DoShowProfileDialogAsync(interaction))
+                    ViewModel.ShowProfileDialog.RegisterHandler(DoShowProfileDialogAsync)
                         .DisposeWith(disposables);
                 }
             });
         }
 
-        private async Task DoShowDialogAsync(IInteractionContext<EditCourseViewModel, Course?> interaction)
-        {
-            var dialog = new EditCourseView
-            {
-                DataContext = interaction.Input
-            };
-
-            var result = await dialog.ShowDialog<Course?>(this);
-            interaction.SetOutput(result);
-        }
-
-        private async Task DoShowProfileDialogAsync(IInteractionContext<ProfileViewModel, Unit> interaction)
+        private async Task DoShowProfileDialogAsync(InteractionContext<ProfileViewModel, Unit> interaction)
         {
             var dialog = new ProfileView
             {
