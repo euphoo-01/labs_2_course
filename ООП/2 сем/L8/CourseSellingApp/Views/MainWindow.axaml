@@ -23,7 +23,6 @@
     </Design.DataContext>
 
     <Grid>
-        <!-- Course Browser View -->
         <Grid IsVisible="{Binding !IsAdmin}" ColumnDefinitions="300,*" RowDefinitions="Auto,Auto,*" Margin="10">
         <Grid Grid.ColumnSpan="2" Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,10">
             <TextBlock Text="{DynamicResource Header.AvailableCourses}" FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
@@ -125,8 +124,7 @@
             </Panel>
         </Border>
         </Grid>
-
-        <!-- Admin Panel View -->
+        
         <Grid IsVisible="{Binding IsAdmin}">
             <views:AdminView DataContext="{Binding AdminViewModel}" />
         </Grid>

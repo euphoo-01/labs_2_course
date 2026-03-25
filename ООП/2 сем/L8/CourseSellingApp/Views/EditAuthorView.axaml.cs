@@ -13,8 +13,6 @@ namespace CourseSellingApp.Views
 
             this.WhenActivated(d =>
             {
-                // When the Save or Cancel commands are executed, close the window
-                // and return the command's result (the Author object or null).
                 d(ViewModel!.SaveCommand.Subscribe(Close));
                 d(ViewModel!.CancelCommand.Subscribe(Close));
             });

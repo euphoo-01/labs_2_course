@@ -1,0 +1,14 @@
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\bin\Debug\net8.0\Test_ASPA005_3.exe
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\bin\Debug\net8.0\Test_ASPA005_3.deps.json
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\bin\Debug\net8.0\Test_ASPA005_3.runtimeconfig.json
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\bin\Debug\net8.0\Test_ASPA005_3.dll
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\bin\Debug\net8.0\Test_ASPA005_3.pdb
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.GeneratedMSBuildEditorConfig.editorconfig
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.AssemblyInfoInputs.cache
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.AssemblyInfo.cs
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.csproj.CoreCompileInputs.cache
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.dll
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\obj\Debug\net8.0\refint\Test_ASPA005_3.dll
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.pdb
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\obj\Debug\net8.0\Test_ASPA005_3.genruntimeconfig.cache
+D:\БГТУ\2 Курс\4 семестр\ПВИ\ASPA005\Test_ASPA005_3\obj\Debug\net8.0\ref\Test_ASPA005_3.dll

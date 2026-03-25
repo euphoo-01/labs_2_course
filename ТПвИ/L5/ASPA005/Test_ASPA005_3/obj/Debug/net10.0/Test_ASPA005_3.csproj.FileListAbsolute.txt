@@ -1,0 +1,15 @@
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/bin/Debug/net10.0/Test_ASPA005_3
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/bin/Debug/net10.0/Test_ASPA005_3.deps.json
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/bin/Debug/net10.0/Test_ASPA005_3.runtimeconfig.json
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/bin/Debug/net10.0/Test_ASPA005_3.dll
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/bin/Debug/net10.0/Test_ASPA005_3.pdb
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/obj/Debug/net10.0/Test_ASPA005_3.GeneratedMSBuildEditorConfig.editorconfig
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/obj/Debug/net10.0/Test_ASPA005_3.AssemblyInfoInputs.cache
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/obj/Debug/net10.0/Test_ASPA005_3.AssemblyInfo.cs
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/obj/Debug/net10.0/Test_ASPA005_3.csproj.CoreCompileInputs.cache
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/obj/Debug/net10.0/Test_ASPA005_3.sourcelink.json
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/obj/Debug/net10.0/Test_ASPA005_3.dll
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/obj/Debug/net10.0/refint/Test_ASPA005_3.dll
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/obj/Debug/net10.0/Test_ASPA005_3.pdb
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/obj/Debug/net10.0/Test_ASPA005_3.genruntimeconfig.cache
+/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/Test_ASPA005_3/obj/Debug/net10.0/ref/Test_ASPA005_3.dll

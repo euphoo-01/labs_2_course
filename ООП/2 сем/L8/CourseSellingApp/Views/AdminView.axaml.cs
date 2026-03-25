@@ -1,7 +1,6 @@
 using Avalonia.ReactiveUI;
 using CourseSellingApp.ViewModels;
 using ReactiveUI;
-using System.Reactive;
 
 namespace CourseSellingApp.Views
 {
@@ -11,10 +10,6 @@ namespace CourseSellingApp.Views
         {
             InitializeComponent();
 
-            this.WhenActivated(d =>
-            {
-                // Interactions handled by parent ViewModels should not be handled here.
-            });
         }
     }
 }

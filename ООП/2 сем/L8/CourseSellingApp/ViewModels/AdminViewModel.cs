@@ -15,12 +15,10 @@ namespace CourseSellingApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _currentView, value);
         }
 
-        // Child ViewModels
         private readonly AdminHomeViewModel _adminHomeViewModel;
         private readonly UsersViewModel _usersViewModel;
         private readonly CoursesViewModel _coursesViewModel;
 
-        // Navigation Commands
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateUsersCommand { get; }
         public ICommand NavigateCoursesCommand { get; }
@@ -29,15 +27,12 @@ namespace CourseSellingApp.ViewModels
 
         public AdminViewModel()
         {
-            // Instantiate the child view models
             _adminHomeViewModel = new AdminHomeViewModel();
             _usersViewModel = new UsersViewModel();
             _coursesViewModel = new CoursesViewModel();
 
-            // Set the default view
             _currentView = _adminHomeViewModel;
 
-            // Create the navigation commands
             NavigateHomeCommand = ReactiveCommand.Create(NavigateToHome);
             NavigateUsersCommand = ReactiveCommand.Create(NavigateToUsers);
             NavigateCoursesCommand = ReactiveCommand.Create(NavigateToCourses);

@@ -1,0 +1,5 @@
+[
+  { "id": 1, "firstname": "Noam", "surname": "Chomsky", "photoPath": "/Photo/Chomsky.jpg" },
+  { "id": 2, "firstname": "Tim", "surname": "Berners-Lee", "photoPath": "/Photo/Berners-Lee.jpg" },
+  { "id": 3, "firstname": "Donald", "surname": "Knuth", "photoPath": "/Photo/Knuth.jpg" }
+]

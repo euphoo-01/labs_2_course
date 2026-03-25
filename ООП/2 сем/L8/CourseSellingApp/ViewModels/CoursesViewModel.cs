@@ -15,7 +15,6 @@ namespace CourseSellingApp.ViewModels
     {
         private readonly CourseService _courseService;
 
-        // Get-only ObservableCollection ensures the binding to the DataGrid never breaks
         public ObservableCollection<Course> Courses { get; }
 
         private Course? _selectedCourse;
@@ -44,7 +43,6 @@ namespace CourseSellingApp.ViewModels
             EditCourseCommand = ReactiveCommand.CreateFromTask(EditCourseAsync, canExecuteEditOrDelete);
             DeleteCourseCommand = ReactiveCommand.CreateFromTask(DeleteCourseAsync, canExecuteEditOrDelete);
 
-            // Load courses immediately on the main thread
             RxApp.MainThreadScheduler.Schedule(async () => await LoadCoursesAsync());
         }
 
@@ -54,7 +52,6 @@ namespace CourseSellingApp.ViewModels
             {
                 var coursesFromDb = await _courseService.GetCoursesAsync();
 
-                // Clear and add items instead of replacing the entire collection
                 Courses.Clear();
                 foreach (var course in coursesFromDb)
                 {

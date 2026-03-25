@@ -14,12 +14,7 @@ namespace CourseSellingApp.ViewModels
     {
         private readonly AuthorService _authorService;
 
-        private ObservableCollection<Author> _authors;
-        public ObservableCollection<Author> Authors
-        {
-            get => _authors;
-            set => this.RaiseAndSetIfChanged(ref _authors, value);
-        }
+        public ObservableCollection<Author> Authors { get; }
 
         private Author? _selectedAuthor;
         public Author? SelectedAuthor
@@ -38,7 +33,7 @@ namespace CourseSellingApp.ViewModels
         public UsersViewModel()
         {
             _authorService = new AuthorService();
-            _authors = new ObservableCollection<Author>();
+            Authors = new ObservableCollection<Author>();
             ShowAuthorDialog = new Interaction<EditAuthorViewModel, Author?>();
 
             var canExecuteEditOrDelete = this.WhenAnyValue(x => x.SelectedAuthor)

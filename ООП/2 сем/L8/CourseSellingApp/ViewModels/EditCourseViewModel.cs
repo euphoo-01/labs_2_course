@@ -67,7 +67,6 @@ namespace CourseSellingApp.ViewModels
                 x => x.Course.Name,
                 x => x.Course.Author,
                 (name, author) => !string.IsNullOrWhiteSpace(name) && !string.IsNullOrWhiteSpace(author));
-
             SaveCommand = ReactiveCommand.Create(() => Course, canSave);
             CancelCommand = ReactiveCommand.Create(() => (Course?)null);
         }

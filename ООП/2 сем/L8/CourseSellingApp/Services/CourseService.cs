@@ -12,43 +12,22 @@ namespace CourseSellingApp.Services
 {
     public class CourseService : ICourseService
     {
-        private readonly string _connectionString;
+        private readonly DatabaseService _dbService;
 
         public CourseService()
         {
-            var dbService = Locator.Current.GetService<DatabaseService>();
-            if (dbService == null)
-            {
-                throw new InvalidOperationException("DatabaseService is not registered in the DI container.");
-            }
-            _connectionString = dbService.GetConnectionString();
+            _dbService = Locator.Current.GetService<DatabaseService>() 
+                ?? throw new InvalidOperationException("DatabaseService is not registered in the DI container.");
         }
 
         public async Task<IEnumerable<Models.Course>> GetCoursesAsync()
         {
-            var courses = new List<Models.Course>();
-
-            await using var connection = new NpgsqlConnection(_connectionString);
-            await connection.OpenAsync();
-
-            await using var command = new NpgsqlCommand("SELECT * FROM get_all_courses_with_details()", connection);
-            await using var reader = await command.ExecuteReaderAsync();
-
-            while (await reader.ReadAsync())
-            {
-                courses.Add(MapReaderToModel(reader));
-            }
-
-            return courses;
+            return await _dbService.QueryAsync("SELECT * FROM get_all_courses_with_details()", MapReaderToModel);
         }
 
         public async Task AddCourseAsync(Models.Course course)
         {
-            await using var connection = new NpgsqlConnection(_connectionString);
-            await connection.OpenAsync();
-            await using var transaction = await connection.BeginTransactionAsync();
-
-            try
+            await _dbService.ExecuteInTransactionAsync(async (connection, transaction) =>
             {
                 var categoryId = await GetOrCreateEntityAsync(connection, transaction, "Categories", "Name", course.Category, "Uncategorized");
                 var authorId = await GetOrCreateEntityAsync(connection, transaction, "Authors", "FullName", course.Author);
@@ -65,23 +44,12 @@ namespace CourseSellingApp.Services
                 await using var command = new NpgsqlCommand(sql, connection, transaction);
                 AddParameters(command, course, categoryId.Value, authorId);
                 await command.ExecuteNonQueryAsync();
-
-                await transaction.CommitAsync();
-            }
-            catch (Exception)
-            {
-                await transaction.RollbackAsync();
-                throw;
-            }
+            });
         }
 
         public async Task UpdateCourseAsync(Models.Course course)
         {
-            await using var connection = new NpgsqlConnection(_connectionString);
-            await connection.OpenAsync();
-            await using var transaction = await connection.BeginTransactionAsync();
-
-            try
+            await _dbService.ExecuteInTransactionAsync(async (connection, transaction) =>
             {
                 var categoryId = await GetOrCreateEntityAsync(connection, transaction, "Categories", "Name", course.Category, "Uncategorized");
                 var authorId = await GetOrCreateEntityAsync(connection, transaction, "Authors", "FullName", course.Author);
@@ -97,31 +65,14 @@ namespace CourseSellingApp.Services
                 await using var command = new NpgsqlCommand(sql, connection, transaction);
                 command.Parameters.AddWithValue("@Id", course.Id);
                 AddParameters(command, course, categoryId.Value, authorId);
-
                 await command.ExecuteNonQueryAsync();
-                await transaction.CommitAsync();
-            }
-            catch (Exception)
-            {
-                await transaction.RollbackAsync();
-                throw;
-            }
+            });
         }
 
         public async Task DeleteCourseAsync(int courseId)
         {
-            await using var connection = new NpgsqlConnection(_connectionString);
-            await connection.OpenAsync();
-
-            await using var command = new NpgsqlCommand("delete_course_proc", connection)
-            {
-                CommandType = CommandType.StoredProcedure
-            };
-            command.Parameters.AddWithValue("p_course_id", courseId);
-
-            await command.ExecuteNonQueryAsync();
+            await _dbService.ExecuteNonQueryAsync("delete_course_proc", p => p.AddWithValue("p_course_id", courseId), CommandType.StoredProcedure);
         }
-
 
         private static Models.Course MapReaderToModel(IDataRecord reader)
         {
@@ -184,6 +135,5 @@ namespace CourseSellingApp.Services
 
             return (int?)newId;
         }
-
     }
 }

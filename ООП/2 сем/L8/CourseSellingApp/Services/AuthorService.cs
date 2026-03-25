@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using CourseSellingApp.Database.Services;
 using CourseSellingApp.Models;
@@ -11,101 +12,61 @@ namespace CourseSellingApp.Services
 {
     public class AuthorService : IAuthorService
     {
-        private readonly string _connectionString;
+        private readonly DatabaseService _dbService;
 
         public AuthorService()
         {
-            var dbService = Locator.Current.GetService<DatabaseService>();
-            if (dbService == null)
-            {
-                throw new InvalidOperationException("DatabaseService is not registered in the DI container.");
-            }
-            _connectionString = dbService.GetConnectionString();
+            _dbService = Locator.Current.GetService<DatabaseService>() 
+                ?? throw new InvalidOperationException("DatabaseService is not registered in the DI container.");
         }
 
         public async Task<IEnumerable<Author>> GetAuthorsAsync()
         {
-            var authors = new List<Author>();
-
-            await using var connection = new NpgsqlConnection(_connectionString);
-            await connection.OpenAsync();
-
-            await using var command = new NpgsqlCommand("SELECT * FROM Authors", connection);
-            await using var reader = await command.ExecuteReaderAsync();
-
-            while (await reader.ReadAsync())
-            {
-                authors.Add(MapReaderToModel(reader));
-            }
-
-            return authors;
+            const string sql = "SELECT * FROM Authors";
+            return await _dbService.QueryAsync(sql, MapReaderToModel);
         }
 
         public async Task<Author?> GetAuthorByIdAsync(int id)
         {
-            await using var connection = new NpgsqlConnection(_connectionString);
-            await connection.OpenAsync();
-
-            await using var command = new NpgsqlCommand("SELECT * FROM Authors WHERE Id = @Id", connection);
-            command.Parameters.AddWithValue("@Id", id);
-
-            await using var reader = await command.ExecuteReaderAsync();
-
-            if (await reader.ReadAsync())
-            {
-                return MapReaderToModel(reader);
-            }
-
-            return null;
+            const string sql = "SELECT * FROM Authors WHERE Id = @Id";
+            var result = await _dbService.QueryAsync(sql, MapReaderToModel, p => p.AddWithValue("@Id", id));
+            return result.FirstOrDefault();
         }
 
         public async Task AddAuthorAsync(Author author)
         {
-            await using var connection = new NpgsqlConnection(_connectionString);
-            await connection.OpenAsync();
-
             const string sql = @"
                 INSERT INTO Authors (FullName, Biography, Photo)
                 VALUES (@FullName, @Biography, @Photo)";
 
-            await using var command = new NpgsqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@FullName", author.FullName);
-            command.Parameters.AddWithValue("@Biography", (object?)author.Biography ?? DBNull.Value);
-            command.Parameters.AddWithValue("@Photo", (object?)author.Photo ?? DBNull.Value);
-
-            await command.ExecuteNonQueryAsync();
+            await _dbService.ExecuteNonQueryAsync(sql, p =>
+            {
+                p.AddWithValue("@FullName", author.FullName);
+                p.AddWithValue("@Biography", (object?)author.Biography ?? DBNull.Value);
+                p.AddWithValue("@Photo", (object?)author.Photo ?? DBNull.Value);
+            });
         }
 
         public async Task UpdateAuthorAsync(Author author)
         {
-            await using var connection = new NpgsqlConnection(_connectionString);
-            await connection.OpenAsync();
-
             const string sql = @"
                 UPDATE Authors
                 SET FullName = @FullName, Biography = @Biography, Photo = @Photo
                 WHERE Id = @Id";
 
-            await using var command = new NpgsqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Id", author.Id);
-            command.Parameters.AddWithValue("@FullName", author.FullName);
-            command.Parameters.AddWithValue("@Biography", (object?)author.Biography ?? DBNull.Value);
-            command.Parameters.AddWithValue("@Photo", (object?)author.Photo ?? DBNull.Value);
-
-            await command.ExecuteNonQueryAsync();
+            await _dbService.ExecuteNonQueryAsync(sql, p =>
+            {
+                p.AddWithValue("@Id", author.Id);
+                p.AddWithValue("@FullName", author.FullName);
+                p.AddWithValue("@Biography", (object?)author.Biography ?? DBNull.Value);
+                p.AddWithValue("@Photo", (object?)author.Photo ?? DBNull.Value);
+            });
         }
 
         public async Task DeleteAuthorAsync(int id)
         {
-            await using var connection = new NpgsqlConnection(_connectionString);
-            await connection.OpenAsync();
-
             const string sql = "DELETE FROM Authors WHERE Id = @Id";
-
-            await using var command = new NpgsqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Id", id);
-
-            await command.ExecuteNonQueryAsync();
+            await _dbService.ExecuteNonQueryAsync(sql, p => p.AddWithValue("@Id", id));
         }
 
         private static Author MapReaderToModel(IDataRecord reader)

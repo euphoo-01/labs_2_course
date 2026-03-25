@@ -33,6 +33,63 @@ namespace CourseSellingApp.Database.Services
 
         public string GetConnectionString() => _connectionString;
 
+        public async Task<int> ExecuteNonQueryAsync(string sql, Action<NpgsqlParameterCollection>? addParameters = null, CommandType commandType = CommandType.Text)
+        {
+            await using var connection = new NpgsqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            await using var command = new NpgsqlCommand(sql, connection) { CommandType = commandType };
+            addParameters?.Invoke(command.Parameters);
+
+            return await command.ExecuteNonQueryAsync();
+        }
+
+        public async Task<object?> ExecuteScalarAsync(string sql, Action<NpgsqlParameterCollection>? addParameters = null, CommandType commandType = CommandType.Text)
+        {
+            await using var connection = new NpgsqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            await using var command = new NpgsqlCommand(sql, connection) { CommandType = commandType };
+            addParameters?.Invoke(command.Parameters);
+
+            return await command.ExecuteScalarAsync();
+        }
+
+        public async Task<IEnumerable<T>> QueryAsync<T>(string sql, Func<IDataRecord, T> map, Action<NpgsqlParameterCollection>? addParameters = null, CommandType commandType = CommandType.Text)
+        {
+            var results = new List<T>();
+            await using var connection = new NpgsqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            await using var command = new NpgsqlCommand(sql, connection) { CommandType = commandType };
+            addParameters?.Invoke(command.Parameters);
+
+            await using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                results.Add(map(reader));
+            }
+
+            return results;
+        }
+
+        public async Task ExecuteInTransactionAsync(Func<NpgsqlConnection, NpgsqlTransaction, Task> action)
+        {
+            await using var connection = new NpgsqlConnection(_connectionString);
+            await connection.OpenAsync();
+            await using var transaction = await connection.BeginTransactionAsync();
+
+            try
+            {
+                await action(connection, transaction);
+                await transaction.CommitAsync();
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
 
         public async Task InitializeDatabaseAsync()
         {

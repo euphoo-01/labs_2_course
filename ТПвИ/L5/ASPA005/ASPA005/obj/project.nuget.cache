@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "rU5j2XO+Yk8=",
+  "success": true,
+  "projectFilePath": "/home/euphoo/02. University/2 КУРС/ТПвИ/L5/ASPA005/ASPA005/ASPA005.csproj",
+  "expectedPackageFiles": [
+    "/home/euphoo/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.3/microsoft.aspnetcore.app.ref.10.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
