@@ -50,6 +50,10 @@
       <Content Include="L3_createDb.sql" />
       <Content Include="L3_dml.sql" />
       <Content Include="L3_insert.sql" />
+      <Content Include="L4_MyBase_joins.sql" />
+      <Content Include="L4_univer_joins.sql" />
+      <Content Include="L5_MyBase_subrequests.sql" />
+      <Content Include="L5_UNIVER_subrequests.sql" />
       <Content Include="Нормализация.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>

@@ -15,5 +15,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="CourseSellingAppDb@localhost" uuid="7dc84dd5-28c2-4761-ba03-484bfe295fa0">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5433/CourseSellingAppDb</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
