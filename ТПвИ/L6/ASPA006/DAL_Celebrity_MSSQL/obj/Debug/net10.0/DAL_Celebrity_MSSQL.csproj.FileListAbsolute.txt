@@ -1,0 +1,16 @@
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/bin/Debug/net10.0/DAL_Celebrity_MSSQL.deps.json
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/bin/Debug/net10.0/DAL_Celebrity_MSSQL.dll
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/bin/Debug/net10.0/DAL_Celebrity_MSSQL.pdb
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/bin/Debug/net10.0/DAL_Celebrity.dll
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/bin/Debug/net10.0/DAL_Celebrity.pdb
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/obj/Debug/net10.0/DAL_Celebrity_MSSQL.csproj.AssemblyReference.cache
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/obj/Debug/net10.0/DAL_Celebrity_MSSQL.GeneratedMSBuildEditorConfig.editorconfig
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/obj/Debug/net10.0/DAL_Celebrity_MSSQL.AssemblyInfoInputs.cache
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/obj/Debug/net10.0/DAL_Celebrity_MSSQL.AssemblyInfo.cs
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/obj/Debug/net10.0/DAL_Celebrity_MSSQL.csproj.CoreCompileInputs.cache
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/obj/Debug/net10.0/DAL_Celebrity_MSSQL.sourcelink.json
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/obj/Debug/net10.0/DAL_Cele.76F26888.Up2Date
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/obj/Debug/net10.0/DAL_Celebrity_MSSQL.dll
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/obj/Debug/net10.0/refint/DAL_Celebrity_MSSQL.dll
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/obj/Debug/net10.0/DAL_Celebrity_MSSQL.pdb
+/home/euphoo/02. University/2 КУРС/ТПвИ/L6/ASPA006/DAL_Celebrity_MSSQL/obj/Debug/net10.0/ref/DAL_Celebrity_MSSQL.dll

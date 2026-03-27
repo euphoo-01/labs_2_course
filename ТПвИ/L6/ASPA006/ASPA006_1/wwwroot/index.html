@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Celebrities</title>
+</head>
+<body>
+<h1>Celebrities</h1>
+<div id="gallery"></div>
+<div id="event-log" style="border: 1px solid red; margin-top: 20px; padding: 10px;"></div>
+
+<script>
+    async function loadCelebrities() {
+        const res = await fetch('/api/Celebrities');
+        const celebrities = await res.json();
+        const gallery = document.getElementById('gallery');
+
+        celebrities.forEach(c => {
+            const img = document.createElement('img');
+            img.src = `/api/photo/${c.reqPhotoPath}`;
+            img.style.width = '150px';
+            img.style.margin = '10px';
+            img.style.cursor = 'pointer';
+            img.onclick = async () => {
+                const evRes = await fetch(`/api/Lifeevents/Celebrities/${c.id}`);
+                const events = await evRes.json();
+                const log = document.getElementById('event-log');
+                log.innerHTML = `<h3>${c.fullName}</h3>`;
+                events.forEach(e => {
+                    log.innerHTML += `<p>${e.date} - ${e.description}</p>`;
+                });
+            };
+            gallery.appendChild(img);
+        });
+    }
+    loadCelebrities();
+</script>
+</body>
+</html>
