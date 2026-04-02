@@ -1,0 +1,42 @@
+@page
+@model ASPA007_1.Pages.NewCelebrityModel
+@{
+    ViewData["Title"] = "New Celebrity";
+}
+
+<h1>Add New Celebrity</h1>
+
+@if (!Model.IsConfirmed)
+{
+    <form method="post" enctype="multipart/form-data">
+        <div>
+            <label>Full Name:</label>
+            <input asp-for="Celebrity.FullName" required />
+        </div>
+        <div>
+            <label>Nationality:</label>
+            <input asp-for="Celebrity.Nationality" required />
+        </div>
+        <div>
+            <label>Photo:</label>
+            <input type="file" name="PhotoFile" required />
+        </div>
+        <button type="submit" name="action" value="preview">Next</button>
+    </form>
+}
+else
+{
+    <h3>Confirm Data</h3>
+    <p>Full Name: @Model.Celebrity.FullName</p>
+    <p>Nationality: @Model.Celebrity.Nationality</p>
+    <p>Photo: @Model.PhotoFileName</p>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Celebrity.FullName" />
+        <input type="hidden" asp-for="Celebrity.Nationality" />
+        <input type="hidden" asp-for="PhotoFileName" />
+        <input type="hidden" asp-for="TempPhotoPath" />
+        <button type="submit" name="action" value="save">Confirm and Save</button>
+        <button type="submit" name="action" value="cancel">Cancel</button>
+    </form>
+}

@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../ASPA006/DAL_Celebrity/DAL_Celebrity.csproj" />
+  <Project Path="../ASPA006/DAL_Celebrity_MSSQL/DAL_Celebrity_MSSQL.csproj" />
+  <Project Path="ASPA007_1/ASPA007_1.csproj" />
+</Solution>

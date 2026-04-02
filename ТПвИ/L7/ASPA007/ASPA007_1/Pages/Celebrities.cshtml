@@ -1,0 +1,19 @@
+@page
+@model ASPA007_1.Pages.CelebritiesModel
+@{
+    ViewData["Title"] = "Celebrities Gallery";
+}
+
+<h1>Celebrities Gallery</h1>
+
+<div style="display: flex; flex-wrap: wrap;">
+    <a href="/0">
+        <img src="/images/diamond.png" alt="Add New" style="width: 150px; margin: 10px; cursor: pointer; border: 2px dashed #ccc;" />
+    </a>
+    @foreach (var c in Model.Celebrities)
+    {
+        <a href="/@c.Id">
+            <img src="@Model.PhotosRequestPath/@c.ReqPhotoPath" alt="@c.FullName" style="width: 150px; margin: 10px; cursor: pointer;" />
+        </a>
+    }
+</div>

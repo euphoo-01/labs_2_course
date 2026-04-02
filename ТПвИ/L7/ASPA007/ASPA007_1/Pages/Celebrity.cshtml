@@ -1,0 +1,26 @@
+@page "{id:int}"
+@model ASPA007_1.Pages.CelebrityModel
+@{
+    ViewData["Title"] = Model.Celebrity?.FullName ?? "Celebrity";
+}
+
+@if (Model.Celebrity != null)
+{
+    <h1>@Model.Celebrity.FullName</h1>
+    <p>Nationality: @Model.Celebrity.Nationality</p>
+    <img src="@Model.PhotosRequestPath/@Model.Celebrity.ReqPhotoPath" alt="@Model.Celebrity.FullName" style="max-width: 500px;" />
+    
+    <h3>Life Events</h3>
+    <ul>
+        @foreach (var e in Model.Events)
+        {
+            <li>@e.Date.ToShortDateString() - @e.Description</li>
+        }
+    </ul>
+}
+else
+{
+    <h1>Celebrity not found</h1>
+}
+
+<a href="/">Back to Gallery</a>

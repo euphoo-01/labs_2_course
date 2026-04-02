@@ -1,0 +1,7 @@
+{
+  "Celebrities": {
+    "PhotosRequestPath": "/Photos",
+    "PhotosFolder": "/home/euphoo/02. University/2 КУРС/ТПвИ/L7/ASPA006/Celebrities/",
+    "ConnectionString": "Server=localhost;Initial Catalog=LES01;User Id=sa;Password=Mssql2007;TrustServerCertificate=True"
+  }
+}
