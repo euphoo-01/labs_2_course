@@ -3,9 +3,6 @@ FROM AUDITORIUM
          INNER JOIN AUDITORIUM_TYPE ON AUDITORIUM.AUDITORIUM_TYPE = AUDITORIUM_TYPE.AUDITORIUM_TYPE
 WHERE AUDITORIUM_TYPENAME LIKE N'%компьютер%';
 
--- 3. На основе таблиц PRORGESS, STUDENT, GROUPS, SUBJECT, PULPIT и FACULTY сформировать перечень студентов, получивших экзаменационные оценки от 6 до 8. Результирующий набор должен содержать столбцы: Факультет, Кафедра, Специальность, Дисциплина, Имя Студента, Оценка. В столбце Оценка должны быть записаны экзаменационные оценки прописью: шесть, семь, восемь. 
--- Результат отсортировать в порядке убывания по столбцу PROGRESS.NOTE.
--- Использовать соединение INNER JOIN, предикат BETWEEN и выражение CASE.
 SELECT STUDENT.NAME,
        FACULTY.FACULTY_NAME,
        SUBJECT.SUBJECT_NAME,

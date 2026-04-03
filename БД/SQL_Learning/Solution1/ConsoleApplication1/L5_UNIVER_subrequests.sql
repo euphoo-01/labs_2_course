@@ -1,4 +1,3 @@
--- 1. Кафедры факультетов со специальностями "технология/технологии" (IN + некоррелированный подзапрос)
 SELECT PULPIT_NAME
 FROM PULPIT
 WHERE FACULTY IN (
@@ -7,7 +6,6 @@ WHERE FACULTY IN (
     WHERE PROFESSION_NAME LIKE N'%технологи%'
 );
 
--- 2. Тот же запрос, но подзапрос в секции FROM (Derived Table)
 SELECT P.PULPIT_NAME
 FROM PULPIT P
          INNER JOIN (
@@ -16,14 +14,13 @@ FROM PULPIT P
     WHERE PROFESSION_NAME LIKE N'%технологи%'
 ) AS FilteredFaculties ON P.FACULTY = FilteredFaculties.FACULTY;
 
--- 3. Тот же запрос без подзапросов (INNER JOIN трех таблиц)
+
 SELECT DISTINCT P.PULPIT_NAME
 FROM PULPIT P
          INNER JOIN FACULTY F ON P.FACULTY = F.FACULTY
          INNER JOIN PROFESSION PR ON F.FACULTY = PR.FACULTY
 WHERE PR.PROFESSION_NAME LIKE N'%технологи%';
 
--- 4. Аудитории максимальной вместимости для каждого типа (Коррелированный подзапрос + TOP)
 SELECT A1.AUDITORIUM, A1.AUDITORIUM_TYPE, A1.AUDITORIUM_CAPACITY
 FROM AUDITORIUM A1
 WHERE A1.AUDITORIUM_CAPACITY = (
@@ -34,7 +31,7 @@ WHERE A1.AUDITORIUM_CAPACITY = (
 )
 ORDER BY A1.AUDITORIUM_CAPACITY DESC;
 
--- 5. Факультеты без кафедр (EXISTS + коррелированный подзапрос)
+
 SELECT F.FACULTY_NAME
 FROM FACULTY F
 WHERE NOT EXISTS (

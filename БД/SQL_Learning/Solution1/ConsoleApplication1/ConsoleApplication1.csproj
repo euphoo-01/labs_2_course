@@ -54,6 +54,9 @@
       <Content Include="L4_univer_joins.sql" />
       <Content Include="L5_MyBase_subrequests.sql" />
       <Content Include="L5_UNIVER_subrequests.sql" />
+      <Content Include="L6_mybase_groupby.sql" />
+      <Content Include="L6_UNIVER_groupby.sql" />
+      <Content Include="UNIVER_Create.sql" />
       <Content Include="Нормализация.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
