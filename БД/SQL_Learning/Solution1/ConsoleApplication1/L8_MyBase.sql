@@ -81,7 +81,7 @@ SELECT * FROM dbo.[Типы_показателей]
 ORDER BY [Название показателя];
 GO
 
-ALTER VIEW dbo.[Количество_показателей]
+ALTER VIEW dbo.[Количество_показателей] (Название_предприятия, Количество_показателей)
 WITH SCHEMABINDING
 AS
 SELECT
@@ -108,7 +108,6 @@ BEGIN TRY
 EXEC(N'ALTER TABLE dbo.[Значения показателей] DROP COLUMN [ID предприятия];');
 END TRY
 BEGIN CATCH
-PRINT N'Операция с базовой таблицей заблокирована, так как представление dbo.[Количество_показателей] создано WITH SCHEMABINDING.';
     PRINT ERROR_MESSAGE();
 END CATCH;
 GO

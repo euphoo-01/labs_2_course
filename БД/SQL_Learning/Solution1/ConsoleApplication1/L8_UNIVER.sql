@@ -102,7 +102,6 @@ BEGIN TRY
 EXEC(N'ALTER TABLE dbo.PULPIT DROP COLUMN FACULTY;');
 END TRY
 BEGIN CATCH
-PRINT N'Операция с базовой таблицей заблокирована, так как представление dbo.[Количество_кафедр] создано WITH SCHEMABINDING.';
     PRINT ERROR_MESSAGE();
 END CATCH;
 GO

@@ -60,6 +60,8 @@
       <Content Include="L7_UNIVER.sql" />
       <Content Include="L8_MyBase.sql" />
       <Content Include="L8_UNIVER.sql" />
+      <Content Include="L9_MyBase.sql" />
+      <Content Include="L9_UNIVER.sql" />
       <Content Include="UNIVER_Create.sql" />
       <Content Include="Нормализация.md" />
     </ItemGroup>
