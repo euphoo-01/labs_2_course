@@ -13,5 +13,8 @@
     <file url="file://$PROJECT_DIR$/ConsoleApplication1/L5_MyBase_subrequests.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/ConsoleApplication1/L5_UNIVER_subrequests.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/ConsoleApplication1/L6_UNIVER_groupby.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/ConsoleApplication1/L6_mybase_groupby.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/ConsoleApplication1/L7_MyBase.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/ConsoleApplication1/L7_UNIVER.sql" dialect="TSQL" />
   </component>
 </project>

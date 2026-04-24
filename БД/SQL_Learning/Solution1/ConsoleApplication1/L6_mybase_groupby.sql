@@ -19,7 +19,7 @@ FROM [Значения показателей]
 GROUP BY 
     CASE 
         WHEN [Значение] < 1000 THEN N'Низкие'
-        WHEN [Значение] BETWEEN 1000 AND 10000 THEN N'Средниe'
+        WHEN [Значение] BETWEEN 1000 AND 10000 THEN N'Средние'
         ELSE N'Высокие'
 END
 ORDER BY [Количество записей] DESC;
@@ -65,5 +65,5 @@ SELECT p.[Название предприятия], COUNT(v.[ID значения
 FROM [Предприятия] p
     INNER JOIN [Значения показателей] v ON p.[ID предприятия] = v.[ID предприятия]
 GROUP BY p.[Название предприятия]
-HAVING COUNT(v.[ID значения]) > 5
+HAVING COUNT(v.[ID значения]) > 2
 ORDER BY [Количество показателей] DESC;

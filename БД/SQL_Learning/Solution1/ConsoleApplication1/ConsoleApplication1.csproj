@@ -56,6 +56,10 @@
       <Content Include="L5_UNIVER_subrequests.sql" />
       <Content Include="L6_mybase_groupby.sql" />
       <Content Include="L6_UNIVER_groupby.sql" />
+      <Content Include="L7_MyBase.sql" />
+      <Content Include="L7_UNIVER.sql" />
+      <Content Include="L8_MyBase.sql" />
+      <Content Include="L8_UNIVER.sql" />
       <Content Include="UNIVER_Create.sql" />
       <Content Include="Нормализация.md" />
     </ItemGroup>
