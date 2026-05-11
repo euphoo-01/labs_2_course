@@ -1,0 +1,3 @@
+/home/euphoo/02. University/2 КУРС/МатПрог/L5/CMakeFiles/transport_solver.dir
+/home/euphoo/02. University/2 КУРС/МатПрог/L5/CMakeFiles/edit_cache.dir
+/home/euphoo/02. University/2 КУРС/МатПрог/L5/CMakeFiles/rebuild_cache.dir
