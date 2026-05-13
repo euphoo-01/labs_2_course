@@ -3,6 +3,8 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/ConsoleApplication1/L10_MyBASE.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/ConsoleApplication1/L10_UNIVER.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/ConsoleApplication1/L11_MyBase.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/ConsoleApplication1/L11_Univer.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/ConsoleApplication1/L1_queries.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/ConsoleApplication1/L2_queries.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/ConsoleApplication1/L3_alter.sql" dialect="TSQL" />

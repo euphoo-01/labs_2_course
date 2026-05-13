@@ -2,7 +2,6 @@ PRINT N'--- ЗАДАНИЕ 1 ---';
 DECLARE @subj_name nchar(10);
 DECLARE @result_list nvarchar(max) = N'';
 
--- Объявляем курсор
 DECLARE SubjectCursor CURSOR FOR
 SELECT SUBJECT FROM SUBJECT WHERE PULPIT = N'ИСиТ';
 
