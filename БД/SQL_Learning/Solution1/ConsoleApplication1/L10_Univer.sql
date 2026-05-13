@@ -1,3 +1,11 @@
+/*
+    Лабораторная работа №10. Создание и применение индексов
+    База данных: UNIVER
+
+    Перед выполнением запросов для анализа стоимости в SSMS желательно включить:
+      - Include Actual Execution Plan / Display Estimated Execution Plan;
+      - SET STATISTICS IO, TIME ON.
+*/
 USE [UNIVER];
 GO
 
@@ -6,6 +14,11 @@ SET STATISTICS IO ON;
 SET STATISTICS TIME ON;
 GO
 
+/* ============================================================
+   1. Определить все индексы, имеющиеся в БД UNIVER.
+      Создать локальную временную таблицу, заполнить ее >= 1000 строк.
+      Выполнить SELECT-запрос до и после создания кластеризованного индекса.
+   ============================================================ */
 PRINT N'Задание 1. Индексы базы UNIVER';
 
 SELECT
@@ -36,9 +49,9 @@ GO
 DECLARE @i int = 0;
 WHILE @i < 20000
 BEGIN
-INSERT INTO #EXPLRE(TIND, TF)
-VALUES (FLOOR(30000 * RAND(CHECKSUM(NEWID()))), REPLICATE('string ', 10));
-SET @i += 1;
+    INSERT INTO #EXPLRE(TIND, TF)
+    VALUES (FLOOR(30000 * RAND(CHECKSUM(NEWID()))), REPLICATE('string ', 10));
+    SET @i += 1;
 END;
 GO
 
@@ -47,11 +60,11 @@ GO
 
 PRINT N'Задание 1. Запрос до создания кластеризованного индекса';
 BEGIN TRY
-CHECKPOINT;
+    CHECKPOINT;
     DBCC DROPCLEANBUFFERS WITH NO_INFOMSGS;
 END TRY
 BEGIN CATCH
-PRINT N'Не удалось очистить буферный кэш: ' + ERROR_MESSAGE();
+    PRINT N'Не удалось очистить буферный кэш: ' + ERROR_MESSAGE();
 END CATCH;
 
 SELECT *
@@ -66,11 +79,11 @@ GO
 
 PRINT N'Задание 1. Запрос после создания кластеризованного индекса IX_EXPLRE_CL';
 BEGIN TRY
-CHECKPOINT;
+    CHECKPOINT;
     DBCC DROPCLEANBUFFERS WITH NO_INFOMSGS;
 END TRY
 BEGIN CATCH
-PRINT N'Не удалось очистить буферный кэш: ' + ERROR_MESSAGE();
+    PRINT N'Не удалось очистить буферный кэш: ' + ERROR_MESSAGE();
 END CATCH;
 
 SELECT *
@@ -79,6 +92,9 @@ WHERE TIND BETWEEN 1500 AND 2500
 ORDER BY TIND;
 GO
 
+/* ============================================================
+   2. Некластеризованный неуникальный составной индекс.
+   ============================================================ */
 PRINT N'Задание 2. Некластеризованный неуникальный составной индекс';
 
 IF OBJECT_ID(N'tempdb..#EX') IS NOT NULL DROP TABLE #EX;
@@ -120,6 +136,9 @@ SELECT * FROM #EX ORDER BY TKEY, CC;
 SELECT * FROM #EX WHERE TKEY = 556 AND CC > 3;
 GO
 
+/* ============================================================
+   3. Некластеризованный индекс покрытия запроса.
+   ============================================================ */
 PRINT N'Задание 3. Индекс покрытия запроса';
 
 IF OBJECT_ID(N'tempdb..#EX_COVER') IS NOT NULL DROP TABLE #EX_COVER;
@@ -159,6 +178,9 @@ FROM #EX_COVER
 WHERE TKEY > 15000;
 GO
 
+/* ============================================================
+   4. Некластеризованный фильтруемый индекс.
+   ============================================================ */
 PRINT N'Задание 4. Фильтруемый индекс';
 
 IF OBJECT_ID(N'tempdb..#EX_FILTER') IS NOT NULL DROP TABLE #EX_FILTER;
@@ -198,6 +220,9 @@ SELECT TKEY FROM #EX_FILTER WHERE TKEY > 15000 AND TKEY < 20000;
 SELECT TKEY FROM #EX_FILTER WHERE TKEY = 17000;
 GO
 
+/* ============================================================
+   5. Фрагментация индекса, реорганизация и перестройка.
+   ============================================================ */
 PRINT N'Задание 5. Фрагментация, REORGANIZE, REBUILD';
 
 IF OBJECT_ID(N'tempdb..#EX_FRAG') IS NOT NULL DROP TABLE #EX_FRAG;
@@ -231,7 +256,7 @@ SELECT
     ips.page_count AS [Количество страниц]
 FROM sys.dm_db_index_physical_stats(DB_ID(N'tempdb'), OBJECT_ID(N'tempdb..#EX_FRAG'), NULL, NULL, N'SAMPLED') AS ips
     INNER JOIN tempdb.sys.indexes AS i
-ON ips.object_id = i.object_id AND ips.index_id = i.index_id
+        ON ips.object_id = i.object_id AND ips.index_id = i.index_id
 WHERE i.name IS NOT NULL;
 GO
 
@@ -251,7 +276,7 @@ SELECT
     ips.page_count AS [Количество страниц]
 FROM sys.dm_db_index_physical_stats(DB_ID(N'tempdb'), OBJECT_ID(N'tempdb..#EX_FRAG'), NULL, NULL, N'SAMPLED') AS ips
     INNER JOIN tempdb.sys.indexes AS i
-ON ips.object_id = i.object_id AND ips.index_id = i.index_id
+        ON ips.object_id = i.object_id AND ips.index_id = i.index_id
 WHERE i.name IS NOT NULL;
 GO
 
@@ -265,7 +290,7 @@ SELECT
     ips.page_count AS [Количество страниц]
 FROM sys.dm_db_index_physical_stats(DB_ID(N'tempdb'), OBJECT_ID(N'tempdb..#EX_FRAG'), NULL, NULL, N'SAMPLED') AS ips
     INNER JOIN tempdb.sys.indexes AS i
-ON ips.object_id = i.object_id AND ips.index_id = i.index_id
+        ON ips.object_id = i.object_id AND ips.index_id = i.index_id
 WHERE i.name IS NOT NULL;
 GO
 
@@ -279,10 +304,13 @@ SELECT
     ips.page_count AS [Количество страниц]
 FROM sys.dm_db_index_physical_stats(DB_ID(N'tempdb'), OBJECT_ID(N'tempdb..#EX_FRAG'), NULL, NULL, N'SAMPLED') AS ips
     INNER JOIN tempdb.sys.indexes AS i
-ON ips.object_id = i.object_id AND ips.index_id = i.index_id
+        ON ips.object_id = i.object_id AND ips.index_id = i.index_id
 WHERE i.name IS NOT NULL;
 GO
 
+/* ============================================================
+   6. Демонстрация параметра FILLFACTOR.
+   ============================================================ */
 PRINT N'Задание 6. FILLFACTOR';
 
 DROP INDEX IX_EX_FRAG_TKEY ON #EX_FRAG;
@@ -302,7 +330,7 @@ SELECT
     ips.page_count AS [Количество страниц]
 FROM sys.dm_db_index_physical_stats(DB_ID(N'tempdb'), OBJECT_ID(N'tempdb..#EX_FRAG'), NULL, NULL, N'DETAILED') AS ips
     INNER JOIN tempdb.sys.indexes AS i
-ON ips.object_id = i.object_id AND ips.index_id = i.index_id
+        ON ips.object_id = i.object_id AND ips.index_id = i.index_id
 WHERE i.name IS NOT NULL;
 GO
 
@@ -321,7 +349,7 @@ SELECT
     ips.page_count AS [Количество страниц]
 FROM sys.dm_db_index_physical_stats(DB_ID(N'tempdb'), OBJECT_ID(N'tempdb..#EX_FRAG'), NULL, NULL, N'DETAILED') AS ips
     INNER JOIN tempdb.sys.indexes AS i
-ON ips.object_id = i.object_id AND ips.index_id = i.index_id
+        ON ips.object_id = i.object_id AND ips.index_id = i.index_id
 WHERE i.name IS NOT NULL;
 GO
 

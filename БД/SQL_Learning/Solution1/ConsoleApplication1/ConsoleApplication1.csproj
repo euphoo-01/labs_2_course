@@ -43,6 +43,10 @@
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
+      <Content Include="L10_MyBASE.sql" />
+      <Content Include="L10_UNIVER.sql" />
+      <Content Include="L11_MyBase.sql" />
+      <Content Include="L11_Univer.sql" />
       <Content Include="L1_queries.sql" />
       <Content Include="L2_queries.sql" />
       <Content Include="L3_alter.sql" />
