@@ -49,6 +49,8 @@
       <Content Include="L11_Univer.sql" />
       <Content Include="L12_MyBase.sql" />
       <Content Include="L12_Univer.sql" />
+      <Content Include="L13_MyBase.sql" />
+      <Content Include="L13_Univer.sql" />
       <Content Include="L1_queries.sql" />
       <Content Include="L2_queries.sql" />
       <Content Include="L3_alter.sql" />

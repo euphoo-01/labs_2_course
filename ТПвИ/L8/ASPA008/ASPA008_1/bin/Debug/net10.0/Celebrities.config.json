@@ -1,0 +1,15 @@
+{
+  "Celebrities": {
+    "PhotosRequestPath": "/Photos",
+    "PhotosFolder": "Photos",
+    "CountryCodesFile": "CountryCodes/iso3166-1-alpha2-country-codes.json",
+    "ConnectionString": "Server=localhost;Initial Catalog=LES01;User Id=sa;Password=Mssql2007;TrustServerCertificate=True"
+  },
+  "CelebrityTitles": {
+    "Index": "Celebrities",
+    "Create": "New Celebrity",
+    "Details": "Celebrity",
+    "Edit": "Edit Celebrity",
+    "Delete": "Delete Celebrity"
+  }
+}

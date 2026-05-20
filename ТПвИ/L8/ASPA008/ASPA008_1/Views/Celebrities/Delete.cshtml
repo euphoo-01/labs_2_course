@@ -1,0 +1,17 @@
+@model DAL_Celebrity.Celebrity
+@{
+    ViewData["Title"] = "Delete Celebrity";
+}
+
+<section class="form-page">
+    <h1>Delete Celebrity</h1>
+    <p>Delete information about <strong>@Model.FullName</strong>?</p>
+    @using (Html.BeginForm("DeleteConfirmed", "Celebrities", new { id = Model.Id }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="actions">
+            <button class="button danger" type="submit">Delete</button>
+            <a class="button secondary" asp-action="Details" asp-route-id="@Model.Id">Cancel</a>
+        </div>
+    }
+</section>

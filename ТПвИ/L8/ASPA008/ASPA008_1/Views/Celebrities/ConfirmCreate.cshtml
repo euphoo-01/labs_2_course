@@ -1,0 +1,30 @@
+@model CelebrityFormModel
+@inject ANC25_WEBAPI_DLL.ICountryCodes CountryCodes
+@{
+    ViewData["Title"] = "Confirm Celebrity";
+}
+
+<section class="form-page">
+    <h1>Confirm Celebrity</h1>
+    <dl class="confirm-list">
+        <dt>Full name</dt>
+        <dd>@Model.FullName</dd>
+        <dt>Nationality</dt>
+        <dd>@CountryCodes.GetLabel(Model.Nationality) (@Model.Nationality)</dd>
+        <dt>Photo</dt>
+        <dd>@Model.ReqPhotoPath</dd>
+    </dl>
+
+    @using (Html.BeginForm("CreateConfirmed", "Celebrities", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.FullName)
+        @Html.HiddenFor(m => m.Nationality)
+        @Html.HiddenFor(m => m.ReqPhotoPath)
+        <div class="actions">
+            <button class="button" type="submit">Create</button>
+            <a class="button secondary" asp-action="Create">Change</a>
+        </div>
+    }
+</section>

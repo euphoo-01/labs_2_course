@@ -1,0 +1,39 @@
+@model CelebrityDetailsViewModel
+@inject ANC25_WEBAPI_DLL.ICountryCodes CountryCodes
+@{
+    ViewData["Title"] = Model.Celebrity.FullName;
+}
+
+<article class="details">
+    <div class="details-photo">
+        @Html.CelebrityFoto(Model.Celebrity)
+    </div>
+    <div class="details-body">
+        <h1>@Model.Celebrity.FullName</h1>
+        <p class="muted">@CountryCodes.GetLabel(Model.Celebrity.Nationality) (@Model.Celebrity.Nationality)</p>
+
+        <div class="actions">
+            <a class="button" asp-action="Edit" asp-route-id="@Model.Celebrity.Id">Edit</a>
+            <a class="button danger" asp-action="Delete" asp-route-id="@Model.Celebrity.Id">Delete</a>
+            <a class="button secondary" asp-action="Index">Back</a>
+        </div>
+
+        <h2>Life events</h2>
+        <ul class="events">
+        @foreach (var item in Model.Lifeevents.OrderBy(e => e.Date))
+        {
+            <li><time>@item.Date.ToString("yyyy-MM-dd")</time> @item.Description</li>
+        }
+        </ul>
+
+        @if (Model.WikipediaLinks.Any())
+        {
+            <div class="wiki-links">
+            @foreach (var link in Model.WikipediaLinks)
+            {
+                <a class="button secondary" href="@link.Url">@link.Title</a>
+            }
+            </div>
+        }
+    </div>
+</article>

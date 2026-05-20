@@ -1,0 +1,34 @@
+@model CelebrityFormModel
+@inject ANC25_WEBAPI_DLL.ICountryCodes CountryCodes
+
+@using (Html.BeginForm((string)ViewBag.FormAction, "Celebrities", FormMethod.Post, new { @class = "celebrity-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+
+    <label>
+        <span>Full name</span>
+        @Html.TextBoxFor(m => m.FullName, new { required = "required", maxlength = "50" })
+        @Html.ValidationMessageFor(m => m.FullName)
+    </label>
+
+    <label>
+        <span>Nationality</span>
+        @Html.DropDownListFor(
+            m => m.Nationality,
+            CountryCodes.GetAll().Select(c => new SelectListItem(c.CountryLabel, c.Code, c.Code == Model.Nationality)),
+            "Select country")
+        @Html.ValidationMessageFor(m => m.Nationality)
+    </label>
+
+    <label>
+        <span>Photo file</span>
+        @Html.TextBoxFor(m => m.ReqPhotoPath, new { placeholder = "Knuth.jpg" })
+        @Html.ValidationMessageFor(m => m.ReqPhotoPath)
+    </label>
+
+    <div class="actions">
+        <button class="button" type="submit">@((string?)ViewBag.SubmitText ?? "Save")</button>
+        <a class="button secondary" asp-action="Index">Cancel</a>
+    </div>
+}

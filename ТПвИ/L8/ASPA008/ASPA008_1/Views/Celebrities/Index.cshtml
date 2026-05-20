@@ -1,0 +1,22 @@
+@model IEnumerable<DAL_Celebrity.Celebrity>
+@{
+    ViewData["Title"] = "Celebrities";
+}
+
+<section class="page-head">
+    <div>
+        <h1>Celebrities</h1>
+        <p>ASP.NET Core MVC application with repository, filters, helpers and country-code service.</p>
+    </div>
+    <a class="diamond-link" asp-action="Create" title="Add celebrity">◆</a>
+</section>
+
+<div class="photo-grid">
+@foreach (var celebrity in Model)
+{
+    <a class="photo-card" asp-action="Details" asp-route-id="@celebrity.Id">
+        @Html.CelebrityFoto(celebrity)
+        <span>@celebrity.FullName</span>
+    </a>
+}
+</div>

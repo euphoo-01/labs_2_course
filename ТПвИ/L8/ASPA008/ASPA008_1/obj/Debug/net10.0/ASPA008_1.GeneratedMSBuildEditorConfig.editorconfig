@@ -1,0 +1,79 @@
+is_global = true
+build_property.TargetFramework = net10.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ASPA008_1
+build_property.RootNamespace = ASPA008_1
+build_property.ProjectDir = /home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/Celebrities/ConfirmCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2VsZWJyaXRpZXMvQ29uZmlybUNyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/Celebrities/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2VsZWJyaXRpZXMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/Celebrities/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2VsZWJyaXRpZXMvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/Celebrities/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2VsZWJyaXRpZXMvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/Celebrities/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2VsZWJyaXRpZXMvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/Celebrities/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2VsZWJyaXRpZXMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/Celebrities/_CelebrityForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2VsZWJyaXRpZXMvX0NlbGVicml0eUZvcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/euphoo/02. University/2 КУРС/ТПвИ/L8/ASPA008/ASPA008_1/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-o300hbdjuu

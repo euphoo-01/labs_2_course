@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../ASPA006/DAL_Celebrity/DAL_Celebrity.csproj" />
+  <Project Path="../ASPA006/DAL_Celebrity_MSSQL/DAL_Celebrity_MSSQL.csproj" />
+  <Project Path="ANC25_WEBAPI_DLL/ANC25_WEBAPI_DLL.csproj" />
+  <Project Path="ASPA008_1/ASPA008_1.csproj" />
+</Solution>
